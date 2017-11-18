@@ -3,6 +3,7 @@
 import logging
 import os
 from utils.args import args
+from utils.mysql import connect_db
 from gevent import wsgi, spawn
 from utils import config
 from flask import Flask, request, abort
@@ -43,7 +44,7 @@ def accept_webhook():
             log.debug(data)
         else:   # For RM's frame
             for frame in data:
-                log.debug(data)
+                log.debug(frame)
     except Exception as e:
         log.error("I am unhappy, computer says: {}: {}".format(type(e).__name__, e))
         abort(400)
@@ -51,4 +52,5 @@ def accept_webhook():
 
 if __name__ == '__main__':
     log.info("Poracle initializing.")
+    connect_db()
     potato()
