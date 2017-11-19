@@ -1,0 +1,6 @@
+token: '{{censored}}'
+
+bot:
+  plugins:
+    - plugins.discord
+  commands_require_mention: false

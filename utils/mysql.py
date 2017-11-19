@@ -33,3 +33,5 @@ def connect_db():
         log.critical("% d: % s\n" % (e.args[0], e.args[1]))
         exit(1)
         return False
+
+def check_db_version():
