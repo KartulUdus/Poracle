@@ -3,7 +3,7 @@
 import logging
 import os
 from utils.args import args
-from utils.mysql import connect_db
+from utils.mysql import connect_db, check_db_version
 from gevent import wsgi, spawn
 from utils import config
 from flask import Flask, request, abort
@@ -53,4 +53,5 @@ def accept_webhook():
 if __name__ == '__main__':
     log.info("Poracle initializing.")
     connect_db()
+    check_db_version()
     potato()

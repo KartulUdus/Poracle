@@ -5,6 +5,21 @@ from args import args as get_args
 import logging
 import pymysql
 from . import config
+from peewee import (InsertQuery, Check, CompositeKey, ForeignKeyField,
+                    SmallIntegerField, IntegerField, CharField, DoubleField,
+                    BooleanField, DateTimeField, fn, DeleteQuery, FloatField,
+                    TextField, JOIN, OperationalError)
+from flask import Flask
+from playhouse.flask_utils import FlaskDB
+from playhouse.pool import PooledMySQLDatabase
+from playhouse.shortcuts import RetryOperationalError, case
+from playhouse.migrate import migrate, MySQLMigrator
+from playhouse.flask_utils import FlaskDB
+
+
+# Globals
+app = Flask(__name__)
+flaskDb = FlaskDB()
 
 # Logging
 
@@ -16,22 +31,54 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
                               '[%(levelname)8s] %(message)s')
 ch.setFormatter(formatter)
 log.addHandler(ch)
-
+args = get_args(os.path.abspath(os.path.dirname(__file__)))
 # Test Db Connection
 
 def connect_db():
 
     try:
-        args = get_args(os.path.abspath(os.path.dirname(__file__)))
         return pymysql.connect(host="{}".format(
-            args.host), port=int("{}".format(
-                args.port)), user="{}".format(
+            args.dbhost), port=int("{}".format(
+            args.dbport)), user="{}".format(
             args.user), passwd="{}".format(
             args.password), database='{}'.format(args.database),
             connect_timeout=10)
     except pymysql.Error as e:
-        log.critical("% d: % s\n" % (e.args[0], e.args[1]))
+        log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (e.args[0], e.args[1]))
         exit(1)
         return False
 
 def check_db_version():
+
+    log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
+                                                            args.dbport))
+    humans(BaseModel)
+
+class Utf8mb4CharField(CharField):
+    def __init__(self, max_length=191, *args, **kwargs):
+        self.max_length = max_length
+        super(CharField, self).__init__(*args, **kwargs)
+
+class BaseModel(flaskDb.Model):
+
+    @classmethod
+    def database(cls):
+        return cls._meta.database
+
+    @classmethod
+    def get_all(cls):
+        return [m for m in cls.select().dicts()]
+
+class humans(BaseModel):
+    id = Utf8mb4CharField(primary_key=True, max_length=20)
+    name = Utf8mb4CharField(index=True, max_length=50)
+    enabled = BooleanField()
+    latitude = DoubleField()
+    longitude = DoubleField()
+    class Meta:
+        indexes = ((('latitude', 'longitude'), False),)
+
+class pokemon(BaseModel):
+    discord_id = Utf8mb4CharField(index=True, max_length=20)
+    pokemon_id = SmallIntegerField(index=True)
+    distance = SmallIntegerField(index=True, max_length=3)
