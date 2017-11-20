@@ -20,7 +20,7 @@ from playhouse.flask_utils import FlaskDB
 # Globals
 app = Flask(__name__)
 flaskDb = FlaskDB()
-
+sb_schema_version = 1
 # Logging
 
 log = logging.getLogger('mysql')
@@ -54,6 +54,9 @@ def check_db_version():
                                                             args.dbport))
     humans(BaseModel)
 
+## Db table Models
+
+
 class Utf8mb4CharField(CharField):
     def __init__(self, max_length=191, *args, **kwargs):
         self.max_length = max_length
@@ -69,7 +72,14 @@ class BaseModel(flaskDb.Model):
     def get_all(cls):
         return [m for m in cls.select().dicts()]
 
-class humans(BaseModel):
+class LatLongModel(BaseModel):
+
+    @classmethod
+    def get_all(cls):
+        results = [m for m in cls.select().dicts()]
+        return results
+
+class humans(LatLongModel):
     id = Utf8mb4CharField(primary_key=True, max_length=20)
     name = Utf8mb4CharField(index=True, max_length=50)
     enabled = BooleanField()
@@ -81,4 +91,35 @@ class humans(BaseModel):
 class pokemon(BaseModel):
     discord_id = Utf8mb4CharField(index=True, max_length=20)
     pokemon_id = SmallIntegerField(index=True)
-    distance = SmallIntegerField(index=True, max_length=3)
+    distance = SmallIntegerField(index=True)
+    min_iv = SmallIntegerField(index=True)
+    latitude = DoubleField()
+    longitude = DoubleField()
+
+
+    class Meta:
+        indexes = ((('latitude', 'longitude'), False),)
+
+
+class raid(BaseModel):
+    discord_id = Utf8mb4CharField(index=True, max_length=20)
+    pokemon_id = SmallIntegerField(index=True)
+    distance = SmallIntegerField(index=True)
+    min_iv = SmallIntegerField(index=True)
+    latitude = DoubleField()
+    longitude = DoubleField()
+
+    class Meta:
+        indexes = ((('latitude', 'longitude'), False),)
+
+
+class schema_version(BaseModel):
+    key = Utf8mb4CharField()
+    val = SmallIntegerField()
+
+    class Meta:
+        primary_key = False
+
+
+
+
