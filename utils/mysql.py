@@ -113,6 +113,17 @@ class raid(BaseModel):
         indexes = ((('latitude', 'longitude'), False),)
 
 
+class geocoded(BaseModel):
+    latitude = DoubleField()
+    longitude = DoubleField()
+    address = Utf8mb4CharField(index=True, max_length=50)
+    raid = BooleanField()
+    gym_id = Utf8mb4CharField(index=True, max_length=50)
+    gym_name = Utf8mb4CharField(index=True, max_length=50)
+    gym_description = Utf8mb4CharField()
+    class Meta:
+        indexes = ((('latitude', 'longitude'), False),)
+
 class schema_version(BaseModel):
     key = Utf8mb4CharField()
     val = SmallIntegerField()
