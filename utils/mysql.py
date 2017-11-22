@@ -52,84 +52,59 @@ def check_db_version():
 
     log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
                                                             args.dbport))
-    humans(BaseModel)
+    cur_ver = '1'
 
-## Db table Models
+    db = connect_db()
+    try:
+        db_ver = db.cursor().execute('''SELECT val FROM version where `key`='schema_version';''')
 
-
-class Utf8mb4CharField(CharField):
-    def __init__(self, max_length=191, *args, **kwargs):
-        self.max_length = max_length
-        super(CharField, self).__init__(*args, **kwargs)
-
-class BaseModel(flaskDb.Model):
-
-    @classmethod
-    def database(cls):
-        return cls._meta.database
-
-    @classmethod
-    def get_all(cls):
-        return [m for m in cls.select().dicts()]
-
-class LatLongModel(BaseModel):
-
-    @classmethod
-    def get_all(cls):
-        results = [m for m in cls.select().dicts()]
-        return results
-
-class humans(LatLongModel):
-    id = Utf8mb4CharField(primary_key=True, max_length=20)
-    name = Utf8mb4CharField(index=True, max_length=50)
-    enabled = BooleanField()
-    latitude = DoubleField()
-    longitude = DoubleField()
-    class Meta:
-        indexes = ((('latitude', 'longitude'), False),)
-
-class pokemon(BaseModel):
-    discord_id = Utf8mb4CharField(index=True, max_length=20)
-    pokemon_id = SmallIntegerField(index=True)
-    distance = SmallIntegerField(index=True)
-    min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField()
-    longitude = DoubleField()
-
-
-    class Meta:
-        indexes = ((('latitude', 'longitude'), False),)
-
-
-class raid(BaseModel):
-    discord_id = Utf8mb4CharField(index=True, max_length=20)
-    pokemon_id = SmallIntegerField(index=True)
-    distance = SmallIntegerField(index=True)
-    min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField()
-    longitude = DoubleField()
-
-    class Meta:
-        indexes = ((('latitude', 'longitude'), False),)
+    except pymysql.err.ProgrammingError:
+        log.info("MySQL not happy, tables not found. Learning carpentry ...")
+        db.cursor().execute(
+        '''CREATE TABLE humans(
+        `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `name` varchar(50),
+        `enabled` tinyint(1) NOT NULL,
+        `latitude` double NOT NULL,
+        `longitude` double NOT NULL
+        ); 
+        CREATE TABLE `monsters`(
+        `discord_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `pokemon_id` smallint(6) NOT NULL,
+        `distance` smallint(6) DEFAULT NULL,
+        `min_iv` smallint(6) DEFAULT NULL
+        );
+        CREATE TABLE `raids`(
+        `discord_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `pokemon_id` smallint(6),
+        `distance` smallint(6) DEFAULT NULL,
+        `egg_level` smallint(6) 
+        );
+        CREATE TABLE geocode(
+        `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `adress` varchar(191) COLLATE utf8mb4_unicode_ci,
+        `latitude` double NOT NULL,
+        `longitude` double NOT NULL,
+        `name` varchar(191) COLLATE utf8mb4_unicode_ci,
+        `description` longtext COLLATE utf8mb4_unicode_ci,
+        `url` varchar(191) COLLATE utf8mb4_unicode_ci
+        ); 
+        CREATE TABLE version(
+        `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+        `val` smallint(6) NOT NULL
+        );
+        LOCK TABLES `version` WRITE;
+        INSERT INTO `version` (`key`, `val`) VALUES ('schema_version',1);  
+        UNLOCK TABLES;
+        '''
+        )
+    if (db_ver != cur_ver):
+        log.critical('MySQL unhappy, tables looks weird, probably wrong house')
+        exit(2)
+    else:
+        log.info('MySQL happy, tables look pretty')
 
 
-class geocoded(BaseModel):
-    latitude = DoubleField()
-    longitude = DoubleField()
-    address = Utf8mb4CharField(index=True, max_length=50)
-    raid = BooleanField()
-    gym_id = Utf8mb4CharField(index=True, max_length=50)
-    gym_name = Utf8mb4CharField(index=True, max_length=50)
-    gym_description = Utf8mb4CharField()
-    class Meta:
-        indexes = ((('latitude', 'longitude'), False),)
-
-class schema_version(BaseModel):
-    key = Utf8mb4CharField()
-    val = SmallIntegerField()
-
-    class Meta:
-        primary_key = False
 
 
 
