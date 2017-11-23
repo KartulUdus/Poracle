@@ -2,3 +2,5 @@ disco-py
 ujson
 erlpack
 gipc
+pillow
+staticmap

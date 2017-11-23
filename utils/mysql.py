@@ -6,21 +6,10 @@ from args import args as get_args
 import logging
 import pymysql
 from . import config
-from peewee import (InsertQuery, Check, CompositeKey, ForeignKeyField,
-                    SmallIntegerField, IntegerField, CharField, DoubleField,
-                    BooleanField, DateTimeField, fn, DeleteQuery, FloatField,
-                    TextField, JOIN, OperationalError)
 from flask import Flask
-from playhouse.flask_utils import FlaskDB
-from playhouse.pool import PooledMySQLDatabase
-from playhouse.shortcuts import RetryOperationalError, case
-from playhouse.migrate import migrate, MySQLMigrator
-from playhouse.flask_utils import FlaskDB
-
 
 # Globals
 app = Flask(__name__)
-flaskDb = FlaskDB()
 sb_schema_version = 1
 # Logging
 
@@ -101,13 +90,10 @@ def check_db_version():
         )
     if (db_ver[0] != cur_ver):
 
-        log.critical('MySQL unhappy, tables looks weird, probably wrong house')
+        log.critical('MySQL unhappy, tables look weird, probably wrong house')
         exit(2)
     else:
         log.info('MySQL happy, tables look pretty')
-
-
-
 
 
 
