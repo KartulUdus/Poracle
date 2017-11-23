@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import sys
 from args import args as get_args
 import logging
 import pymysql
@@ -52,16 +53,17 @@ def check_db_version():
 
     log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
                                                             args.dbport))
-    cur_ver = '1'
+
 
     db = connect_db()
     try:
-        db_ver = db.cursor().execute('''SELECT val FROM version where `key`='schema_version';''')
-
+        cur = db.cursor()
+        cur.execute('''SELECT val FROM version where `key`='schema_version';''')
+        db_ver = cur.fetchone()
+        cur_ver = int(1)
     except pymysql.err.ProgrammingError:
         log.info("MySQL not happy, tables not found. Learning carpentry ...")
-        db.cursor().execute(
-        '''CREATE TABLE humans(
+        db.cursor().execute('''CREATE TABLE humans(
         `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
         `name` varchar(50),
         `enabled` tinyint(1) NOT NULL,
@@ -95,10 +97,10 @@ def check_db_version():
         );
         LOCK TABLES `version` WRITE;
         INSERT INTO `version` (`key`, `val`) VALUES ('schema_version',1);  
-        UNLOCK TABLES;
-        '''
+        UNLOCK TABLES;'''
         )
-    if (db_ver != cur_ver):
+    if (db_ver[0] != cur_ver):
+
         log.critical('MySQL unhappy, tables looks weird, probably wrong house')
         exit(2)
     else:

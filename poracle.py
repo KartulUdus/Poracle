@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 import logging
 import os
+import subprocess
 from utils.args import args
 from utils.mysql import connect_db, check_db_version
 from gevent import wsgi, spawn
 from utils import config
 from flask import Flask, request, abort
+import sys
 import Queue
-import json
+import ujson as json
 
 app = Flask(__name__)
 data_queue = Queue.Queue()
@@ -25,11 +27,13 @@ log.addHandler(ch)
 args(os.path.abspath(os.path.dirname(__file__)))
 
 def potato():
+
     log.info("Poracle is running on: http://{}:{}".format(config['HOST'], config['PORT']))
     server = wsgi.WSGIServer((config['HOST'], config['PORT']), app, log=logging.getLogger('Webserver'))
     server.serve_forever()
 
-
+def run_bot():
+    subprocess.Popen('python -m disco.cli --config utils/discord/config.yaml --log-level warning', shell=True)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -54,4 +58,6 @@ if __name__ == '__main__':
     log.info("Poracle initializing.")
     connect_db()
     check_db_version()
+    run_bot()
     potato()
+

@@ -2,5 +2,5 @@ token: ''
 
 bot:
   plugins:
-    - plugins.discord
+    - utils.discord.plugins.discord
   commands_require_mention: false
