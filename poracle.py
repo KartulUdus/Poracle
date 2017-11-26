@@ -5,7 +5,7 @@ import os
 import subprocess
 from utils.geo import geoloc, revgeoloc, makemap
 from utils.args import args
-from utils.mysql import connect_db, check_db_version
+from utils.mysql import verify_database_schema
 from gevent import wsgi, spawn
 from utils import config
 from flask import Flask, request, abort
@@ -35,7 +35,7 @@ def potato():
     server.serve_forever()
 
 def run_bot():
-    subprocess.Popen('python -m disco.cli --config utils/discord/config.yaml --log-level warning', shell=True)
+    subprocess.Popen('python -m disco.cli --config utils/discord/config.yaml --log-level debug', shell=True)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -57,10 +57,9 @@ def accept_webhook():
     return "OK"  # request ok
 
 if __name__ == '__main__':
-    # log.info("Poracle initializing.")
-    # connect_db()
-    # check_db_version()
-    # run_bot()
-    # potato()
-    makemap(59.436816, 24.7427470,'potato')
+     log.info("Poracle initializing.")
+ #    verify_database_schema()
+     #run_bot()
+ #    potato()
+#    makemap(59.436816, 24.7427470,'potato')
 

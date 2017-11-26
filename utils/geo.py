@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+import logging
 from cHaversine import haversine
-from args import args
 from geopy.geocoders import Nominatim
 from staticmap import StaticMap, IconMarker
 
@@ -15,7 +14,6 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
                               '[%(levelname)8s] %(message)s')
 ch.setFormatter(formatter)
 log.addHandler(ch)
-args = get_args(os.path.abspath(os.path.dirname(__file__)))
 
 
 ##distance ([59.426372, 24.7705570], [59.432537, 24.7597870])

@@ -4,3 +4,4 @@ bot:
   plugins:
     - utils.discord.plugins.discord
   commands_require_mention: false
+  commands_prefix: '!'
