@@ -11,12 +11,7 @@ from peewee import (InsertQuery, Check, CompositeKey, ForeignKeyField,
                     BooleanField, DateTimeField, fn, DeleteQuery, FloatField,
                     TextField, JOIN, OperationalError)
 from peewee import *
-from flask import Flask
-from playhouse.flask_utils import FlaskDB
-from playhouse.pool import PooledMySQLDatabase
-from playhouse.shortcuts import RetryOperationalError, case
-from playhouse.migrate import migrate, MySQLMigrator
-from playhouse.flask_utils import FlaskDB
+
 
 # Globals
 
@@ -70,33 +65,21 @@ class humans(BaseModel):
 
 
 class monsters(BaseModel):
-    id = SmallIntegerField(index=True)
+    id = Utf8mb4CharField(index=True, max_length=20)
     pokemon_id = SmallIntegerField(index=True)
     distance = SmallIntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField(null=True)
-    longitude = DoubleField(null=True)
-
-    class Meta:
-        indexes = ((('latitude', 'longitude'), False),)
-
-
 
 class raid(BaseModel):
-    discord_id = SmallIntegerField(index=True)
+    id = Utf8mb4CharField(index=True, max_length=20)
     pokemon_id = SmallIntegerField(index=True)
     distance = SmallIntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField(null=True)
-    longitude = DoubleField(null=True)
-
-
 
 class geocoded(BaseModel):
     id = Utf8mb4CharField(index=True, max_length=20,  unique=True)
     type = Utf8mb4CharField(index=True, max_length=20)
     adress = Utf8mb4CharField(index=True)
-    distance = SmallIntegerField(index=True)
     description = TextField(null=True, default="")
     url = Utf8mb4CharField(null=True)
     latitude = DoubleField(null=True)
@@ -155,7 +138,7 @@ def registered(self):
 def registered_by_name(self):
     return (humans
             .select()
-            .where(humans.name == self).exists)
+            .where(humans.name == self).exists())
 
 # Register human
 
@@ -170,13 +153,34 @@ def unregister(id):
     db.close()
 
 def activate(discordid):
-    humans.update(enabled = 1).where(humans.id == discordid).execute()
+    humans.update(enabled=1).where(humans.id == discordid).execute()
     db.close()
 
 def deactivate(discordid):
-    humans.update(enabled = 0).where(humans.id == discordid).execute()
+    humans.update(enabled=0).where(humans.id == discordid).execute()
     db.close()
 
 def set_location(name, lat, lon):
     humans.update(latitude=lat, longitude=lon).where(humans.name == name).execute()
+    db.close()
+
+# Tracking
+
+def check_if_tracked(discordid,pokemon):
+    return monsters.select().where(monsters.id == discordid).where(monsters.pokemon_id == pokemon).exists()
+
+def add_tracking(id,monster,distance,iv):
+    InsertQuery(monsters,{
+        monsters.id: id,
+        monsters.pokemon_id:monster,
+        monsters.distance:distance,
+        monsters.min_iv:iv}).execute()
+    db.close()
+
+def update_tracking(id,monster,distance,iv):
+    monsters.update(distance=distance, min_iv=iv).where(monsters.id == id).where(monsters.pokemon_id == monster).execute()
+    db.close()
+
+def remove_tracking(id,pokemon):
+    monsters.delete().where(monsters.id == id).where(monsters.pokemon_id == pokemon).execute()
     db.close()

@@ -35,7 +35,7 @@ def potato():
     server.serve_forever()
 
 def run_bot():
-    subprocess.Popen('python -m disco.cli', shell=True)
+    subprocess.Popen('python -m disco.cli ', shell=True)
 
 @app.route('/', methods=['GET'])
 def index():

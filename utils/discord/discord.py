@@ -6,7 +6,7 @@ from disco.types import channel
 from disco.util.sanitize import S
 from utils.args import args as get_args
 from utils.geo import geoloc
-from utils.mysql import registered, register, unregister, activate, deactivate, registered_by_name, set_location
+from utils.mysql import registered, register, unregister, activate, deactivate, registered_by_name, set_location, check_if_tracked, add_tracking, update_tracking
 
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
 
@@ -96,10 +96,32 @@ class Commands(Plugin):
                 else:
                     set_location(name,loc[0],loc[1])
                     event.msg.reply(
-                        'I Have set your location to {}'.format(content))
+                        'I have set your location to {}'.format(content))
         else:
             event.msg.reply(
-                'Hello {}, This command is only available in DM '.format(ping))
+                'Hello {}, This command is only available in DM'.format(ping))
 
 
-## Set tracking for monster
+ ## Set tracking for monster
+
+    @Plugin.command('track', '<id:int> <dis:int> <iv:int>')
+    def command_track(self, event, id, dis, iv):
+        discordid = event.msg.channel.id
+        name = event.msg.author
+        if (event.msg.channel.is_dm):
+            if(registered_by_name(name)):
+                if not(check_if_tracked(discordid, id)):
+                    add_tracking(discordid,id,dis,iv)
+                    event.msg.reply('I have added tracking for: {} within {}m at least {}% percect'.format(id,dis,iv))
+                else:
+                    update_tracking(discordid,id,dis,iv)
+                    event.msg.reply(
+                        'I have updated tracking for: {} within {}m at least {}% percect'.format(
+                            id, dis, iv))
+            else:
+                event.msg.reply(
+                    'This command is only available for registered humans! :eyes:')
+
+        else:
+            event.msg.reply(
+                'Tracking is only available in DM for registered humans')

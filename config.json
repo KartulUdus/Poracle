@@ -1,5 +1,6 @@
 {
   "token": "",
+  "log_level": "debug",
   "bot": {
     "plugins": [
       "utils.discord.discord"
