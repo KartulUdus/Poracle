@@ -58,8 +58,8 @@ def accept_webhook():
 
 if __name__ == '__main__':
      log.info("Poracle initializing.")
- #    verify_database_schema()
-     #run_bot()
- #    potato()
+     verify_database_schema()
+     run_bot()
+     potato()
 #    makemap(59.436816, 24.7427470,'potato')
 

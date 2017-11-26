@@ -4,10 +4,10 @@
 from disco.bot import Plugin
 from disco.types import channel
 
-
 from disco.util.sanitize import S
 
 
+from utils.discord.mysq import *
 
 
 class Register(Plugin):
@@ -17,13 +17,15 @@ class Register(Plugin):
             event.msg.reply('Pong!')
 
     @Plugin.command('register')
+
     def command_register(self, event):
         if not (event.msg.channel.is_dm):
             if (event.msg.channel.name == 'general'):
                 dmid = event.msg.author.open_dm().id
                 print dmid
-                print event.msg.author
-                print event.msg.author.id
+                #print event.msg.author
+                #print event.msg.author.id
+                print registered(dmid)
 
                 event.msg.reply('Hello {}'.format(event.msg.author))
 

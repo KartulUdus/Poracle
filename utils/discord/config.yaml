@@ -1,5 +1,4 @@
 token: ''
-
 bot:
   plugins:
     - utils.discord.plugins.discord

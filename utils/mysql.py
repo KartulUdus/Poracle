@@ -93,7 +93,7 @@ class raid(BaseModel):
 
 
 class geocoded(BaseModel):
-    id = Utf8mb4CharField(index=True, max_length=20)
+    id = Utf8mb4CharField(index=True, max_length=20,  unique=True)
     type = Utf8mb4CharField(index=True, max_length=20)
     adress = Utf8mb4CharField(index=True)
     distance = SmallIntegerField(index=True)
@@ -116,6 +116,9 @@ class schema_version(BaseModel):
 ## END OF TABLES
 ########################################################
 
+
+## Db Migration
+
 def create_tables():
     db.create_tables([humans, monsters, raid, geocoded, schema_version])
 
@@ -137,56 +140,15 @@ def verify_database_schema():
         e.args[0], e.args[1]))
         exit(1)
 
-        # try:
-    #     cur = db.cursor()
-    #     cur.execute('''SELECT val FROM version where `key`='schema_version';''')
-    #     db_ver = cur.fetchone()
-    #     cur_ver = int(1)
-    # except pymysql.err.ProgrammingError:
-    #     log.info("MySQL not happy, tables not found. Learning carpentry ...")
-    #     db.cursor().execute('''CREATE TABLE humans(
-    #     `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    #     `name` varchar(50),
-    #     `enabled` tinyint(1) NOT NULL,
-    #     `latitude` double NOT NULL,
-    #     `longitude` double NOT NULL
-    #     );
-    #     CREATE TABLE `monsters`(
-    #     `discord_id` smallint(50) NOT NULL,
-    #     `dm_id` smallint(50) NOT NULL,
-    #     `pokemon_id` smallint(6) NOT NULL,
-    #     `distance` smallint(6) DEFAULT NULL,
-    #     `min_iv` smallint(6) DEFAULT NULL
-    #     );
-    #     CREATE TABLE `raids`(
-    #     `discord_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    #     `pokemon_id` smallint(6),
-    #     `distance` smallint(6) DEFAULT NULL,
-    #     `egg_level` smallint(6)
-    #     );
-    #     CREATE TABLE geocode(
-    #     `id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-    #     `adress` varchar(191) COLLATE utf8mb4_unicode_ci,
-    #     `latitude` double NOT NULL,
-    #     `longitude` double NOT NULL,
-    #     `name` varchar(191) COLLATE utf8mb4_unicode_ci,
-    #     `description` longtext COLLATE utf8mb4_unicode_ci,
-    #     `url` varchar(191) COLLATE utf8mb4_unicode_ci
-    #     );
-    #     CREATE TABLE version(
-    #     `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-    #     `val` smallint(6) NOT NULL
-    #     );
-    #     LOCK TABLES `version` WRITE;
-    #     INSERT INTO `version` (`key`, `val`) VALUES ('schema_version',1);
-    #     UNLOCK TABLES;'''
-    #     )
-    # if (db_ver[0] != cur_ver):
-    #
-    #     log.critical('MySQL unhappy, tables look weird, probably wrong house')
-    #     exit(2)
-    # else:
-    #     log.info('MySQL happy, tables look pretty')
+
+## Functions
+
+def registered(id):
+    return (humans.select()
+            .where(humans.id == id))
+
+
+
 
 
 
