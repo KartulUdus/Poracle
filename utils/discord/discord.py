@@ -7,10 +7,10 @@ from disco.types import channel
 from disco.util.sanitize import S
 
 
-from utils.mysql import registered
+from utils.mysql import registered, register, unregister
 
 
-class Register(Plugin):
+class Commands(Plugin):
     @Plugin.command('ping')
     def command_ping(self, event):
         if not(event.msg.channel.is_dm):
@@ -22,14 +22,31 @@ class Register(Plugin):
         if not (event.msg.channel.is_dm):
             if (event.msg.channel.name == 'general'):
                 dmid = event.msg.author.open_dm().id
-                print dmid
-                #print event.msg.author
-                #print event.msg.author.id
-                print registered(int(dmid))
+                name = event.msg.author
+                ping = event.msg.author.mention
+                if not(registered(dmid)):
+                    register(dmid,name)
+                    event.msg.reply('Hello {}, thank you for registering!'.format(ping))
+                else:
+                    event.msg.reply('Hello {}, you are already registered'.format(ping))
 
-                event.msg.reply('Hello {}'.format(event.msg.author))
+    @Plugin.command('unregister')
+    def command_unregister(self, event):
+        if not (event.msg.channel.is_dm):
+            if (event.msg.channel.name == 'general'):
+                dmid = event.msg.author.open_dm().id
+                name = event.msg.author
+                ping = event.msg.author.mention
+                if not (registered(dmid)):
+                    event.msg.reply(
+                        'Hello {}, You are not currenlty registered!'.format(ping))
+                else:
+                    unregister(dmid)
+                    event.msg.reply(
+                        'Hello {}, You are no longer registered!'.format(ping))
 
     @Plugin.command('potato')
+
     def command_potato(self, event):
         if not (event.msg.channel.is_dm):
             if (event.msg.channel.name == 'general'):

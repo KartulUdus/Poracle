@@ -61,9 +61,9 @@ class Utf8mb4CharField(CharField):
 class humans(BaseModel):
     id = Utf8mb4CharField(index=True, unique=True, max_length=20)
     name = Utf8mb4CharField(index=True, max_length=50)
-    enabled = BooleanField()
-    latitude = DoubleField()
-    longitude = DoubleField()
+    enabled = BooleanField(default=False)
+    latitude = DoubleField(null=True)
+    longitude = DoubleField(null=True)
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
@@ -74,8 +74,8 @@ class monsters(BaseModel):
     pokemon_id = SmallIntegerField(index=True)
     distance = SmallIntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField()
-    longitude = DoubleField()
+    latitude = DoubleField(null=True)
+    longitude = DoubleField(null=True)
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
@@ -87,8 +87,8 @@ class raid(BaseModel):
     pokemon_id = SmallIntegerField(index=True)
     distance = SmallIntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
-    latitude = DoubleField()
-    longitude = DoubleField()
+    latitude = DoubleField(null=True)
+    longitude = DoubleField(null=True)
 
 
 
@@ -98,9 +98,9 @@ class geocoded(BaseModel):
     adress = Utf8mb4CharField(index=True)
     distance = SmallIntegerField(index=True)
     description = TextField(null=True, default="")
-    url = Utf8mb4CharField()
-    latitude = DoubleField()
-    longitude = DoubleField()
+    url = Utf8mb4CharField(null=True)
+    latitude = DoubleField(null=True)
+    longitude = DoubleField(null=True)
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
@@ -143,11 +143,25 @@ def verify_database_schema():
 
 ## Functions
 
-def registered(discordid):
-    print discordid
+
+# see if user is registered (true|false)
+def registered(self):
     return (humans
-            .select(id)
-            .where(humans.id == discordid).dicts())
+            .select()
+            .where(humans.id == self).exists())
+
+# Register human
+
+def register(id,name):
+    InsertQuery(humans,{
+        humans.id: id,
+        humans.name: name}).execute()
+    db.commit()
+    db.close()
+
+def unregister(id):
+    humans.delete().where(humans.id == id).execute()
+    db.close()
 
 
 
