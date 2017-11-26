@@ -7,7 +7,7 @@ from disco.types import channel
 from disco.util.sanitize import S
 
 
-from mysql import *
+from mysql import registered
 
 
 class Register(Plugin):

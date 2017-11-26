@@ -13,10 +13,10 @@ def args(root_path):
     config_files = [get_path('../config/config.ini')] if '-cf' not in sys.argv and '--config' not in sys.argv else []
     # Webserver args
     parser = configargparse.ArgParser(description='Poracle', default_config_files=config_files)
-    parser.add_argument('-cf', '--config', is_config_file=True, help='Configuration file')
-    parser.add_argument('-d', '--debug', help='Debug Mode', action='store_true', default=False)
-    parser.add_argument('-H', '--host', help='Set web server listening host', default='127.0.0.1')
-    parser.add_argument('-P', '--port', type=int, help='Web server port', default=3030)
+    parser.add_argument('-whcf', '--config', is_config_file=True, help='Configuration file')
+    parser.add_argument('-wd', '--whdebug', help='Debug Mode', action='store_true', default=False)
+    parser.add_argument('-WH', '--whhost', help='Set web server listening host', default='127.0.0.1')
+    parser.add_argument('-WP', '--whport', type=int, help='Web server port', default=3030)
     # Database args
     parser.add_argument('-DH', '--dbhost', help='mysql host')
     parser.add_argument('-u', '--user', help='mysql user')
