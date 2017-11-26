@@ -144,11 +144,18 @@ def verify_database_schema():
 ## Functions
 
 
-# see if user is registered (true|false)
+# See if user is registered (true|false)
 def registered(self):
     return (humans
             .select()
             .where(humans.id == self).exists())
+
+# See if user is registered by name
+
+def registered_by_name(self):
+    return (humans
+            .select()
+            .where(humans.name == self).exists)
 
 # Register human
 
@@ -156,15 +163,20 @@ def register(id,name):
     InsertQuery(humans,{
         humans.id: id,
         humans.name: name}).execute()
-    db.commit()
     db.close()
 
 def unregister(id):
     humans.delete().where(humans.id == id).execute()
     db.close()
 
+def activate(discordid):
+    humans.update(enabled = 1).where(humans.id == discordid).execute()
+    db.close()
 
+def deactivate(discordid):
+    humans.update(enabled = 0).where(humans.id == discordid).execute()
+    db.close()
 
-
-
-
+def set_location(name, lat, lon):
+    humans.update(latitude=lat, longitude=lon).where(humans.name == name).execute()
+    db.close()

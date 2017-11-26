@@ -26,8 +26,11 @@ def distance(loc1, loc2):
 def geoloc(loc):
     log.info("Figuring out where {} is".format(loc))
     geo = Nominatim()
-    pos = geo.geocode(loc, exactly_one=True)
-    return ((pos.latitude, pos.longitude))
+    try:
+        pos = geo.geocode(loc, exactly_one=True)
+        return ((pos.latitude, pos.longitude))
+    except AttributeError:
+        return 'ERROR'
 
 ## Reverse geocodes coords like [59.426372, 24.7705570] into words
 
