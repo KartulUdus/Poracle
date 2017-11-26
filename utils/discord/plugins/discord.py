@@ -7,7 +7,7 @@ from disco.types import channel
 from disco.util.sanitize import S
 
 
-from utils.discord.mysq import *
+from mysql import *
 
 
 class Register(Plugin):
