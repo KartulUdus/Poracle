@@ -1,7 +1,0 @@
-
-token: 'MzQ3Njk5NzIwNTM5NjAyOTQ1.DPLhhg.HWDCM19iXqNCc_ALZtDbAk2LooI'
-bot:
-  plugins:
-    - utils.discord.plugins.discord
-  commands_require_mention: false
-  commands_prefix: '!'

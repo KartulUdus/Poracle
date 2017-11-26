@@ -35,7 +35,7 @@ def potato():
     server.serve_forever()
 
 def run_bot():
-    subprocess.Popen('python -m disco.cli --config utils/discord/config.yaml --log-level debug', shell=True)
+    subprocess.Popen('python -m disco.cli', shell=True)
 
 @app.route('/', methods=['GET'])
 def index():

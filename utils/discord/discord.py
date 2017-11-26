@@ -7,7 +7,7 @@ from disco.types import channel
 from disco.util.sanitize import S
 
 
-from mysql import registered
+from utils.mysql import registered
 
 
 class Register(Plugin):
@@ -25,7 +25,7 @@ class Register(Plugin):
                 print dmid
                 #print event.msg.author
                 #print event.msg.author.id
-                print registered(dmid)
+                print registered(int(dmid))
 
                 event.msg.reply('Hello {}'.format(event.msg.author))
 

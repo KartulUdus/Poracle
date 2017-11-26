@@ -59,7 +59,7 @@ class Utf8mb4CharField(CharField):
         super(CharField, self).__init__(*args, **kwargs)
 
 class humans(BaseModel):
-    id = SmallIntegerField(index=True, unique=True)
+    id = Utf8mb4CharField(index=True, unique=True, max_length=20)
     name = Utf8mb4CharField(index=True, max_length=50)
     enabled = BooleanField()
     latitude = DoubleField()
@@ -143,9 +143,11 @@ def verify_database_schema():
 
 ## Functions
 
-def registered(id):
-    return (humans.select()
-            .where(humans.id == id))
+def registered(discordid):
+    print discordid
+    return (humans
+            .select(id)
+            .where(humans.id == discordid).dicts())
 
 
 

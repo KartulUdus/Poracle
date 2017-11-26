@@ -1,0 +1,10 @@
+{
+  "token": "",
+  "bot": {
+    "plugins": [
+      "utils.discord.discord"
+    ],
+    "commands_require_mention": false,
+    "commands_prefix": "!"
+  }
+}
