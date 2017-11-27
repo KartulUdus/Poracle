@@ -74,13 +74,13 @@ class raid(BaseModel):
     id = Utf8mb4CharField(index=True, max_length=20)
     pokemon_id = SmallIntegerField(index=True)
     distance = SmallIntegerField(index=True)
-    min_iv = SmallIntegerField(index=True)
 
 class geocoded(BaseModel):
-    id = Utf8mb4CharField(index=True, max_length=20,  unique=True)
+    id = Utf8mb4CharField(index=True, max_length=50,  unique=True)
     type = Utf8mb4CharField(index=True, max_length=20)
     adress = Utf8mb4CharField(index=True)
-    static_map_path = Utf8mb4CharField(index=True, max_length=50)
+    static_map_path = Utf8mb4CharField(null=True, max_length=80)
+    gym_name = Utf8mb4CharField(index=True, max_length=50,  unique=True)
     description = TextField(null=True, default="")
     url = Utf8mb4CharField(null=True)
     latitude = DoubleField(null=True)
@@ -120,7 +120,7 @@ def verify_database_schema():
         exit(1)
 
 ########################################################
-## REGISTRATION COMMANDS
+## Registration commands
 ########################################################
 
 # See if user is registered (true|false)
@@ -164,8 +164,8 @@ def set_location(name, lat, lon):
 ## Tracking commands
 ########################################################
 ## Monsters:
-def check_if_tracked(discordid,pokemon):
-    return monsters.select().where(monsters.id == discordid).where(monsters.pokemon_id == pokemon).exists()
+def check_if_tracked(discordid,monster):
+    return monsters.select().where(monsters.id == discordid).where(monsters.pokemon_id == monster).exists()
 
 def add_tracking(id,monster,distance,iv):
     InsertQuery(monsters,{
@@ -179,8 +179,46 @@ def update_tracking(id,monster,distance,iv):
     monsters.update(distance=distance, min_iv=iv).where(monsters.id == id).where(monsters.pokemon_id == monster).execute()
     db.close()
 
-def remove_tracking(id,pokemon):
-    monsters.delete().where(monsters.id == id).where(monsters.pokemon_id == pokemon).execute()
+def remove_tracking(id,monster):
+    monsters.delete().where(monsters.id == id).where(monsters.pokemon_id == monster).execute()
     db.close()
 
 ## Raids
+def check_if_raid_tracked(discordid,monster):
+    return raid.select().where(raid.id == discordid).where(raid.pokemon_id == monster).exists()
+
+def add_raid_tracking(id,monster,distance):
+    InsertQuery(raid,{
+        raid.id: id,
+        raid.pokemon_id:monster,
+        raid.distance:distance}).execute()
+    db.close()
+
+def update_raid_tracking(id,monster,distance):
+    raid.update(distance=distance).where(raid.pokemon_id == monster).where(raid.id == id).execute()
+    db.close()
+
+def remove_raid_tracking(id,monster):
+    monsters.delete().where(raid.id == id).where(raid.pokemon_id == monster).execute()
+    db.close()
+
+########################################################
+## geocoding commands
+########################################################
+
+def check_if_geocoded(id):
+    return geocoded.select(where(geocoded.id == id)).exists()
+
+def save_geocoding(id,type,adress,staticmap,gym_name,description,url,lat,lon):
+    InsertQuery(geocoded,{
+        geocoded.id:id,
+        geocoded.type:type,
+        geocoded.adress:adress,
+        geocoded.static_map_path:staticmap,
+        geocoded.gym_name:gym_name,
+        geocoded.description:description,
+        geocoded.url: url,
+        geocoded.latitude:lat,
+        geocoded.longitude:lon
+        }).execute()
+    db.close()
