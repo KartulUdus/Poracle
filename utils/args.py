@@ -25,6 +25,7 @@ def args(root_path):
     parser.add_argument('-dbP', '--dbport', help='mysql port', default='3306')
     # Discord args
     parser.add_argument('-ch', '--channel', help='channel where registration is enabled', default='general')
+    parser.add_argument('-us', '--usaddress', help='address order reversed from eu format',action='store_true', default=False)
 
 
 

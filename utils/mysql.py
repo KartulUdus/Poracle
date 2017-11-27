@@ -22,6 +22,12 @@ sb_schema_version = 1
 
 log = logging.getLogger('mysql')
 log.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
+                              '[%(levelname)8s] %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
 
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
 # Test Db Connection
@@ -160,7 +166,10 @@ def set_location(name, lat, lon):
 ########################################################
 ## Monsters:
 def check_if_tracked(discordid,monster):
-    return monsters.select().where(monsters.id == discordid).where(monsters.pokemon_id == monster).exists()
+    return monsters.select().where((monsters.id == discordid) & (monsters.pokemon_id == monster)).exists()
+
+def check_if_location_set(discordid):
+    return humans.select().where((humans.id == discordid) & humans.latitude.is_null()).exists()
 
 def add_tracking(id,monster,distance,iv):
     InsertQuery(monsters,{
@@ -171,16 +180,16 @@ def add_tracking(id,monster,distance,iv):
     db.close()
 
 def update_tracking(id,monster,distance,iv):
-    monsters.update(distance=distance, min_iv=iv).where(monsters.id == id).where(monsters.pokemon_id == monster).execute()
+    monsters.update(distance=distance, min_iv=iv).where((monsters.id == id) & (monsters.pokemon_id == monster)).execute()
     db.close()
 
 def remove_tracking(id,monster):
-    monsters.delete().where(monsters.id == id).where(monsters.pokemon_id == monster).execute()
+    monsters.delete().where((monsters.id == id)& (monsters.pokemon_id == monster)).execute()
     db.close()
 
 ## Raids
 def check_if_raid_tracked(discordid,monster):
-    return raid.select().where(raid.id == discordid).where(raid.pokemon_id == monster).exists()
+    return raid.select().where((raid.id == discordid)&(raid.pokemon_id == monster)).exists()
 
 def add_raid_tracking(id,monster,distance):
     InsertQuery(raid,{
@@ -190,11 +199,11 @@ def add_raid_tracking(id,monster,distance):
     db.close()
 
 def update_raid_tracking(id,monster,distance):
-    raid.update(distance=distance).where(raid.pokemon_id == monster).where(raid.id == id).execute()
+    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.id == id)).execute()
     db.close()
 
 def remove_raid_tracking(id,monster):
-    monsters.delete().where(raid.id == id).where(raid.pokemon_id == monster).execute()
+    monsters.delete().where((raid.id == id) & (raid.pokemon_id == monster)).execute()
     db.close()
 
 ########################################################

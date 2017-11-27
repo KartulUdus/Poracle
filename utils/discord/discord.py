@@ -8,7 +8,8 @@ from utils.args import args as get_args
 from utils.geo import geoloc
 from utils.mysql import (registered, register, unregister, activate, deactivate,
                         registered_by_name, set_location, check_if_tracked,
-                        add_tracking, update_tracking, remove_tracking)
+                        add_tracking, update_tracking, remove_tracking,
+                        check_if_location_set)
 
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
 
@@ -50,16 +51,20 @@ class Commands(Plugin):
 ## Enable alarms for human
     @Plugin.command('start')
     def command_start(self, event):
-        dmid = event.msg.author.open_dm().id
+        dmid = event.msg.channel.id
         ping = event.msg.author.mention
         name = event.msg.author
         if (event.msg.channel.is_dm):
-            if (registered_by_name(name)):
-                activate(dmid)
-                event.msg.reply('Your alarms have been activated!')
+            if not (check_if_location_set(dmid)):
+                if (registered_by_name(name)):
+                    activate(dmid)
+                    event.msg.reply('Your alarms have been activated!')
+                else:
+                    event.msg.reply(
+                        'This command is only available for registered humans! :eyes:')
             else:
                 event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                    'Please use `!location <location>` to set your location first :slight_smile:')
         else:
             event.msg.reply('Hello {}, This command is only available in DM '.format(ping))
 

@@ -10,7 +10,12 @@ import ujson as json
 # Logging
 log = logging.getLogger('alarm')
 log.setLevel(logging.DEBUG)
-
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
+                              '[%(levelname)8s] %(message)s')
+ch.setFormatter(formatter)
+log.addHandler(ch)
 # Globals and defaults
 
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
@@ -25,7 +30,6 @@ def filter(hook):
     data = json.loads(json.dumps(hook))
     type = data['type']
     message = data['message']
-    print type
     if (type == 'pokemon'):
         pokemon(message)
     elif (type == 'gym_details'):
@@ -48,7 +52,11 @@ def gym_info(info):
     lon = info['longitude']
     if not check_if_geocoded(id):
         log.info('Geocoding info for gym {}'.format(name))
-        address = ' '.join(np.array(revgeoloc([lat,lon]))[[3,2,1,0]]).encode('utf-8')
+        if args.usaddress:
+            address = ' '.join(
+                np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode('utf-8')
+        else:
+            address = ' '.join(np.array(revgeoloc([lat,lon]))[[3, 2, 1, 0]]).encode('utf-8')
         save_geocoding(id,'raid',team,address,name,description,url,lat,lon)
         makemap(lat, lon, id)
     else:
