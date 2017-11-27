@@ -41,7 +41,7 @@ db = MySQLDatabase(host="{}".format(
 
 
 ########################################################
-## Table modesl begin
+## Tables and MySQL migration
 ########################################################
 
 class BaseModel(Model):
@@ -80,6 +80,7 @@ class geocoded(BaseModel):
     id = Utf8mb4CharField(index=True, max_length=20,  unique=True)
     type = Utf8mb4CharField(index=True, max_length=20)
     adress = Utf8mb4CharField(index=True)
+    static_map_path = Utf8mb4CharField(index=True, max_length=50)
     description = TextField(null=True, default="")
     url = Utf8mb4CharField(null=True)
     latitude = DoubleField(null=True)
@@ -94,11 +95,6 @@ class schema_version(BaseModel):
 
     class Meta:
         primary_key = False
-
-########################################################
-## END OF TABLES
-########################################################
-
 
 ## Db Migration
 
@@ -123,9 +119,9 @@ def verify_database_schema():
         e.args[0], e.args[1]))
         exit(1)
 
-
-## Functions
-
+########################################################
+## REGISTRATION COMMANDS
+########################################################
 
 # See if user is registered (true|false)
 def registered(self):
@@ -134,14 +130,12 @@ def registered(self):
             .where(humans.id == self).exists())
 
 # See if user is registered by name
-
 def registered_by_name(self):
     return (humans
             .select()
             .where(humans.name == self).exists())
 
 # Register human
-
 def register(id,name):
     InsertQuery(humans,{
         humans.id: id,
@@ -150,8 +144,10 @@ def register(id,name):
 
 def unregister(id):
     humans.delete().where(humans.id == id).execute()
+    monsters.delete().where(monsters.id == id).execute()
     db.close()
 
+# Activate alarms
 def activate(discordid):
     humans.update(enabled=1).where(humans.id == discordid).execute()
     db.close()
@@ -164,8 +160,10 @@ def set_location(name, lat, lon):
     humans.update(latitude=lat, longitude=lon).where(humans.name == name).execute()
     db.close()
 
-# Tracking
-
+########################################################
+## Tracking commands
+########################################################
+## Monsters:
 def check_if_tracked(discordid,pokemon):
     return monsters.select().where(monsters.id == discordid).where(monsters.pokemon_id == pokemon).exists()
 
@@ -184,3 +182,5 @@ def update_tracking(id,monster,distance,iv):
 def remove_tracking(id,pokemon):
     monsters.delete().where(monsters.id == id).where(monsters.pokemon_id == pokemon).execute()
     db.close()
+
+## Raids

@@ -6,7 +6,9 @@ from disco.types import channel
 from disco.util.sanitize import S
 from utils.args import args as get_args
 from utils.geo import geoloc
-from utils.mysql import registered, register, unregister, activate, deactivate, registered_by_name, set_location, check_if_tracked, add_tracking, update_tracking
+from utils.mysql import (registered, register, unregister, activate, deactivate,
+                        registered_by_name, set_location, check_if_tracked,
+                        add_tracking, update_tracking, remove_tracking)
 
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
 
@@ -102,7 +104,7 @@ class Commands(Plugin):
                 'Hello {}, This command is only available in DM'.format(ping))
 
 
- ## Set tracking for monster
+ ## Set or update tracking for monster
 
     @Plugin.command('track', '<id:int> <dis:int> <iv:int>')
     def command_track(self, event, id, dis, iv):
@@ -125,3 +127,26 @@ class Commands(Plugin):
         else:
             event.msg.reply(
                 'Tracking is only available in DM for registered humans')
+
+ ## Untrack monster:
+
+
+    @Plugin.command('untrack', '<id:int>')
+    def command_untrack(self, event, id):
+        discordid = event.msg.channel.id
+        name = event.msg.author
+        if (event.msg.channel.is_dm):
+            if(registered_by_name(name)):
+                if not(check_if_tracked(discordid, id)):
+                    event.msg.reply('You are not currently tracking {} :eyes:'.format(id))
+                else:
+                    remove_tracking(discordid,id)
+                    event.msg.reply('I have removed tracking for: {} '.format(id))
+            else:
+                event.msg.reply(
+                    'This command is only available for registered humans! :eyes:')
+
+        else:
+            event.msg.reply(
+                'Tracking is only available in DM for registered humans')
+
