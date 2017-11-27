@@ -5,16 +5,8 @@ from cHaversine import haversine
 from geopy.geocoders import Nominatim
 from staticmap import StaticMap, IconMarker
 
-
 log = logging.getLogger('mysql')
 log.setLevel(logging.DEBUG)
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
-                              '[%(levelname)8s] %(message)s')
-ch.setFormatter(formatter)
-log.addHandler(ch)
-
 
 ##distance ([59.426372, 24.7705570], [59.432537, 24.7597870])
 
@@ -37,7 +29,8 @@ def geoloc(loc):
 def revgeoloc(loc):
     geo = Nominatim()
     pos = geo.reverse((tuple(loc))[0:2], exactly_one=True)
-    return (pos.raw['address'])
+    address = (pos.raw['display_name']).split(",")
+    return (address)
 
 
 ## Stores static map image in images/geocoded/<spawn_gym_id>.png

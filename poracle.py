@@ -3,8 +3,8 @@
 import logging
 import os
 import subprocess
-from utils.geo import geoloc, revgeoloc, makemap
-from utils.args import args
+from alarm import filter
+from utils.args import args as get_args
 from utils.mysql import verify_database_schema
 from gevent import wsgi, spawn
 from utils import config
@@ -26,7 +26,8 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
                               '[%(levelname)8s] %(message)s')
 ch.setFormatter(formatter)
 log.addHandler(ch)
-args(os.path.abspath(os.path.dirname(__file__)))
+
+args = get_args(os.path.abspath(os.path.dirname(__file__)))
 
 def potato():
 
@@ -47,12 +48,12 @@ def accept_webhook():
         log.debug("{} Sent me something.".format(request.remote_addr))
         data = json.loads(request.data)
         if type(data) == dict: # older webhook style
-            log.debug(data)
+            filter(data)
         else:   # For RM's frame
             for frame in data:
-                log.debug(frame)
+                filter(frame)
     except Exception as e:
-        log.error("I am unhappy, computer says: {}: {}".format(type(e).__name__, e))
+        log.error("I am unhappy! computer says: {}: {}".format(type(e).__name__, e))
         abort(400)
     return "OK"  # request ok
 

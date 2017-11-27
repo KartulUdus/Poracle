@@ -22,12 +22,7 @@ sb_schema_version = 1
 
 log = logging.getLogger('mysql')
 log.setLevel(logging.DEBUG)
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
-                              '[%(levelname)8s] %(message)s')
-ch.setFormatter(formatter)
-log.addHandler(ch)
+
 args = get_args(os.path.abspath(os.path.dirname(__file__)))
 # Test Db Connection
 
@@ -78,9 +73,9 @@ class raid(BaseModel):
 class geocoded(BaseModel):
     id = Utf8mb4CharField(index=True, max_length=50,  unique=True)
     type = Utf8mb4CharField(index=True, max_length=20)
-    adress = Utf8mb4CharField(index=True)
-    static_map_path = Utf8mb4CharField(null=True, max_length=80)
-    gym_name = Utf8mb4CharField(index=True, max_length=50,  unique=True)
+    team = SmallIntegerField()
+    address = Utf8mb4CharField(index=True)
+    gym_name = Utf8mb4CharField(index=True, max_length=50)
     description = TextField(null=True, default="")
     url = Utf8mb4CharField(null=True)
     latitude = DoubleField(null=True)
@@ -207,18 +202,22 @@ def remove_raid_tracking(id,monster):
 ########################################################
 
 def check_if_geocoded(id):
-    return geocoded.select(where(geocoded.id == id)).exists()
+    return geocoded.select().where(geocoded.id == id).exists()
 
-def save_geocoding(id,type,adress,staticmap,gym_name,description,url,lat,lon):
+def save_geocoding(id,type,team,address,gym_name,description,url,lat,lon):
     InsertQuery(geocoded,{
-        geocoded.id:id,
-        geocoded.type:type,
-        geocoded.adress:adress,
-        geocoded.static_map_path:staticmap,
-        geocoded.gym_name:gym_name,
-        geocoded.description:description,
+        geocoded.id: id,
+        geocoded.type: type,
+        geocoded.team: team,
+        geocoded.address: address,
+        geocoded.gym_name: gym_name,
+        geocoded.description: description,
         geocoded.url: url,
-        geocoded.latitude:lat,
-        geocoded.longitude:lon
+        geocoded.latitude: lat,
+        geocoded.longitude: lon
         }).execute()
+    db.close()
+
+def update_team(id,team):
+    geocoded.update(team=team).where(id == id).execute()
     db.close()
