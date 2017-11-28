@@ -11,7 +11,7 @@ from utils.mysql import (registered, register, unregister, activate, deactivate,
                         add_tracking, update_tracking, remove_tracking,
                         check_if_location_set)
 
-args = get_args(os.path.abspath(os.path.dirname(__file__)))
+args = get_args()
 
 class Commands(Plugin):
 

@@ -3,11 +3,11 @@
 import logging
 import os
 import subprocess
+from collections import OrderedDict
 from alarm import filter
 from utils.args import args as get_args
 from utils.mysql import verify_database_schema
 from gevent import wsgi, spawn
-from utils import config
 from flask import Flask, request, abort
 import sys
 import Queue
@@ -27,12 +27,19 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
 ch.setFormatter(formatter)
 log.addHandler(ch)
 
-args = get_args(os.path.abspath(os.path.dirname(__file__)))
+args = get_args()
+
+def make_configs():
+    template = json.loads(open('utils/discord/config.json').read())
+    template['token'] = args.token
+    template['bot']['commands_prefix'] = args.prefix
+    with open('config.json', 'w') as config:
+        json.dump(template, config, indent=4, sort_keys=False)
 
 def potato():
 
-    log.info("Poracle is running on: http://{}:{}".format(config['HOST'], config['PORT']))
-    server = wsgi.WSGIServer((config['HOST'], config['PORT']), app, log=logging.getLogger('Webserver'))
+    log.info("Poracle is running on: http://{}:{}".format(args.host, args.port))
+    server = wsgi.WSGIServer((args.host, args.port), app, log=logging.getLogger('Webserver'))
     server.serve_forever()
 
 def run_bot():
@@ -60,7 +67,6 @@ def accept_webhook():
 if __name__ == '__main__':
      log.info("Poracle initializing.")
      verify_database_schema()
+     make_configs()
      run_bot()
      potato()
-#    makemap(59.436816, 24.7427470,'potato')
-

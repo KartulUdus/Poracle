@@ -18,7 +18,7 @@ ch.setFormatter(formatter)
 log.addHandler(ch)
 # Globals and defaults
 
-args = get_args(os.path.abspath(os.path.dirname(__file__)))
+args = get_args()
 
 min_iv = 0
 adress = 'NULL'

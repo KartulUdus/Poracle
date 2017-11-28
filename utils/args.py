@@ -4,15 +4,18 @@
 import configargparse
 import os
 import sys
-from . import config
 
 
+def args():
 
-def args(root_path):
-    config['ROOT_PATH'] = root_path
-    config_files = [get_path('../config/config.ini')] if '-cf' not in sys.argv and '--config' not in sys.argv else []
+    configfile = []
+    if '-cf' not in sys.argv and '--config' not in sys.argv:
+        configfile = [os.getenv('CONFIG', os.path.join(
+            os.path.dirname(__file__), '../config/config.ini'))]
+    parser = configargparse.ArgParser(
+        default_config_files=configfile)
+
     # Webserver args
-    parser = configargparse.ArgParser(description='Poracle', default_config_files=config_files)
     parser.add_argument('-cf', '--config', is_config_file=True, help='Configuration file')
     parser.add_argument('-d', '--debug', help='Debug Mode', action='store_true', default=False)
     parser.add_argument('-H', '--host', help='Set web server listening host', default='127.0.0.1')
@@ -24,21 +27,12 @@ def args(root_path):
     parser.add_argument('-db', '--database', help='database name')
     parser.add_argument('-dbP', '--dbport', help='mysql port', default='3306')
     # Discord args
-    parser.add_argument('-ch', '--channel', help='channel where registration is enabled', default='general')
+    parser.add_argument('-t', '--token', help='Discord bot token')
+    parser.add_argument('-ch', '--channel', help='channel where registration is enabled', default='something')
     parser.add_argument('-us', '--usaddress', help='address order reversed from eu format',action='store_true', default=False)
+    parser.add_argument('-pxf', '--prefix', help='what to start discord commands with', default='!')
 
-
-
-    args = parser.parse_args()
-
-    config['HOST'] = args.host
-    config['PORT'] = args.port
-    config['DEBUG'] = args.debug
 
     return parser.parse_args()
 
 
-def get_path(path):
-    if not os.path.isabs(path):  # If not absolute path
-        path = os.path.join(config['ROOT_PATH'], path)
-    return path

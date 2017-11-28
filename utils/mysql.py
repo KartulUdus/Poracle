@@ -5,7 +5,6 @@ import sys
 from args import args as get_args
 import logging
 import pymysql
-from . import config
 from peewee import (InsertQuery, Check, CompositeKey, ForeignKeyField,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
                     BooleanField, DateTimeField, fn, DeleteQuery, FloatField,
@@ -29,7 +28,7 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
 ch.setFormatter(formatter)
 log.addHandler(ch)
 
-args = get_args(os.path.abspath(os.path.dirname(__file__)))
+args = get_args()
 # Test Db Connection
 
 
