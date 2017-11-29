@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import math
 from args import args as get_args
 import logging
 import pymysql
@@ -48,49 +49,55 @@ class BaseModel(Model):
     class Meta:
         database = db
 
-class Utf8mb4CharField(CharField):
-    def __init__(self, max_length=191, *args, **kwargs):
-        self.max_length = max_length
-        super(CharField, self).__init__(*args, **kwargs)
-
 class humans(BaseModel):
-    id = Utf8mb4CharField(index=True, unique=True, max_length=20)
-    name = Utf8mb4CharField(index=True, max_length=50)
+    id = CharField(primary_key=True, index=True, unique=True)
+    name = CharField(index=True, max_length=50)
     enabled = BooleanField(default=False)
     latitude = DoubleField(null=True)
     longitude = DoubleField(null=True)
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
+        order_by = ('id',)
 
 
 class monsters(BaseModel):
-    id = Utf8mb4CharField(index=True, max_length=20)
+    human_id = CharField(index=True,  max_length=30)
     pokemon_id = SmallIntegerField(index=True)
-    distance = SmallIntegerField(index=True)
+    distance = IntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
 
+    class Meta:
+        order_by = ('id',)
+
+
 class raid(BaseModel):
-    id = Utf8mb4CharField(index=True, max_length=20)
-    pokemon_id = SmallIntegerField(index=True)
-    distance = SmallIntegerField(index=True)
+    human_id = CharField(index=True,  max_length=30)
+    pokemon_id = CharField(index=True, max_length=20)
+    egg = BooleanField(default=False)
+    distance = IntegerField(index=True)
+
+    class Meta:
+        order_by = ('id',)
+
 
 class geocoded(BaseModel):
-    id = Utf8mb4CharField(index=True, max_length=50,  unique=True)
-    type = Utf8mb4CharField(index=True, max_length=20)
-    team = SmallIntegerField()
-    address = Utf8mb4CharField(index=True)
-    gym_name = Utf8mb4CharField(index=True, max_length=50)
+    id = CharField(primary_key=True, index=True, max_length=50)
+    type = CharField(index=True, max_length=20)
+    team = SmallIntegerField(null=True)
+    address = CharField(index=True)
+    gym_name = CharField(index=True, max_length=50,null=True)
     description = TextField(null=True, default="")
-    url = Utf8mb4CharField(null=True)
-    latitude = DoubleField(null=True)
-    longitude = DoubleField(null=True)
+    url = CharField(null=True)
+    latitude = DoubleField()
+    longitude = DoubleField()
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
+        order_by = ('id',)
 
 class schema_version(BaseModel):
-    key = Utf8mb4CharField()
+    key = CharField()
     val = SmallIntegerField()
 
     class Meta:
@@ -99,7 +106,7 @@ class schema_version(BaseModel):
 ## Db Migration
 
 def create_tables():
-    db.create_tables([humans, monsters, raid, geocoded, schema_version])
+    db.create_tables([humans, monsters, raid, geocoded, schema_version], safe=True)
 
 def verify_database_schema():
 
@@ -144,7 +151,7 @@ def register(id,name):
 
 def unregister(id):
     humans.delete().where(humans.id == id).execute()
-    monsters.delete().where(monsters.id == id).execute()
+    monsters.delete().where(monsters.human_id == id).execute()
     db.close()
 
 # Activate alarms
@@ -164,58 +171,63 @@ def set_location(name, lat, lon):
 ## Tracking commands
 ########################################################
 ## Monsters:
+
 def check_if_tracked(discordid,monster):
-    return monsters.select().where((monsters.id == discordid) & (monsters.pokemon_id == monster)).exists()
+    return monsters.select().where((monsters.human_id == discordid) & (monsters.pokemon_id == monster)).exists()
 
 def check_if_location_set(discordid):
     return humans.select().where((humans.id == discordid) & humans.latitude.is_null()).exists()
 
 def add_tracking(id,monster,distance,iv):
     InsertQuery(monsters,{
-        monsters.id: id,
+        monsters.human_id: id,
         monsters.pokemon_id:monster,
         monsters.distance:distance,
         monsters.min_iv:iv}).execute()
     db.close()
 
 def update_tracking(id,monster,distance,iv):
-    monsters.update(distance=distance, min_iv=iv).where((monsters.id == id) & (monsters.pokemon_id == monster)).execute()
+    monsters.update(distance=distance, min_iv=iv).where((monsters.human_id == id) & (monsters.pokemon_id == monster)).execute()
     db.close()
 
 def remove_tracking(id,monster):
-    monsters.delete().where((monsters.id == id)& (monsters.pokemon_id == monster)).execute()
+    monsters.delete().where((monsters.human_id == id)& (monsters.pokemon_id == monster)).execute()
     db.close()
 
+def monster_any(id):
+    return monsters.select().where(monsters.pokemon_id == id).exists()
+
 ## Raids
+
 def check_if_raid_tracked(discordid,monster):
-    return raid.select().where((raid.id == discordid)&(raid.pokemon_id == monster)).exists()
+    return raid.select().where((raid.human_id == discordid)&(raid.pokemon_id == monster)).exists()
 
 def add_raid_tracking(id,monster,distance):
     InsertQuery(raid,{
-        raid.id: id,
+        raid.human_id: id,
         raid.pokemon_id:monster,
         raid.distance:distance}).execute()
     db.close()
 
 def update_raid_tracking(id,monster,distance):
-    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.id == id)).execute()
+    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.human_id == id)).execute()
     db.close()
 
 def remove_raid_tracking(id,monster):
-    monsters.delete().where((raid.id == id) & (raid.pokemon_id == monster)).execute()
+    monsters.delete().where((raid.human_id == id) & (raid.pokemon_id == monster)).execute()
     db.close()
 
 ########################################################
-## geocoding commands
+## geocoding
 ########################################################
 
 def check_if_geocoded(id):
     return geocoded.select().where(geocoded.id == id).exists()
 
-def save_geocoding(id,type,team,address,gym_name,description,url,lat,lon):
+def save_geocoding(id,team,address,gym_name,description,url,lat,lon):
     InsertQuery(geocoded,{
         geocoded.id: id,
-        geocoded.type: type,
+        geocoded.type: 'raid',
         geocoded.team: team,
         geocoded.address: address,
         geocoded.gym_name: gym_name,
@@ -226,6 +238,57 @@ def save_geocoding(id,type,team,address,gym_name,description,url,lat,lon):
         }).execute()
     db.close()
 
+def spawn_geocoding(id,addr,lat,lon):
+    InsertQuery(geocoded,{
+        geocoded.id: id,
+        geocoded.type: 'spawn',
+        geocoded.address: addr,
+        geocoded.latitude: lat,
+        geocoded.longitude: lon
+        }).execute()
+    db.close()
+
 def update_team(id,team):
     geocoded.update(team=team).where(id == id).execute()
     db.close()
+
+########################################################
+## Alarm filter
+########################################################
+
+
+def who_cares(type, data, iv):
+
+    if type == 'monster':
+        monster_id = data['pokemon_id']
+        return humans.select(humans.id, humans.name, monsters.distance, monsters.min_iv,
+                             humans.latitude,humans.longitude)\
+            .join(monsters, on=(humans.id == monsters.human_id))\
+            .where(
+                humans.id == monsters.human_id,
+                humans.enabled == 1,
+                monsters.pokemon_id == monster_id,
+                monsters.min_iv <= iv).dicts()
+
+    elif type == 'raid':
+        if 'start' in data:
+            level = data['level']
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id,
+                                humans.latitude, humans.longitude) \
+                .join(raid, on=(humans.id == raid.human_id)) \
+                .where(
+                humans.id == raid.human_id,
+                humans.enabled == 1,
+                raid.pokemon_id == level,
+                raid.egg == 1).dicts()
+
+        else:
+            monster_id = data['pokemon_id']
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id,
+                                humans.latitude, humans.longitude) \
+                .join(raid, on=(humans.id == raid.human_id)) \
+                .where(
+                humans.id == raid.human_id,
+                humans.enabled == 1,
+                raid.pokemon_id == monster_id,
+                raid.egg == 0).dicts()
