@@ -2,7 +2,8 @@ import numpy as np
 import time
 import logging
 from utils.mysql import check_if_geocoded, save_geocoding, update_team, \
-                        who_cares, monster_any, spawn_geocoding
+                        who_cares, monster_any, spawn_geocoding, get_address
+from utils.discord.discord import Alert
 from utils.args import args as get_args
 from utils.geo import distance, revgeoloc, makemap
 import ujson as json
@@ -17,6 +18,7 @@ formatter = logging.Formatter('%(asctime)s [%(threadName)18s][%(module)14s]' +
                               '[%(levelname)8s] %(message)s')
 ch.setFormatter(formatter)
 log.addHandler(ch)
+
 # Globals and defaults
 
 args = get_args()
@@ -60,7 +62,7 @@ def pokemon(info):
                     np.array(revgeoloc([lat, lon]))[[3, 2, 1, 0]]).encode(
                     'utf-8')
             spawn_geocoding(id,address,lat,lon)
-            makemap(lat, lon, id)
+            makemap(float(lat), float(lon), id)
             log.info('Made geocoded info for {}'.format(address))
 
         if 'individual_attack' not in info:
@@ -71,6 +73,12 @@ def pokemon(info):
             dis = distance([info['latitude'],info['longitude']], [human['latitude'], human['longitude']])
             if dis <= human['distance']:
                 log.info("Alerting {} about {}".format(human['name'], name))   ### TODOO function to construct message and send
+
+                create_message('monster',info, human)
+
+
+
+
 
     else:
         log.info('{} has appeared, but no one cares'.format(name))
@@ -106,4 +114,52 @@ def gym_info(info):
 def get_monster_name(id):
     legend = json.loads(open('utils/dict/pokemon.json').read())
     return legend['{}'.format(int(id))]['name']
+
+def get_monster_move(id):
+    legend = json.loads(open('utils/dict/moves.json').read())
+    return legend['{}'.format(int(id))]['name']
+
+def get_monster_color(id):
+    legend = json.loads(open('utils/dict/pokemon.json').read())
+    return legend['{}'.format(int(id))]['types'][0]['color']
+
+def get_monster_form(id,form):
+    legend = json.loads(open('utils/dict/forms.json').read())
+    print legend
+    return legend[str(id)][str(form)]
+
+
+def create_message(type, data, human):
+
+    if type == 'monster':
+
+        d = {}
+        d['channel'] = human['id']
+        d['mon_name'] = get_monster_name(data['pokemon_id'])
+        d['color'] = get_monster_color(data['pokemon_id'])
+        d['map'] = human['map_enabled']
+        d['alevel'] = human['alert_level']
+        d['address'] = get_address(data['spawnpoint_id'])[0]['address']
+        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(data['seconds_until_despawn']))
+        d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['disappear_time'])))
+        d['thumb'] = args.imgurl + '{}.png'.format(data['pokemon_id'])
+
+        if 'individual_attack' in data:
+            d['atk'] = data['individual_attack']
+            d['def'] = data['individual_defense']
+            d['sta'] =  data['individual_stamina']
+            d['cp'] = data['cp']
+            d['level'] = data['pokemon_level']
+            d['move1'] = get_monster_move(int(data['move_1']))
+            d['move2'] = get_monster_move(int(data['move_2']))
+            d['perfection'] = round(float(((data['individual_attack'] + data['individual_defense'] + data['individual_stamina']) * 100) / float(45)),2)
+        if 'form' in data:
+            d['form'] = get_monster_form(data['pokemon_id'], data['form'])
+        if args.mapurl:
+            d['mapurl'] = args.mapurl + '?lat=' + str(data['latitude']) + '&lon=' + str(data['longitude'])
+        if args.forms and 'form' in data:
+            d['thumb'] = args.imgurl + '{}-{}.png'.format(data['pokemon_id'],d['form'])
+        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
+        d['static'] = 'utils/images/geocoded/'+data['spawnpoint_id']+'.png'
+        Alert(args.token).alert(d)
 

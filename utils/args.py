@@ -31,6 +31,16 @@ def args():
     parser.add_argument('-ch', '--channel', help='channel where registration is enabled', default='something')
     parser.add_argument('-us', '--usaddress', help='address order reversed from eu format',action='store_true', default=False)
     parser.add_argument('-pxf', '--prefix', help='what to start discord commands with', default='!')
+    parser.add_argument('-F', '--forms', help='enable forms for mons that have it', action='store_true', default=False)
+
+    # DTS args
+    parser.add_argument('-img', '--imgurl', help='source of alarm thumbnails', default='https://raw.githubusercontent.com/KartulUdus/PoracleWiki/master/images/icons/')
+    parser.add_argument('-murl', '--mapurl', help='link to personal map in alarms', default=False)
+
+    # Static Map size
+
+    parser.add_argument('-mw', '--mapwidth', type=int, help='static map width', default=250)
+    parser.add_argument('-mh', '--mapheight', type=int, help='static map height ', default=175)
 
 
     return parser.parse_args()

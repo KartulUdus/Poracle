@@ -4,7 +4,9 @@ import logging
 from cHaversine import haversine
 from geopy.geocoders import Nominatim
 from staticmap import StaticMap, IconMarker
+from args import args as get_args
 
+args = get_args()
 log = logging.getLogger('mysql')
 log.setLevel(logging.DEBUG)
 
@@ -36,7 +38,7 @@ def revgeoloc(loc):
 ## Stores static map image in images/geocoded/<spawn_gym_id>.png
 
 def makemap(lat,lon,id):
-    map = StaticMap(330,250,80,
+    map = StaticMap(args.mapwidth,args.mapheight,80,
                     url_template='http://a.tile.osm.org/{z}/{x}/{y}.png')
     marker = IconMarker((lon, lat), 'utils/images/icon-flag.png', 12, 32)
     map.add_marker(marker)

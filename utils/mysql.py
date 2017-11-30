@@ -53,6 +53,8 @@ class humans(BaseModel):
     id = CharField(primary_key=True, index=True, unique=True)
     name = CharField(index=True, max_length=50)
     enabled = BooleanField(default=False)
+    alert_level = SmallIntegerField(index=True, default=4)
+    map_enabled = BooleanField(default=True)
     latitude = DoubleField(null=True)
     longitude = DoubleField(null=True)
 
@@ -224,6 +226,9 @@ def remove_raid_tracking(id,monster):
 def check_if_geocoded(id):
     return geocoded.select().where(geocoded.id == id).exists()
 
+def get_address(id):
+    return geocoded.select(geocoded.address).where(geocoded.id == id).dicts()
+
 def save_geocoding(id,team,address,gym_name,description,url,lat,lon):
     InsertQuery(geocoded,{
         geocoded.id: id,
@@ -261,7 +266,8 @@ def who_cares(type, data, iv):
 
     if type == 'monster':
         monster_id = data['pokemon_id']
-        return humans.select(humans.id, humans.name, monsters.distance, monsters.min_iv,
+        return humans.select(humans.id, humans.name, humans.map_enabled, humans.alert_level,
+                             monsters.distance, monsters.min_iv,
                              humans.latitude,humans.longitude)\
             .join(monsters, on=(humans.id == monsters.human_id))\
             .where(
@@ -273,7 +279,7 @@ def who_cares(type, data, iv):
     elif type == 'raid':
         if 'start' in data:
             level = data['level']
-            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id,
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled, humans.alert_level,
                                 humans.latitude, humans.longitude) \
                 .join(raid, on=(humans.id == raid.human_id)) \
                 .where(
@@ -284,7 +290,7 @@ def who_cares(type, data, iv):
 
         else:
             monster_id = data['pokemon_id']
-            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id,
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled, humans.alert_level,
                                 humans.latitude, humans.longitude) \
                 .join(raid, on=(humans.id == raid.human_id)) \
                 .where(

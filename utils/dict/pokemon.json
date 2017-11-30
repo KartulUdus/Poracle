@@ -5,11 +5,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "61"
@@ -20,11 +20,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "421"
@@ -35,11 +35,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "641"
@@ -50,7 +50,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "119"
@@ -61,7 +61,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "1025"
@@ -72,11 +72,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "879"
@@ -87,7 +87,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "65"
@@ -98,7 +98,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "484"
@@ -109,7 +109,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "843"
@@ -120,7 +120,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": "51"
@@ -131,7 +131,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": "433"
@@ -142,11 +142,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "843"
@@ -157,11 +157,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "21"
@@ -172,11 +172,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "204"
@@ -187,11 +187,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "377"
@@ -202,11 +202,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "10"
@@ -217,11 +217,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "75"
@@ -232,11 +232,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "203"
@@ -247,7 +247,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "13"
@@ -258,7 +258,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "159"
@@ -269,11 +269,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "31"
@@ -284,11 +284,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "221"
@@ -299,7 +299,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "75"
@@ -310,7 +310,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "544"
@@ -321,7 +321,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "92"
@@ -332,7 +332,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "2051"
@@ -343,7 +343,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "163"
@@ -354,7 +354,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "1619"
@@ -365,7 +365,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "77"
@@ -376,7 +376,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "504"
@@ -387,11 +387,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "1398"
@@ -402,7 +402,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "77"
@@ -413,7 +413,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "586"
@@ -424,11 +424,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "1025"
@@ -439,7 +439,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": "85"
@@ -450,7 +450,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": "1309"
@@ -461,7 +461,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "188"
@@ -472,7 +472,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "1538"
@@ -483,11 +483,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": "101"
@@ -498,11 +498,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": "2051"
@@ -513,11 +513,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "24"
@@ -528,11 +528,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "209"
@@ -543,11 +543,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "91"
@@ -558,11 +558,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "592"
@@ -573,11 +573,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "1864"
@@ -588,11 +588,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": "44"
@@ -603,11 +603,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": "397"
@@ -618,11 +618,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "38"
@@ -633,11 +633,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "300"
@@ -648,7 +648,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "211"
@@ -659,7 +659,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "1663"
@@ -670,7 +670,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "106"
@@ -681,7 +681,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "1282"
@@ -692,7 +692,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "108"
@@ -703,7 +703,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "707"
@@ -714,7 +714,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "114"
@@ -725,7 +725,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "1061"
@@ -736,7 +736,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "77"
@@ -747,7 +747,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "932"
@@ -758,7 +758,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "95"
@@ -769,7 +769,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "481"
@@ -780,11 +780,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "1709"
@@ -795,7 +795,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "104"
@@ -806,7 +806,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "779"
@@ -817,7 +817,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "2461"
@@ -828,7 +828,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "217"
@@ -839,7 +839,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "1465"
@@ -850,7 +850,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "3418"
@@ -861,11 +861,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "86"
@@ -876,11 +876,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "496"
@@ -891,11 +891,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "2051"
@@ -906,11 +906,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "275"
@@ -921,11 +921,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "615"
@@ -936,11 +936,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "121"
@@ -951,11 +951,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "707"
@@ -966,11 +966,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "2797"
@@ -981,7 +981,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "121"
@@ -992,7 +992,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "992"
@@ -1003,11 +1003,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "175"
@@ -1018,11 +1018,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "947"
@@ -1033,11 +1033,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": "200"
@@ -1048,11 +1048,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": "2051"
@@ -1063,11 +1063,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "61527"
@@ -1078,11 +1078,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "77"
@@ -1093,11 +1093,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "634"
@@ -1108,7 +1108,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "196"
@@ -1119,11 +1119,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": "1578"
@@ -1134,7 +1134,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "879"
@@ -1145,7 +1145,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "7691"
@@ -1156,7 +1156,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "177"
@@ -1167,11 +1167,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": "1578"
@@ -1182,11 +1182,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "77"
@@ -1197,11 +1197,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "419"
@@ -1212,11 +1212,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "1758"
@@ -1227,11 +1227,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "269"
@@ -1242,7 +1242,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "39"
@@ -1253,7 +1253,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "322"
@@ -1264,7 +1264,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "73"
@@ -1275,7 +1275,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "530"
@@ -1286,7 +1286,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "276"
@@ -1297,7 +1297,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "1985"
@@ -1308,11 +1308,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "123"
@@ -1323,11 +1323,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "1231"
@@ -1338,7 +1338,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "163"
@@ -1349,7 +1349,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": "1431"
@@ -1360,7 +1360,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "504"
@@ -1371,7 +1371,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": "446"
@@ -1382,7 +1382,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "443"
@@ -1393,7 +1393,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "213"
@@ -1404,7 +1404,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": "1398"
@@ -1415,11 +1415,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": "110"
@@ -1430,11 +1430,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": "867"
@@ -1445,7 +1445,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "1256"
@@ -1456,7 +1456,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": "346"
@@ -1467,7 +1467,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "2461"
@@ -1478,7 +1478,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "104"
@@ -1489,7 +1489,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "760"
@@ -1500,7 +1500,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "103"
@@ -1511,7 +1511,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "684"
@@ -1522,7 +1522,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "97"
@@ -1533,11 +1533,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "1206"
@@ -1548,11 +1548,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": "1431"
@@ -1563,11 +1563,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "155"
@@ -1578,11 +1578,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "152"
@@ -1593,7 +1593,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "261"
@@ -1604,7 +1604,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "213"
@@ -1615,7 +1615,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": "99"
@@ -1626,7 +1626,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "153"
@@ -1637,7 +1637,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "79"
@@ -1648,11 +1648,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "2279"
@@ -1663,11 +1663,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": "1183"
@@ -1678,7 +1678,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "30764"
@@ -1689,7 +1689,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "24"
@@ -1700,7 +1700,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "1465"
@@ -1711,7 +1711,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": "1309"
@@ -1722,7 +1722,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": "1568"
@@ -1733,7 +1733,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "867"
@@ -1744,11 +1744,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "346"
@@ -1759,11 +1759,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "6153"
@@ -1774,11 +1774,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "356"
@@ -1789,11 +1789,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": "2930"
@@ -1804,11 +1804,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "879"
@@ -1819,7 +1819,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": "284"
@@ -1830,11 +1830,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "99999"
@@ -1845,11 +1845,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "99999"
@@ -1860,11 +1860,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "99999"
@@ -1875,7 +1875,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": "91"
@@ -1886,7 +1886,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": "699"
@@ -1897,11 +1897,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": "580"
@@ -1912,7 +1912,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "99999"
@@ -1923,7 +1923,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": "99999"
@@ -1934,7 +1934,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -1945,7 +1945,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -1956,7 +1956,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -1967,7 +1967,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -1978,7 +1978,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -1989,7 +1989,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -2000,7 +2000,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2011,7 +2011,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2022,7 +2022,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2033,7 +2033,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2044,7 +2044,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2055,11 +2055,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2070,11 +2070,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2085,11 +2085,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2100,11 +2100,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2115,11 +2115,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -2130,11 +2130,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -2145,11 +2145,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2160,11 +2160,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2175,11 +2175,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2190,7 +2190,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2201,7 +2201,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2212,11 +2212,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2227,7 +2227,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2238,11 +2238,11 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2253,11 +2253,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2268,11 +2268,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2283,7 +2283,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2294,7 +2294,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2305,7 +2305,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -2316,7 +2316,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -2327,11 +2327,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2342,11 +2342,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2357,7 +2357,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -2368,7 +2368,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2379,11 +2379,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2394,11 +2394,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2409,11 +2409,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2424,7 +2424,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2435,7 +2435,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -2446,7 +2446,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -2457,11 +2457,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2472,11 +2472,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2487,11 +2487,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2502,7 +2502,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -2513,7 +2513,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -2524,11 +2524,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2539,11 +2539,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -2554,7 +2554,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -2565,7 +2565,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -2576,7 +2576,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -2587,11 +2587,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -2602,7 +2602,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -2613,11 +2613,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -2628,7 +2628,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2639,11 +2639,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2654,11 +2654,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2669,7 +2669,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2680,7 +2680,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -2691,11 +2691,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -2706,11 +2706,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -2721,11 +2721,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -2736,11 +2736,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -2751,11 +2751,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -2766,7 +2766,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2777,7 +2777,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -2788,7 +2788,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -2799,11 +2799,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -2814,11 +2814,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2829,11 +2829,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2844,11 +2844,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -2859,7 +2859,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2870,7 +2870,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -2881,11 +2881,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2896,11 +2896,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2911,11 +2911,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -2926,11 +2926,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -2941,11 +2941,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -2956,11 +2956,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -2971,7 +2971,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2982,7 +2982,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -2993,7 +2993,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3004,7 +3004,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3015,7 +3015,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3026,7 +3026,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3037,7 +3037,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3048,11 +3048,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -3063,7 +3063,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -3074,7 +3074,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -3085,7 +3085,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3096,7 +3096,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3107,7 +3107,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -3118,7 +3118,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -3129,7 +3129,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -3140,11 +3140,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -3155,11 +3155,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -3170,11 +3170,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -3185,11 +3185,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3200,11 +3200,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3215,11 +3215,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3230,7 +3230,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3241,7 +3241,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3252,7 +3252,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3263,7 +3263,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -3274,11 +3274,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3289,11 +3289,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3304,7 +3304,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -3315,11 +3315,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -3330,11 +3330,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -3345,7 +3345,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -3356,7 +3356,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -3367,7 +3367,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3378,7 +3378,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3389,7 +3389,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -3400,7 +3400,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -3411,11 +3411,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3426,7 +3426,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -3437,11 +3437,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -3452,11 +3452,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3467,11 +3467,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3482,11 +3482,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3497,7 +3497,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3508,11 +3508,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -3523,11 +3523,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -3538,11 +3538,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3553,11 +3553,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3568,11 +3568,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3583,11 +3583,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3598,11 +3598,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -3613,11 +3613,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -3628,11 +3628,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -3643,11 +3643,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -3658,11 +3658,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3673,7 +3673,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -3684,11 +3684,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3699,7 +3699,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3710,7 +3710,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3721,7 +3721,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3732,11 +3732,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -3747,11 +3747,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -3762,11 +3762,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -3777,7 +3777,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3788,7 +3788,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3799,7 +3799,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3810,7 +3810,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3821,7 +3821,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -3832,11 +3832,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -3847,7 +3847,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -3858,7 +3858,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3869,7 +3869,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -3880,11 +3880,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -3895,11 +3895,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -3910,11 +3910,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -3925,11 +3925,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -3940,11 +3940,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -3955,11 +3955,11 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -3970,11 +3970,11 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -3985,7 +3985,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -3996,7 +3996,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -4007,7 +4007,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -4018,7 +4018,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -4029,7 +4029,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -4040,7 +4040,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -4051,11 +4051,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -4066,7 +4066,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -4077,7 +4077,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -4088,11 +4088,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -4103,11 +4103,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -4118,7 +4118,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4129,7 +4129,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4140,11 +4140,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4155,11 +4155,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4170,7 +4170,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -4181,7 +4181,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4192,7 +4192,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4203,7 +4203,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -4214,7 +4214,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4225,11 +4225,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -4240,11 +4240,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -4255,7 +4255,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -4266,11 +4266,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -4281,11 +4281,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -4296,11 +4296,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -4311,7 +4311,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -4322,7 +4322,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -4333,11 +4333,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4348,11 +4348,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4363,11 +4363,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4378,11 +4378,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4393,7 +4393,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4404,11 +4404,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -4419,11 +4419,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4434,11 +4434,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4449,11 +4449,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -4464,11 +4464,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -4479,11 +4479,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -4494,11 +4494,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -4509,7 +4509,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4520,7 +4520,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4531,7 +4531,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -4542,7 +4542,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -4553,7 +4553,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -4564,7 +4564,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -4575,7 +4575,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -4586,7 +4586,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -4597,11 +4597,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -4612,7 +4612,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4623,7 +4623,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -4634,7 +4634,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4645,7 +4645,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -4656,7 +4656,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -4667,11 +4667,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4682,11 +4682,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4697,11 +4697,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4712,7 +4712,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4723,7 +4723,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4734,7 +4734,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4745,11 +4745,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -4760,7 +4760,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4771,7 +4771,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -4782,7 +4782,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -4793,11 +4793,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -4808,11 +4808,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4823,11 +4823,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4838,11 +4838,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4853,7 +4853,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -4864,7 +4864,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -4875,7 +4875,7 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -4886,11 +4886,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4901,11 +4901,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4916,7 +4916,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -4927,7 +4927,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -4938,11 +4938,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -4953,11 +4953,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4968,7 +4968,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -4979,7 +4979,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -4990,7 +4990,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -5001,11 +5001,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5016,7 +5016,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -5027,11 +5027,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -5042,11 +5042,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -5057,7 +5057,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5068,7 +5068,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5079,11 +5079,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -5094,11 +5094,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5109,11 +5109,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5124,11 +5124,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5139,7 +5139,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5150,11 +5150,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5165,7 +5165,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -5176,7 +5176,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -5187,7 +5187,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -5198,7 +5198,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -5209,7 +5209,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -5220,11 +5220,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -5235,11 +5235,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -5250,7 +5250,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -5261,7 +5261,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -5272,11 +5272,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -5287,11 +5287,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -5302,7 +5302,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -5313,11 +5313,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -5328,11 +5328,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5343,11 +5343,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5358,11 +5358,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5373,7 +5373,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -5384,7 +5384,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5395,7 +5395,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5406,7 +5406,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -5417,7 +5417,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -5428,7 +5428,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5439,11 +5439,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5454,7 +5454,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5465,11 +5465,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5480,11 +5480,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5495,7 +5495,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5506,7 +5506,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5517,7 +5517,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -5528,11 +5528,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5543,7 +5543,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5554,7 +5554,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5565,7 +5565,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -5576,11 +5576,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -5591,11 +5591,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -5606,11 +5606,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -5621,11 +5621,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -5636,7 +5636,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -5647,11 +5647,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -5662,7 +5662,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5673,11 +5673,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5688,11 +5688,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -5703,11 +5703,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5718,11 +5718,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5733,11 +5733,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5748,7 +5748,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5759,7 +5759,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -5770,11 +5770,11 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -5785,7 +5785,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5796,7 +5796,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -5807,11 +5807,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -5822,11 +5822,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -5837,11 +5837,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -5852,11 +5852,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -5867,7 +5867,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -5878,7 +5878,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5889,7 +5889,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -5900,11 +5900,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -5915,11 +5915,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -5930,11 +5930,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -5945,11 +5945,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -5960,11 +5960,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -5975,7 +5975,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -5986,11 +5986,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -6001,7 +6001,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6012,7 +6012,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -6023,7 +6023,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -6034,11 +6034,11 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6049,11 +6049,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6064,7 +6064,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6075,7 +6075,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -6086,11 +6086,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6101,11 +6101,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -6116,7 +6116,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6127,11 +6127,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6142,11 +6142,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -6157,7 +6157,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -6168,11 +6168,11 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -6183,11 +6183,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -6198,7 +6198,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6209,7 +6209,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6220,7 +6220,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6231,11 +6231,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -6246,11 +6246,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -6261,11 +6261,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -6276,7 +6276,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6287,11 +6287,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -6302,7 +6302,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6313,7 +6313,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6324,7 +6324,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6335,7 +6335,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -6346,7 +6346,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6357,7 +6357,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6368,11 +6368,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -6383,7 +6383,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6394,7 +6394,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6405,7 +6405,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6416,7 +6416,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -6427,11 +6427,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6442,11 +6442,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6457,7 +6457,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6468,7 +6468,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6479,7 +6479,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6490,7 +6490,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6501,7 +6501,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6512,7 +6512,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6523,7 +6523,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6534,7 +6534,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6545,7 +6545,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -6556,7 +6556,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -6567,7 +6567,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6578,7 +6578,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6589,7 +6589,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -6600,7 +6600,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -6611,7 +6611,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6622,7 +6622,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6633,7 +6633,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6644,7 +6644,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -6655,11 +6655,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6670,11 +6670,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6685,11 +6685,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6700,7 +6700,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -6711,7 +6711,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -6722,7 +6722,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -6733,7 +6733,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -6744,7 +6744,7 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -6755,11 +6755,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6770,11 +6770,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -6785,7 +6785,7 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -6796,11 +6796,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -6811,7 +6811,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -6822,7 +6822,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6833,7 +6833,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6844,7 +6844,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6855,7 +6855,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -6866,11 +6866,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -6881,11 +6881,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -6896,7 +6896,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6907,7 +6907,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -6918,11 +6918,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6933,11 +6933,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6948,11 +6948,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -6963,11 +6963,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -6978,11 +6978,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -6993,11 +6993,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -7008,11 +7008,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -7023,11 +7023,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -7038,7 +7038,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -7049,7 +7049,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -7060,7 +7060,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -7071,11 +7071,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -7086,11 +7086,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -7101,11 +7101,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -7116,7 +7116,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -7127,7 +7127,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -7138,7 +7138,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -7149,11 +7149,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -7164,11 +7164,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -7179,11 +7179,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -7194,11 +7194,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -7209,11 +7209,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7224,7 +7224,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -7235,7 +7235,7 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -7246,11 +7246,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -7261,11 +7261,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       }
     ],
     "spawn_rate": ""
@@ -7276,11 +7276,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7291,11 +7291,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7306,7 +7306,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -7317,7 +7317,7 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -7328,7 +7328,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -7339,7 +7339,7 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -7350,7 +7350,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -7361,7 +7361,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -7372,7 +7372,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7383,7 +7383,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7394,7 +7394,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7405,7 +7405,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7416,7 +7416,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7427,7 +7427,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7438,11 +7438,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7453,11 +7453,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7468,7 +7468,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7479,7 +7479,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7490,7 +7490,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7501,11 +7501,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -7516,11 +7516,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -7531,11 +7531,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -7546,7 +7546,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -7557,11 +7557,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7572,11 +7572,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -7587,11 +7587,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       }
     ],
     "spawn_rate": ""
@@ -7602,11 +7602,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -7617,11 +7617,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -7632,7 +7632,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -7643,11 +7643,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7658,11 +7658,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7673,11 +7673,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7688,11 +7688,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7703,7 +7703,7 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7714,7 +7714,7 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7725,7 +7725,7 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -7736,7 +7736,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7747,7 +7747,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7758,7 +7758,7 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7769,7 +7769,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7780,7 +7780,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -7791,11 +7791,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -7806,11 +7806,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -7821,11 +7821,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -7836,7 +7836,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -7847,7 +7847,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -7858,7 +7858,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -7869,7 +7869,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7880,7 +7880,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7891,7 +7891,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -7902,7 +7902,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -7913,7 +7913,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -7924,11 +7924,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -7939,7 +7939,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -7950,7 +7950,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -7961,7 +7961,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -7972,11 +7972,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -7987,11 +7987,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -8002,11 +8002,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -8017,11 +8017,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -8032,7 +8032,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8043,11 +8043,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8058,11 +8058,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8073,11 +8073,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8088,11 +8088,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8103,7 +8103,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8114,11 +8114,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -8129,11 +8129,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -8144,11 +8144,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -8159,11 +8159,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -8174,11 +8174,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8189,11 +8189,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8204,11 +8204,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8219,11 +8219,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8234,11 +8234,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8249,7 +8249,7 @@
     "types": [
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8260,11 +8260,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8275,11 +8275,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8290,11 +8290,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       }
     ],
     "spawn_rate": ""
@@ -8305,11 +8305,11 @@
     "types": [
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8320,11 +8320,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -8335,11 +8335,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8350,11 +8350,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8365,11 +8365,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       }
     ],
     "spawn_rate": ""
@@ -8380,7 +8380,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -8391,7 +8391,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -8402,11 +8402,11 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       },
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8417,7 +8417,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8428,7 +8428,7 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       }
     ],
     "spawn_rate": ""
@@ -8439,11 +8439,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8454,7 +8454,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8465,7 +8465,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8476,11 +8476,11 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -8491,7 +8491,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8502,11 +8502,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -8517,11 +8517,11 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8532,11 +8532,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8547,11 +8547,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8562,7 +8562,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -8573,7 +8573,7 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       }
     ],
     "spawn_rate": ""
@@ -8584,11 +8584,11 @@
     "types": [
       {
         "type": "Bug",
-        "color": "#a8b820"
+        "color": 11057184
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -8599,11 +8599,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8614,11 +8614,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8629,7 +8629,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8640,7 +8640,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8651,7 +8651,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8662,7 +8662,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -8673,7 +8673,7 @@
     "types": [
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -8684,7 +8684,7 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       }
     ],
     "spawn_rate": ""
@@ -8695,11 +8695,11 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       },
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       }
     ],
     "spawn_rate": ""
@@ -8710,7 +8710,7 @@
     "types": [
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8721,7 +8721,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8732,7 +8732,7 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8743,11 +8743,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -8758,11 +8758,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -8773,11 +8773,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -8788,7 +8788,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8799,7 +8799,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8810,7 +8810,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8821,7 +8821,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -8832,11 +8832,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8847,11 +8847,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       }
     ],
     "spawn_rate": ""
@@ -8862,11 +8862,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8877,11 +8877,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8892,11 +8892,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8907,11 +8907,11 @@
     "types": [
       {
         "type": "Poison",
-        "color": "#a040a0"
+        "color": 10502304
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -8922,7 +8922,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8933,7 +8933,7 @@
     "types": [
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
@@ -8944,11 +8944,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8959,11 +8959,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Normal",
-        "color": "#8a8a59"
+        "color": 9079385
       }
     ],
     "spawn_rate": ""
@@ -8974,11 +8974,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -8989,11 +8989,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9004,11 +9004,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -9019,11 +9019,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -9034,7 +9034,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9045,11 +9045,11 @@
     "types": [
       {
         "type": "Fighting",
-        "color": "#c03028"
+        "color": 12595240
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -9060,11 +9060,11 @@
     "types": [
       {
         "type": "Electric",
-        "color": "#f8d030"
+        "color": 16306224
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9075,11 +9075,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9090,7 +9090,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9101,7 +9101,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9112,7 +9112,7 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9123,11 +9123,11 @@
     "types": [
       {
         "type": "Steel",
-        "color": "#b8b8d0"
+        "color": 12105936
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9138,11 +9138,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -9153,11 +9153,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -9168,11 +9168,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -9183,11 +9183,11 @@
     "types": [
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       },
       {
         "type": "Grass",
-        "color": "#78c850"
+        "color": 7915600
       }
     ],
     "spawn_rate": ""
@@ -9198,7 +9198,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -9209,7 +9209,7 @@
     "types": [
       {
         "type": "Ice",
-        "color": "#98d8d8"
+        "color": 10016984
       }
     ],
     "spawn_rate": ""
@@ -9220,11 +9220,11 @@
     "types": [
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9235,11 +9235,11 @@
     "types": [
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       },
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       }
     ],
     "spawn_rate": ""
@@ -9250,7 +9250,7 @@
     "types": [
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9261,11 +9261,11 @@
     "types": [
       {
         "type": "Dark",
-        "color": "#707070"
+        "color": 7368816
       },
       {
         "type": "Flying",
-        "color": "#a890f0"
+        "color": 11047152
       }
     ],
     "spawn_rate": ""
@@ -9276,11 +9276,11 @@
     "types": [
       {
         "type": "Dragon",
-        "color": "#7038f8"
+        "color": 7354616
       },
       {
         "type": "Ground",
-        "color": "#e0c068"
+        "color": 14729320
       }
     ],
     "spawn_rate": ""
@@ -9291,11 +9291,11 @@
     "types": [
       {
         "type": "Rock",
-        "color": "#b8a038"
+        "color": 12099640
       },
       {
         "type": "Fairy",
-        "color": "#e898e8"
+        "color": 15243496
       }
     ],
     "spawn_rate": ""
@@ -9306,11 +9306,11 @@
     "types": [
       {
         "type": "Psychic",
-        "color": "#f85888"
+        "color": 16275592
       },
       {
         "type": "Ghost",
-        "color": "#705898"
+        "color": 7362712
       }
     ],
     "spawn_rate": ""
@@ -9321,11 +9321,11 @@
     "types": [
       {
         "type": "Fire",
-        "color": "#f08030"
+        "color": 15761456
       },
       {
         "type": "Water",
-        "color": "#6890f0"
+        "color": 6852848
       }
     ],
     "spawn_rate": ""
