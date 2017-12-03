@@ -244,7 +244,7 @@ def create_message(type, data, human):
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(data['latitude']) + '&lon=' + str(data['longitude'])
-        if args.forms and 'form' is not None:
+        if args.forms and data['form'] is not None:
             d['thumb'] = args.imgurl + \
                 '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
