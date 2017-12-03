@@ -3,7 +3,6 @@
 import logging
 import os, errno
 import subprocess
-from threading import Thread
 from alarm import filter
 from utils.args import args as get_args
 from utils.mysql import verify_database_schema

@@ -1,22 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
-import sys
-import math
 import time
 from args import args as get_args
 import logging
-import pymysql
-from peewee import (InsertQuery, Check, CompositeKey, ForeignKeyField,
+from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
-                    BooleanField, DateTimeField, fn, DeleteQuery, FloatField,
-                    TextField, JOIN, OperationalError)
-from peewee import *
-
+                    BooleanField, TextField, OperationalError)
 
 # Globals
 
-#app = Flask(__name__)
 sb_schema_version = 1
 
 # Logging
