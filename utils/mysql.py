@@ -353,10 +353,13 @@ def check_if_weather(id):
 
 def update_weather_path(id, path):
     geocoded.update(weather_path=path).where(geocoded.id == id).execute()
-    InsertQuery(weather, {
-        weather.area: path,
-        weather.updated: 0
-    }).execute()
+    try:
+        InsertQuery(weather, {
+            weather.area: path,
+            weather.updated: 0
+        }).execute()
+    except peewee.IntegrityError:
+        continue
     db.close()
 
 
