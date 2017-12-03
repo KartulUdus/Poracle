@@ -15,7 +15,7 @@ import ujson as json
 
 
 app = Flask(__name__)
-data_queue = Queue.Queue()
+webhook_queue = Queue.Queue()
 
 # create logger
 log = logging.getLogger('Poracle')
@@ -43,6 +43,8 @@ def make_configs():
 
 def potato():
 
+    spawn(send_hooks_to_filter, webhook_queue)
+
     log.info("Poracle is running on: http://{}:{}".format(args.host, args.port))
     server = wsgi.WSGIServer((args.host, args.port), app, log=logging.getLogger('Webserver'))
     server.serve_forever()
@@ -60,11 +62,20 @@ def accept_webhook():
         log.debug("{} Sent me something.".format(request.remote_addr))
         data = json.loads(request.data)
         for frame in data:
-            filter(frame)
+            webhook_queue.put(frame)
     except Exception as e:
         log.error("I am unhappy! computer says: {}: {}".format(type(e).__name__, e))
         abort(400)
     return "OK"  # request ok
+
+
+def send_hooks_to_filter(queue):
+    while True:
+        if queue.qsize() > 300:
+            log.warning("Not cool, I have {} jobs to do".format(queue.qsize()))
+        data = queue.get(block=True)
+        filter(data)
+        queue.task_done()
 
 if __name__ == '__main__':
      log.info("Poracle initializing.")
