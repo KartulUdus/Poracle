@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
 import ujson as json
-from disco.bot import Plugin, Bot
+from disco.bot import Plugin
 from disco.api.client import APIClient
 from disco.types.message import MessageEmbed, MessageEmbedField, MessageEmbedThumbnail, MessageEmbedAuthor, MessageEmbedImage
-from disco.api.http import HTTPClient
 from utils.args import args as get_args
 from utils.geo import geoloc
 from utils.mysql import (registered, register, unregister, activate, deactivate,
@@ -49,7 +47,7 @@ Hello, once you have reigstered in {0}, you can use the following commands:
 {1}egg remove <level> - stops alarms for raid eggs
 {1}stop - stop alarms 
 {1}start - start alarms (true by default on first registration)
-{1}message [address, iv, moves, map] - 1 option only. Enables or disables fields of the alarm
+{1}switch [address, iv, moves, map, switch] - 1 option only. Enables or disables fields of the alarm
 ```
         '''.format(args.channel,args.prefix)
         event.msg.reply(help)
@@ -64,12 +62,11 @@ Hello, once you have reigstered in {0}, you can use the following commands:
             if (event.msg.channel.name == args.channel):
                 if not(registered(dmid)):
                     register(dmid,name)
-                    event.msg.reply('Hello {}, thank you for registering!'.format(ping))
+                    event.msg.reply(args.registering.format(ping))
                 else:
-                    event.msg.reply('Hello {}, you are already registered'.format(ping))
+                    event.msg.reply(args.alreadyreg.format(ping))
             else:
-                event.msg.reply(
-                    'Hello {}, !register is only available in #{}'.format(ping, args.channel))
+                event.msg.reply(args.onlyinchannel.format(ping, args.channel))
 
 
 ## Unregister humans DM id
@@ -81,11 +78,10 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                 ping = event.msg.author.mention
                 if not (registered(dmid)):
                     event.msg.reply(
-                        'Hello {}, You are not currenlty registered!'.format(ping))
+                        args.notregistered.format(ping))
                 else:
                     unregister(dmid)
-                    event.msg.reply(
-                        'Hello {}, You are no longer registered!'.format(ping))
+                    event.msg.reply(args.unregistered.format(ping))
 
 ## Enable alarms for human
     @Plugin.command('start')
@@ -97,15 +93,13 @@ Hello, once you have reigstered in {0}, you can use the following commands:
             if not (check_if_location_set(dmid)):
                 if (registered_by_name(name)):
                     activate(dmid)
-                    event.msg.reply('Your alarms have been activated!')
+                    event.msg.reply(args.start)
                 else:
-                    event.msg.reply(
-                        'This command is only available for registered humans! :eyes:')
+                    event.msg.reply(args.onlyregistered)
             else:
-                event.msg.reply(
-                    'Please use `!location <location>` to set your location first :slight_smile:')
+                event.msg.reply(args.locationfirst)
         else:
-            event.msg.reply('Hello {}, This command is only available in DM '.format(ping))
+            event.msg.reply(args.dmonly.format(ping))
 
 
 ## Disable alarms for human
@@ -117,12 +111,11 @@ Hello, once you have reigstered in {0}, you can use the following commands:
         if (event.msg.channel.is_dm):
             if (registered_by_name(name)):
                 deactivate(dmid)
-                event.msg.reply('Your alarms have been stopped!')
+                event.msg.reply(args.stop)
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                event.msg.reply(args.registered)
         else:
-            event.msg.reply('Hello {}, This command is only available in DM '.format(ping))
+            event.msg.reply(args.onlydm.format(ping))
 
 ## Set Humans Location
     @Plugin.command('location', '<content:str...>')
@@ -132,22 +125,18 @@ Hello, once you have reigstered in {0}, you can use the following commands:
         content = content.encode('utf-8')
         if (event.msg.channel.is_dm):
             if not (registered_by_name(name)):
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                event.msg.reply(args.onlyregistered)
             else:
                 loc = geoloc(content)
                 if (loc == 'ERROR'):
-                    event.msg.reply(
-                        'I was unable to locate {}'.format(content))
+                    event.msg.reply(args.notfind.format(content))
                 else:
                     set_location(name,loc[0],loc[1])
                     maplink = 'https://www.google.com/maps/search/?api=1&query=' + str(loc[0]) + ',' + str(loc[1])
                     event.msg.reply(
-                        'I have set your location to {}. \n You can double check: {}'.format(content,maplink))
+                        args.locationset.format(content,maplink))
         else:
-            event.msg.reply(
-                'Hello {}, This command is only available in DM'.format(ping))
-
+            event.msg.reply(args.onlydm.format(ping))
 
  ## Configure alarm blocks
 
@@ -173,21 +162,18 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                     col = 'weather_enabled'
                     state = switch(dmid, col)
                 else:
-                    event.msg.reply(':no_good: Invalid command.\nOptions: [map, address, iv, moveset, weather]')
+                    event.msg.reply(args.badswitch)
                 try:
                     if state:
-                        event.msg.reply(
-                            'I have turned {} on in your alarms'.format(col))
+                        event.msg.reply(args.switchyes.format(col))
                     if not state:
-                        event.msg.reply(
-                            'I have turned {} off in your alarms'.format(col))
+                        event.msg.reply(args.switchno.format(col))
                 except UnboundLocalError:
                     pass
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                event.msg.reply(args.onlyregistered)
         else:
-            event.msg.reply('Hello {}, This command is only available in DM '.format(ping))
+            event.msg.reply(args.onlydm.format(ping))
 
  ## Set or update tracking for monster
 
@@ -201,21 +187,16 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                 if(registered_by_name(name)):
                     if not(check_if_tracked(discordid, id)):
                         add_tracking(discordid,id,dis,iv)
-                        event.msg.reply('I have added tracking for: {} within {}m at least {}% perfect'.format(monster,dis,iv))
+                        event.msg.reply(args.trackingadd.format(monster,dis,iv))
                     else:
                         update_tracking(discordid,id,dis,iv)
-                        event.msg.reply(
-                            'I have updated tracking for: {} within {}m at least {}% perfect'.format(
-                                monster, dis, iv))
+                        event.msg.reply(args.trackingupd.format(monster, dis, iv))
                 else:
-                    event.msg.reply(
-                        'This command is only available for registered humans! :eyes:')
+                    event.msg.reply(args.onlyregistered)
            else:
-                event.msg.reply(
-                    'I could not find {}'.format(monster))
+                event.msg.reply(args.monnotfound.format(monster))
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
  ## Untrack monster:
 
@@ -229,17 +210,15 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                 id = get_monster_id_from_name(monster)
                 if(registered_by_name(name)):
                     if not(check_if_tracked(discordid, id)):
-                        event.msg.reply('You are not currently tracking {} :eyes:'.format(monster))
+                        event.msg.reply(args.nottracking.format(monster))
                     else:
                         remove_tracking(discordid,id)
-                        event.msg.reply('I have removed tracking for: {} '.format(monster))
+                        event.msg.reply(args.removedtracking.format(monster))
                 else:
-                    event.msg.reply(
-                        'This command is only available for registered humans! :eyes:')
+                    event.msg.reply(args.onlyregistered)
 
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
 
 
@@ -258,22 +237,19 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                     if not (check_if_raid_tracked(discordid, id)):
                         add_raid_tracking(discordid, id, dis)
                         event.msg.reply(
-                            'I have added tracking for: {} raids within {}m '.format(
+                            args.raidadded.format(
                                 monster, dis))
                     else:
                         update_raid_tracking(discordid, id, dis)
                         event.msg.reply(
-                            'I have updated tracking for: {} raids distance to {}m'.format(
-                                monster, dis, iv))
+                            args.raidupd.format(monster, dis, iv))
                 else:
-                    event.msg.reply('I could not find {}'.format(monster))
+                    event.msg.reply(args.monnotfound.format(monster))
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                event.msg.reply(args.onlyregistered)
 
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
  ## Untrack monster:
 
@@ -286,21 +262,16 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                 if (get_monster_id_from_name(monster)):
                     id = get_monster_id_from_name(monster)
                     if not (check_if_raid_tracked(discordid, id)):
-                            event.msg.reply(
-                                'You are not currently tracking {} :eyes:'.format(monster))
+                            event.msg.reply(args.nottracking.format(monster))
                     else:
                         remove_raid_tracking(discordid, id)
-                        event.msg.reply(
-                            'I have removed tracking for: {} '.format(monster))
+                        event.msg.reply(args.removedtracking.format(monster))
                 else:
-                    event.msg.reply('I could not find {}'.format(monster))
+                    event.msg.reply(args.monnotfound.format(monster))
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
-
+                event.msg.reply(args.onlyregistered)
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
  ## Eggs
 
@@ -311,25 +282,19 @@ Hello, once you have reigstered in {0}, you can use the following commands:
         if (event.msg.channel.is_dm):
             if (registered_by_name(name)):
                 if level<1 or level>6:
-                    event.msg.reply('Invalid raid level :no_good:')
+                    event.msg.reply(args.invalidraidlvl)
                 else:
                     if not (check_if_egg_tracked(discordid, level)):
                         add_egg_tracking(discordid, level, dis)
-                        event.msg.reply(
-                            'I have added tracking for level {} raids within {}m '.format(
-                                level, dis))
+                        event.msg.reply(args.eggadded.format(level, dis))
                     else:
                         update_egg_tracking(discordid, level, dis)
                         event.msg.reply(
-                            'I have updated changed level{} raid tracking distance to {}m'.format(
-                                monster, dis, iv))
+                            args.eggupdated.format(monster, dis, iv))
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
-
+                event.msg.reply(args.onlyregistered)
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
 
     @Plugin.command('egg remove', '<level:int>')
@@ -340,18 +305,15 @@ Hello, once you have reigstered in {0}, you can use the following commands:
             if (registered_by_name(name)):
 
                 if not (check_if_egg_tracked(discordid, level)):
-                        event.msg.reply(
-                            'You are not currently tracking lvl{} raids :eyes:'.format(level))
+                        event.msg.reply(args.eggnottracked
+                            .format(level))
                 else:
                     remove_egg_tracking(discordid, level)
-                    event.msg.reply(
-                        'I have removed tracking for level{} raids '.format(level))
+                    event.msg.reply(args.eggremoved.format(level))
             else:
-                event.msg.reply(
-                    'This command is only available for registered humans! :eyes:')
+                event.msg.reply(args.onlyregistered)
         else:
-            event.msg.reply(
-                'Tracking is only available in DM for registered humans')
+            event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
 
 class Alert(APIClient):
@@ -367,34 +329,35 @@ class Alert(APIClient):
                 img = ['static.png', open(d['static'], 'r')]
         embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
         embed.fields.append(
-            MessageEmbedField(name='a wild {} has appeared!'.format(d['mon_name']),value='It will despawn at {}, you have {} left'.format(d['time'],d['tth']))
+            MessageEmbedField(name=args.pmtitle.format(d['mon_name']),
+                              value=args.pmintro.format(d['time'],d['tth']))
             )
 
         if d['geo_enabled']:
             embed.fields.append(
-            MessageEmbedField(name=':map:',
+            MessageEmbedField(name=args.pltitle,
                               value=args.plfield.format(d['address']))
             )
 
         if 'atk' in d and d['iv_enabled']:
             embed.fields.append(
-                MessageEmbedField(name=':medal:',
+                MessageEmbedField(name=args.pivtitle,
                                   value=args.pivfield.format(d['perfection'],d['atk'],d['def'],d['sta'],d['level'],d['cp']))
             )
         if 'atk' in d and d['moves_enabled']:
             embed.fields.append(
-                MessageEmbedField(name=':dancer:',
+                MessageEmbedField(name=args.pmvtitle,
                                   value=args.pmvfield.format(d['move1'],d['move2']))
             )
         if args.weatheruser and 'wtemp' in d:
             embed.fields.append(
-                MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
-                                  value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
+                MessageEmbedField(name=args.weathertitle.format(d['wdescription']),
+                                  value=args.weatherbody.format(d['wtemp'],d['wwind']))
             )
         if args.mapurl:
             embed.fields.append(
-                MessageEmbedField(name=':eyes:',
-                                  value='{}'.format(d['mapurl']))
+                MessageEmbedField(name=args.RMtitle,
+                                  value=args.RMlink.format(d['mapurl']))
             )
 
 
@@ -415,32 +378,33 @@ class Alert(APIClient):
                 img = ['static.png', open(d['static'], 'r')]
         embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
         embed.fields.append(
-            MessageEmbedField(name='Raid against {} has started!'.format(d['mon_name']),value='It will end at {}, in {}'.format(d['time'],d['tth']))
+            MessageEmbedField(name=args.rmtitle.format(d['mon_name']),
+                              value=args.rmintro.format(d['time'],d['tth']))
             )
 
         if d['geo_enabled']:
             embed.fields.append(
-            MessageEmbedField(name=':map:',
-                              value='{}'.format(d['address']))
+            MessageEmbedField(name=args.rltitle,
+                              value=args.rlfield.format(d['address']))
             )
             embed.image = MessageEmbedImage(url=d['img'],width=50,height=50)
 
         if d['moves_enabled']:
             embed.fields.append(
-                MessageEmbedField(name=':dancer:',
-                                  value='Quick move: {}, Charge Move: {}'.format(d['move1'],d['move2']))
+                MessageEmbedField(name=args.rmvtitle,
+                                  value=args.rmvfield.format(d['move1'],d['move2']))
             )
 
         if d['iv_enabled']:
             embed.fields.append(
-                MessageEmbedField(name='{}'.format(d['gym_name']),
-                                  value='{}'.format(d['description']))
+                MessageEmbedField(name=args.rivtitle.format(d['gym_name']),
+                                  value=args.rivfield.format(d['description']))
             )
 
         if args.weatheruser and 'wtemp' in d:
             embed.fields.append(
-                MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
-                                  value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
+                MessageEmbedField(name=args.weathertitle.format(d['wdescription']),
+                                  value=args.weatherbody.format(d['wtemp'],d['wwind']))
             )
         self.channels_messages_create(d['channel'],attachment=img, embed=embed)
         if args.bottommap and d['map_enabled']:
@@ -461,23 +425,24 @@ class Alert(APIClient):
         embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
 
         embed.fields.append(
-            MessageEmbedField(name='Level {} egg appeared!'.format(d['level']),value='It will begin at {}, (in {})'.format(d['time'],d['tth']))
+            MessageEmbedField(name=args.emtitle.format(d['level']),
+                              value=args.emintro.format(d['time'],d['tth']))
             )
         if d['iv_enabled']:
             embed.fields.append(
-                MessageEmbedField(name='{}'.format(d['gym_name']),
-                                  value='{}'.format(d['description'])))
+                MessageEmbedField(name=args.rivtitle.format(d['gym_name']),
+                                  value=args.rivfield.format(d['description'])))
         if d['geo_enabled']:
             embed.fields.append(
-                MessageEmbedField(name=':map:',
-                                  value='{}'.format(d['address']))
+                MessageEmbedField(name=args.rltitle,
+                                  value=args.rlfield.format(d['address']))
             )
             embed.image = MessageEmbedImage(url=d['img'], width=50, height=50)
 
         if args.weatheruser and 'wtemp' in d:
             embed.fields.append(
-                MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
-                                  value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
+                MessageEmbedField(name=args.weathertitle.format(d['wdescription']),
+                                  value=args.weatherbody.format(d['wtemp'],d['wwind']))
             )
 
         self.channels_messages_create(d['channel'],attachment=img, embed=embed)

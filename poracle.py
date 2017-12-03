@@ -3,21 +3,20 @@
 import logging
 import os, errno
 import subprocess
-from collections import OrderedDict
+from threading import Thread
 from alarm import filter
 from utils.args import args as get_args
 from utils.mysql import verify_database_schema
 from gevent import wsgi, spawn
 from flask import Flask, request, abort
-import sys
 import Queue
 import ujson as json
 
-
 app = Flask(__name__)
-webhook_queue = Queue.Queue()
+hook_q = Queue.Queue()
 
 # create logger
+
 log = logging.getLogger('Poracle')
 log.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
@@ -43,10 +42,9 @@ def make_configs():
 
 def potato():
 
-    spawn(send_hooks_to_filter, webhook_queue)
-
     log.info("Poracle is running on: http://{}:{}".format(args.host, args.port))
-    server = wsgi.WSGIServer((args.host, args.port), app, log=logging.getLogger('Webserver'))
+    server = wsgi.WSGIServer(
+        (args.host, args.port), app, log=logging.getLogger('Webserver'))
     server.serve_forever()
 
 def run_bot():
@@ -62,20 +60,22 @@ def accept_webhook():
         log.debug("{} Sent me something.".format(request.remote_addr))
         data = json.loads(request.data)
         for frame in data:
-            webhook_queue.put(frame)
+            hook_q.put(frame)
+        spawn(send_hooks_to_filter, hook_q)
     except Exception as e:
         log.error("I am unhappy! computer says: {}: {}".format(type(e).__name__, e))
         abort(400)
     return "OK"  # request ok
 
+hook_q.join()
 
-def send_hooks_to_filter(queue):
-    while True:
-        if queue.qsize() > 300:
-            log.warning("Not cool, I have {} jobs to do".format(queue.qsize()))
-        data = queue.get(block=True)
+def send_hooks_to_filter(q):
+    while not q.empty():
+        if q.qsize() > 300:
+            log.warning("Not cool, I have {} jobs to do".format(q.qsize()))
+        data = q.get()
         filter(data)
-        queue.task_done()
+        q.task_done()
 
 if __name__ == '__main__':
      log.info("Poracle initializing.")

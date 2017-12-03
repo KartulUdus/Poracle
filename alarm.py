@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 from xml.etree import ElementTree as ET
-from lxml import etree
-import xmltodict
 import requests
 import time
 import logging
@@ -41,7 +39,6 @@ def filter(hook):
     data = json.loads(json.dumps(hook))
     type = data['type']
     info = data['message']
-
     if (type == 'pokemon'):
         if data['message']['disappear_time'] > int(time.time()):
             pokemon(info)
@@ -87,12 +84,9 @@ def pokemon(info):
         for human in who_cares('monster', info, iv):
             dis = distance([info['latitude'],info['longitude']], [human['latitude'], human['longitude']])
             if dis <= human['distance']:
-                log.info("Alerting {} about {}".format(human['name'], name))   ### TODOO function to construct message and send
+                log.info("Alerting {} about {}".format(human['name'], name))
 
                 create_message('monster',info, human)
-
-
-
 
 
     else:
