@@ -75,6 +75,11 @@ def pokemon(info):
             makemap(float(lat), float(lon), id)
             log.info('Made geocoded info for {}'.format(address))
 
+        if args.weatheruser:
+            if not check_if_weather(id):
+                path = get_weather_area_name([lat, lon])
+                update_weather_path(id, path)
+
         if 'individual_attack' not in info:
             iv = 0
         else:
@@ -96,14 +101,25 @@ def pokemon(info):
 
 def raid(info):
     id = info['gym_id']
-    if check_if_geocoded(id):
-        if raid_any(info['pokemon_id']):
-            for human in who_cares('raid',info,100):
-                create_message('raid', info, human)
-                log.info("Alerting {} about {} raid".format(human['name'], get_monster_name(info['pokemon_id'])))
-        else:
-            log.info('Raid agains {} has appeared, but no one cares'.format(
-                get_monster_name(info['pokemon_id'])))
+    if 'pokemon_id' in info:
+        if check_if_geocoded(id):
+            if raid_any(info['pokemon_id'],0):
+                for human in who_cares('raid',info,100):
+                    create_message('raid', info, human)
+                    log.info("Alerting {} about {} raid".format(human['name'], get_monster_name(info['pokemon_id'])))
+            else:
+                log.info('Raid agains {} has appeared, but no one cares'.format(
+                    get_monster_name(info['pokemon_id'])))
+    else:
+        if check_if_geocoded(id):
+            if raid_any(info['level'],1):
+                for human in who_cares('raid',info, 100):
+                    create_message('egg', info, human)
+                    log.info("Alerting {} about level {} raid".format(human['name'],info['level']))
+            else:
+                log.info('Egg level {} has appeared, but no one cares'.format(info['level']))
+
+
 def gym_info(info):
     id = info['id']
     url = info['url']
@@ -151,7 +167,6 @@ def get_monster_form(id,form):
     return legend[str(id)][str(form)]
 
 def get_forecast(area):
-    print 'schwing'
     if (int(time.time()) - get_weather_updated(area))>21600:
         weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
         weather = requests.get(weatherurl, timeout=5)
@@ -174,7 +189,6 @@ def create_message(type, data, human):
         d['mon_name'] = get_monster_name(data['pokemon_id']).encode('utf-8')
         d['color'] = get_monster_color(data['pokemon_id'])
         d['map_enabled'] = human['map_enabled']
-        d['address_enabled'] = human['address_enabled']
         d['iv_enabled'] = human['iv_enabled']
         d['moves_enabled'] = human['moves_enabled']
         d['geo_enabled'] = human['address_enabled']
@@ -200,6 +214,12 @@ def create_message(type, data, human):
             d['thumb'] = args.imgurl + '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
         d['static'] = 'utils/images/geocoded/'+data['spawnpoint_id']+'.png'.encode('utf-8')
+        if args.weatheruser and human['weather_enabled']:
+            areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
+            weather = get_forecast(areaname)
+            d['wdescription'] = weather['description']
+            d['wtemp'] = weather['temperature']
+            d['wwind'] = weather['windspeed']
 
         add_alarm_counter(human['id'])
 
@@ -215,7 +235,6 @@ def create_message(type, data, human):
         d['mon_name'] = get_monster_name(data['pokemon_id']).encode('utf-8')
         d['color'] = get_team_color(geo['team'])
         d['map_enabled'] = human['map_enabled']
-        d['address_enabled'] = human['address_enabled']
         d['iv_enabled'] = human['iv_enabled']
         d['moves_enabled'] = human['moves_enabled']
         d['geo_enabled'] = human['address_enabled']
@@ -243,3 +262,36 @@ def create_message(type, data, human):
             Alert(args.token).raid_alert(d)
         else:
             log.warning("Weird, the raid already ended")
+
+    elif type == 'egg':
+        geo = get_geocoded(data['gym_id'])
+        time_til_hatch = data['start'] - int(time.time())
+        d = {}
+
+        d['thumb'] = args.imgurl + 'egg.png'
+        d['img'] = geo['url']
+        d['channel'] = human['id']
+        d['level'] = data['level']
+        d['color'] = get_team_color(geo['team'])
+        d['map_enabled'] = human['map_enabled']
+        d['geo_enabled'] = human['address_enabled']
+        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(time_til_hatch))
+        d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['start'])))
+        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
+        d['static'] = 'utils/images/geocoded/'+data['gym_id']+'.png'
+        d['iv_enabled'] = human['iv_enabled']
+        d['gym_name'] = geo['gym_name'].encode('utf-8')
+        d['description'] = geo['description'].encode('utf-8')
+        d['address'] = geo['address'].encode('utf-8')
+        if args.mapurl:
+            d['mapurl'] = args.mapurl + '?lat=' + str(geo['latitude']) + '&lon=' + str(geo['longitude'])
+        if args.weatheruser and human['weather_enabled']:
+            areaname = get_geocoded(data['gym_id'])['weather_path']
+            weather = get_forecast(areaname)
+            d['wdescription'] = weather['description']
+            d['wtemp'] = weather['temperature']
+            d['wwind'] = weather['windspeed']
+        if time_til_hatch > 0:
+            Alert(args.token).egg_alert(d)
+        else:
+            log.warning("Weird, the egg already hatched")

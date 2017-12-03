@@ -213,13 +213,11 @@ def remove_tracking(id,monster):
 def monster_any(id):
     return monsters.select().where(monsters.pokemon_id == id).exists()
 
-def raid_any(id):
-    return raid.select().where(raid.pokemon_id == id).exists()
-
 ## Raids
 
-def check_if_raid_tracked(discordid,monster):
-    return raid.select().where((raid.human_id == discordid)&(raid.pokemon_id == monster)).where(raid.egg == 0).exists()
+def raid_any(id,egg):
+    return raid.select().where((raid.pokemon_id == id)&(raid.egg == egg)).exists()
+
 
 def add_raid_tracking(id,monster,distance):
     InsertQuery(raid,{
@@ -238,6 +236,10 @@ def remove_raid_tracking(id, monster):
         (raid.human_id == id) & (raid.pokemon_id == monster)).where(raid.egg == 0).execute()
     db.close()
 
+def check_if_raid_tracked(discordid, monster):
+    return raid.select().where(
+        (raid.human_id == discordid) & (raid.pokemon_id == monster)).where(
+        raid.egg == 0).exists()
  ## Eggs
 
 def check_if_egg_tracked(discordid,monster):
@@ -374,12 +376,11 @@ def who_cares(type, data, iv):
                 raid.egg == 0).dicts()
 
         else:
-            monster_id = data['pokemon_id']
-            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled,  humans.address_enabled, humans.iv_enabled, humans.moves_enabled,
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled,  humans.address_enabled, humans.iv_enabled, humans.moves_enabled, humans.weather_enabled,
                                 humans.latitude, humans.longitude) \
                 .join(raid, on=(humans.id == raid.human_id)) \
                 .where(
                 humans.id == raid.human_id,
                 humans.enabled == 1,
-                raid.pokemon_id == monster_id,
+                raid.pokemon_id == data['level'],
                 raid.egg == 1).dicts()

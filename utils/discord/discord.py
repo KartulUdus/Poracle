@@ -354,13 +354,6 @@ Hello, once you have reigstered in {0}, you can use the following commands:
                 'Tracking is only available in DM for registered humans')
 
 
-
-
-
-
-
-
-
 class Alert(APIClient):
     def monster_alert(self, d):
         embed = MessageEmbed(color=d['color'])
@@ -392,6 +385,11 @@ class Alert(APIClient):
             embed.fields.append(
                 MessageEmbedField(name=':dancer:',
                                   value=args.pmvfield.format(d['move1'],d['move2']))
+            )
+        if args.weatheruser and 'wtemp' in d:
+            embed.fields.append(
+                MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
+                                  value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
             )
         if args.mapurl:
             embed.fields.append(
@@ -444,6 +442,44 @@ class Alert(APIClient):
                 MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
                                   value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
             )
+        self.channels_messages_create(d['channel'],attachment=img, embed=embed)
+        if args.bottommap and d['map_enabled']:
+            img = ['static.png', open(d['static'], 'r')]
+            self.channels_messages_create(d['channel'], attachment=list(img))
+
+    def egg_alert(self,d):
+        print json.dumps(d, indent=4, sort_keys=True)
+        img = ''
+        embed = MessageEmbed(color=d['color'])
+        embed.author = MessageEmbedAuthor(
+            name=('Raid level {}'.format(d['level'])),
+            url=d['gmapurl'])
+        if not args.bottommap:
+            if d['map_enabled']:
+                img = ['static.png', open(d['static'], 'r')]
+        print d['thumb']
+        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
+
+        embed.fields.append(
+            MessageEmbedField(name='Level {} egg appeared!'.format(d['level']),value='It will begin at {}, (in {})'.format(d['time'],d['tth']))
+            )
+        if d['iv_enabled']:
+            embed.fields.append(
+                MessageEmbedField(name='{}'.format(d['gym_name']),
+                                  value='{}'.format(d['description'])))
+        if d['geo_enabled']:
+            embed.fields.append(
+                MessageEmbedField(name=':map:',
+                                  value='{}'.format(d['address']))
+            )
+            embed.image = MessageEmbedImage(url=d['img'], width=50, height=50)
+
+        if args.weatheruser and 'wtemp' in d:
+            embed.fields.append(
+                MessageEmbedField(name=':white_sun_cloud: {}'.format(d['wdescription']),
+                                  value='Temperature {}°C, {}'.format(d['wtemp'],d['wwind']))
+            )
+
         self.channels_messages_create(d['channel'],attachment=img, embed=embed)
         if args.bottommap and d['map_enabled']:
             img = ['static.png', open(d['static'], 'r')]
