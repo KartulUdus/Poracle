@@ -3,6 +3,7 @@
 import os
 import sys
 import math
+import time
 from args import args as get_args
 import logging
 import pymysql
@@ -52,9 +53,13 @@ class BaseModel(Model):
 class humans(BaseModel):
     id = CharField(primary_key=True, index=True, unique=True)
     name = CharField(index=True, max_length=50)
-    enabled = BooleanField(default=False)
-    alert_level = SmallIntegerField(index=True, default=4)
+    alerts_sent = IntegerField(index=True, default=0)
+    enabled = BooleanField(default=True)
+    address_enabled = BooleanField(default=True)
     map_enabled = BooleanField(default=True)
+    iv_enabled = BooleanField(default=True)
+    moves_enabled = BooleanField(default=True)
+    weather_enabled = BooleanField(default=False)
     latitude = DoubleField(null=True)
     longitude = DoubleField(null=True)
 
@@ -86,6 +91,7 @@ class raid(BaseModel):
 class geocoded(BaseModel):
     id = CharField(primary_key=True, index=True, max_length=50)
     type = CharField(index=True, max_length=20)
+    weather_path = CharField(null=True, max_length=100)
     team = SmallIntegerField(null=True)
     address = CharField(index=True)
     gym_name = CharField(index=True, max_length=50,null=True)
@@ -98,6 +104,14 @@ class geocoded(BaseModel):
         indexes = ((('latitude', 'longitude'), False),)
         order_by = ('id',)
 
+class weather(BaseModel):
+    area = CharField(primary_key=True, index=True, max_length=100)
+    updated = IntegerField(index=True, null=True)
+    description = CharField(null=True, index=True, max_length=50)
+    windspeed = CharField(null=True, index=True, max_length=50)
+    temperature = IntegerField(null=True, index=True)
+
+
 class schema_version(BaseModel):
     key = CharField()
     val = SmallIntegerField()
@@ -108,7 +122,7 @@ class schema_version(BaseModel):
 ## Db Migration
 
 def create_tables():
-    db.create_tables([humans, monsters, raid, geocoded, schema_version], safe=True)
+    db.create_tables([humans, monsters, raid, geocoded, weather, schema_version], safe=True)
 
 def verify_database_schema():
 
@@ -199,25 +213,69 @@ def remove_tracking(id,monster):
 def monster_any(id):
     return monsters.select().where(monsters.pokemon_id == id).exists()
 
+def raid_any(id):
+    return raid.select().where(raid.pokemon_id == id).exists()
+
 ## Raids
 
 def check_if_raid_tracked(discordid,monster):
-    return raid.select().where((raid.human_id == discordid)&(raid.pokemon_id == monster)).exists()
+    return raid.select().where((raid.human_id == discordid)&(raid.pokemon_id == monster)).where(raid.egg == 0).exists()
 
 def add_raid_tracking(id,monster,distance):
     InsertQuery(raid,{
         raid.human_id: id,
         raid.pokemon_id:monster,
+        raid.egg:0,
         raid.distance:distance}).execute()
     db.close()
 
 def update_raid_tracking(id,monster,distance):
-    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.human_id == id)).execute()
+    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.human_id == id)).where(raid.egg == 0).execute()
     db.close()
 
-def remove_raid_tracking(id,monster):
-    monsters.delete().where((raid.human_id == id) & (raid.pokemon_id == monster)).execute()
+def remove_raid_tracking(id, monster):
+    raid.delete().where(
+        (raid.human_id == id) & (raid.pokemon_id == monster)).where(raid.egg == 0).execute()
     db.close()
+
+ ## Eggs
+
+def check_if_egg_tracked(discordid,monster):
+    return raid.select().where((raid.human_id == discordid)&(raid.pokemon_id == monster)).where(raid.egg == 1).exists()
+
+def add_egg_tracking(id,monster,distance):
+    InsertQuery(raid,{
+        raid.human_id: id,
+        raid.pokemon_id:monster,
+        raid.egg:1,
+        raid.distance:distance}).execute()
+    db.close()
+
+def update_egg_tracking(id,monster,distance):
+    raid.update(distance=distance).where((raid.pokemon_id == monster) & (raid.human_id == id)).where(raid.egg == 1).execute()
+    db.close()
+
+def remove_egg_tracking(id, monster):
+    raid.delete().where(
+        (raid.human_id == id) & (raid.pokemon_id == monster)).where(raid.egg == 1).execute()
+    db.close()
+
+ ## add tracking counter to human
+
+
+def add_alarm_counter(id):
+    for human in humans.select().where(humans.id == id):
+        human.alerts_sent += 1
+        human.save()
+
+def switch(id, col):
+    q = humans.get(humans.id == id)
+    if (getattr(q, col)):
+        humans.update(**{col:0}).where(id == id).execute()
+        return False
+    else:
+        humans.update(**{col: 1}).where(id == id).execute()
+        return True
 
 ########################################################
 ## geocoding
@@ -226,8 +284,31 @@ def remove_raid_tracking(id,monster):
 def check_if_geocoded(id):
     return geocoded.select().where(geocoded.id == id).exists()
 
+def check_if_weather(id):
+    return geocoded.select(geocoded.weather_path).where((geocoded.id == id) & geocoded.weather_path.is_null(False)).exists()
+
+def update_weather_path(id, path):
+    geocoded.update(weather_path=path).where(geocoded.id == id).execute()
+    InsertQuery(weather,{
+        weather.area: path,
+        weather.updated: 0
+    }).execute()
+    db.close()
+
+def get_weather_path(id):
+    return geocoded.select(geocoded.weather_path).where(geocoded.id == id).dicts()
+
+def get_weather(area):
+    return weather.select().where(weather.area == area).dicts()[0]
+
+def get_weather_updated(area):
+    return weather.select(weather.updated).where(weather.area == area).dicts()[0]['updated']
+
 def get_address(id):
     return geocoded.select(geocoded.address).where(geocoded.id == id).dicts()
+
+def get_geocoded(id):
+    return geocoded.select().where(geocoded.id == id).dicts()[0]
 
 def save_geocoding(id,team,address,gym_name,description,url,lat,lon):
     InsertQuery(geocoded,{
@@ -254,8 +335,13 @@ def spawn_geocoding(id,addr,lat,lon):
     db.close()
 
 def update_team(id,team):
-    geocoded.update(team=team).where(id == id).execute()
+    geocoded.update(team=team).where(geocoded.id == id).execute()
     db.close()
+
+def update_weather(area, desc, wind, temp):
+    now = time.time()
+    weather.update(description=desc,windspeed=wind, temperature=temp, updated=now).where(weather.area == area).execute()
+    db.close
 
 ########################################################
 ## Alarm filter
@@ -266,7 +352,7 @@ def who_cares(type, data, iv):
 
     if type == 'monster':
         monster_id = data['pokemon_id']
-        return humans.select(humans.id, humans.name, humans.map_enabled, humans.alert_level,
+        return humans.select(humans.id, humans.name, humans.map_enabled, humans.address_enabled, humans.iv_enabled, humans.moves_enabled, humans.weather_enabled,
                              monsters.distance, monsters.min_iv,
                              humans.latitude,humans.longitude)\
             .join(monsters, on=(humans.id == monsters.human_id))\
@@ -277,24 +363,23 @@ def who_cares(type, data, iv):
                 monsters.min_iv <= iv).dicts()
 
     elif type == 'raid':
-        if 'start' in data:
-            level = data['level']
-            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled, humans.alert_level,
+        if 'pokemon_id' in data:
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id,humans.map_enabled, humans.address_enabled, humans.iv_enabled, humans.moves_enabled, humans.weather_enabled,
                                 humans.latitude, humans.longitude) \
-                .join(raid, on=(humans.id == raid.human_id)) \
+                .join(raid, on=(humans.id == raid.human_id))\
                 .where(
                 humans.id == raid.human_id,
                 humans.enabled == 1,
-                raid.pokemon_id == level,
-                raid.egg == 1).dicts()
+                raid.pokemon_id == data['pokemon_id'],
+                raid.egg == 0).dicts()
 
         else:
             monster_id = data['pokemon_id']
-            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled, humans.alert_level,
+            return humans.select(humans.id, humans.name, raid.distance, raid.pokemon_id, humans.map_enabled,  humans.address_enabled, humans.iv_enabled, humans.moves_enabled,
                                 humans.latitude, humans.longitude) \
                 .join(raid, on=(humans.id == raid.human_id)) \
                 .where(
                 humans.id == raid.human_id,
                 humans.enabled == 1,
                 raid.pokemon_id == monster_id,
-                raid.egg == 0).dicts()
+                raid.egg == 1).dicts()

@@ -1,0 +1,20 @@
+{
+
+  "1":{
+      "name": "Mystic",
+      "color": 6852848
+
+  },
+  "2":{
+      "name": "Valor",
+      "color": 12595240
+  },
+  "3":{
+      "name": "Instinct",
+      "color": 16306224
+  },
+  "4":{
+      "name": "Harmony",
+      "color": 7915600
+  }
+}

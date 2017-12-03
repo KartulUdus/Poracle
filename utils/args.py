@@ -36,6 +36,18 @@ def args():
     # DTS args
     parser.add_argument('-img', '--imgurl', help='source of alarm thumbnails', default='https://raw.githubusercontent.com/KartulUdus/PoracleWiki/master/images/icons/')
     parser.add_argument('-murl', '--mapurl', help='link to personal map in alarms', default=False)
+    parser.add_argument('-bmap', '--bottommap', help='Enable, if you would like the map to be below the embedded details', action='store_true', default=False)
+
+    parser.add_argument('--pmvfield', help='field in moveset box **', default='Quick move: {}, Charge Move: {}')
+    parser.add_argument('-pivf', '--pivfield', help='field in iv box ******', default='Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)')
+    parser.add_argument('-plvf', '--plfield', help='field in location box *', default='Location: {}')
+
+    #Weather
+
+    parser.add_argument('--weatheruser', help='Username to GeoNames', default=False)
+
+
+
 
     # Static Map size
 

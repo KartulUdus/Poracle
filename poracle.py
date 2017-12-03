@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import logging
-import os
+import os, errno
 import subprocess
 from collections import OrderedDict
 from alarm import filter
@@ -30,6 +30,11 @@ log.addHandler(ch)
 args = get_args()
 
 def make_configs():
+    try:
+        os.remove('config.json')
+    except OSError as e:
+        if e.errno != errno.ENOENT:
+            raise
     template = json.loads(open('utils/discord/config.json').read())
     template['token'] = args.token
     template['bot']['commands_prefix'] = args.prefix
@@ -54,11 +59,8 @@ def accept_webhook():
     try:
         log.debug("{} Sent me something.".format(request.remote_addr))
         data = json.loads(request.data)
-        if type(data) == dict: # older webhook style
-            filter(data)
-        else:   # For RM's frame
-            for frame in data:
-                filter(frame)
+        for frame in data:
+            filter(frame)
     except Exception as e:
         log.error("I am unhappy! computer says: {}: {}".format(type(e).__name__, e))
         abort(400)

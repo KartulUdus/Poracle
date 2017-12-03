@@ -4,3 +4,4 @@ erlpack
 gipc
 pillow
 staticmap
+BeautifulSoup

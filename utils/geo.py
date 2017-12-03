@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import ujson as json
 import logging
 from cHaversine import haversine
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim, GeoNames
 from staticmap import StaticMap, IconMarker
 from args import args as get_args
 
@@ -14,6 +15,14 @@ log.setLevel(logging.DEBUG)
 
 def distance(loc1, loc2):
     return haversine((tuple(loc1))[0:2], (tuple(loc2))[0:2])
+
+## Get's place name to later use for weather
+
+def get_weather_area_name(loc):
+
+    loc = GeoNames(username=args.weatheruser).reverse(loc,exactly_one=True)
+    server = json.loads(json.dumps(loc.raw))
+    return (server['countryName']+'/'+server['adminName1']+'/'+server['name']).replace(" ", "_")
 
 ## Geocodes words into coords
 
