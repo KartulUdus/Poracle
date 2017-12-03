@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import logging
-import os
+import os, sys
 import errno
 import subprocess
 from alarm import filter
@@ -16,6 +16,9 @@ app = Flask(__name__)
 hook_q = Queue.Queue()
 
 # create logger
+
+reload(sys)
+sys.setdefaultencoding('UTF8')
 
 log = logging.getLogger('Poracle')
 log.setLevel(logging.DEBUG)
