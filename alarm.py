@@ -79,7 +79,7 @@ def pokemon(info):
                 path = get_weather_area_name([lat, lon])
                 update_weather_path(id, path)
 
-        if 'individual_attack' not in info:
+        if info['individual_attack'] is None:
             iv = 0
         else:
             iv = round(
@@ -222,7 +222,7 @@ def create_message(type, data, human):
                                   time.localtime(int(data['disappear_time'])))
         d['thumb'] = args.imgurl + \
             '{}.png'.format(data['pokemon_id']).encode('utf-8')
-        if 'individual_attack' in data:
+        if data['individual_attack'] is not None:
             d['atk'] = data['individual_attack']
             d['def'] = data['individual_defense']
             d['sta'] = data['individual_stamina']
@@ -238,13 +238,13 @@ def create_message(type, data, human):
                         100) /
                     float(45)),
                 2)
-        if 'form' in data:
+        if data['form'] is not None:
             d['form'] = get_monster_form(
                 int(data['pokemon_id']), data['form']).encode('utf-8')
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(data['latitude']) + '&lon=' + str(data['longitude'])
-        if args.forms and 'form' in data:
+        if args.forms and 'form' is not None:
             d['thumb'] = args.imgurl + \
                 '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \

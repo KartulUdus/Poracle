@@ -62,11 +62,11 @@ location, minimum IV is optional and defaults to 0
 {1}raid <pokemon name> <max distance> - sends alarms for raid boss closer than 
 <max distance> to user
 {1}raid remove <pokemon name> - stops alarms for raid boss
-{1}egg <distance> <level> - sends alarms for raid eggs
+{1}egg <level> <distance>  - sends alarms for raid eggs
 {1}egg remove <level> - stops alarms for raid eggs
 {1}stop - stop alarms
 {1}start - start alarms (true by default on first registration)
-{1}switch [address, iv, moves, map, switch] - 1 option only. 
+{1}switch [address, iv, moves, map, weather] - 1 option only. 
 Enables or disables fields of the alarm
 ```
         '''.format(args.channel, args.prefix)
