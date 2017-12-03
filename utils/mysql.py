@@ -359,7 +359,7 @@ def update_weather_path(id, path):
             weather.updated: 0
         }).execute()
     except peewee.IntegrityError:
-        continue
+        log.debug('tried to update weather where it already exists')
     db.close()
 
 
