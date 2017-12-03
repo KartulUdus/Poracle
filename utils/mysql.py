@@ -5,7 +5,7 @@ from args import args as get_args
 import logging
 from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
-                    BooleanField, TextField, OperationalError)
+                    BooleanField, TextField, OperationalError, IntegrityError)
 
 # Globals
 
@@ -358,7 +358,7 @@ def update_weather_path(id, path):
             weather.area: path,
             weather.updated: 0
         }).execute()
-    except peewee.IntegrityError:
+    except IntegrityError:
         log.debug('tried to update weather where it already exists')
     db.close()
 
