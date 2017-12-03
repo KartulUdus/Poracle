@@ -5,10 +5,11 @@ from xml.etree import ElementTree as ET
 import requests
 import time
 import logging
-from utils.mysql import check_if_geocoded, save_geocoding, update_team, \
-                        who_cares, monster_any, spawn_geocoding, get_address,\
-                        add_alarm_counter, get_geocoded,check_if_weather,\
-                        update_weather_path, raid_any, update_weather, get_weather, get_weather_updated
+from utils.mysql import (check_if_geocoded, save_geocoding, update_team,
+    who_cares, monster_any, spawn_geocoding, get_address,
+    add_alarm_counter, get_geocoded, check_if_weather,
+    update_weather_path, raid_any, update_weather, get_weather,
+    get_weather_updated)
 from utils.discord.discord import Alert
 from utils.args import args as get_args
 from utils.geo import distance, revgeoloc, makemap, get_weather_area_name
@@ -35,20 +36,21 @@ gym_name = 'NULL'
 description = 'NULL'
 url = 'NULL'
 
+
 def filter(hook):
     data = json.loads(json.dumps(hook))
     type = data['type']
     info = data['message']
-    if (type == 'pokemon'):
+    if type == 'pokemon':
         if data['message']['disappear_time'] > int(time.time()):
             pokemon(info)
         else:
             log.warning("Weird, the monster already disappeared")
-    elif (type == 'gym_details'):
+    elif type == 'gym_details':
         if 'pokemon' in info:
             del info['pokemon']
         gym_info(info)
-    elif (type == 'raid'):
+    elif type == 'raid':
         raid(info)
 
 
@@ -68,7 +70,7 @@ def pokemon(info):
                 address = ' '.join(
                     np.array(revgeoloc([lat, lon]))[[3, 2, 1, 0]]).encode(
                     'utf-8')
-            spawn_geocoding(id,address,lat,lon)
+            spawn_geocoding(id, address, lat, lon)
             makemap(float(lat), float(lon), id)
             log.info('Made geocoded info for {}'.format(address))
 
@@ -80,14 +82,21 @@ def pokemon(info):
         if 'individual_attack' not in info:
             iv = 0
         else:
-            iv = round(float(((info['individual_attack'] + info['individual_defense'] + info['individual_stamina']) * 100) / float(45)),2)
+            iv = round(
+                float(
+                    ((info['individual_attack'] +
+                      info['individual_defense'] +
+                        info['individual_stamina']) *
+                        100) /
+                    float(45)),
+                2)
         for human in who_cares('monster', info, iv):
-            dis = distance([info['latitude'],info['longitude']], [human['latitude'], human['longitude']])
+            dis = distance([info['latitude'], info['longitude']], [
+                           human['latitude'], human['longitude']])
             if dis <= human['distance']:
                 log.info("Alerting {} about {}".format(human['name'], name))
 
-                create_message('monster',info, human)
-
+                create_message('monster', info, human)
 
     else:
         log.info('{} has appeared, but no one cares'.format(name))
@@ -97,21 +106,30 @@ def raid(info):
     id = info['gym_id']
     if 'pokemon_id' in info:
         if check_if_geocoded(id):
-            if raid_any(info['pokemon_id'],0):
-                for human in who_cares('raid',info,100):
+            if raid_any(info['pokemon_id'], 0):
+                for human in who_cares('raid', info, 100):
                     create_message('raid', info, human)
-                    log.info("Alerting {} about {} raid".format(human['name'], get_monster_name(info['pokemon_id'])))
+                    log.info(
+                        "Alerting {} about {} raid".format(
+                            human['name'], get_monster_name(
+                                info['pokemon_id'])))
             else:
-                log.info('Raid agains {} has appeared, but no one cares'.format(
-                    get_monster_name(info['pokemon_id'])))
+                log.info(
+                    'Raid agains {} has appeared, but no one cares'.format(
+                        get_monster_name(
+                            info['pokemon_id'])))
     else:
         if check_if_geocoded(id):
-            if raid_any(info['level'],1):
-                for human in who_cares('raid',info, 100):
+            if raid_any(info['level'], 1):
+                for human in who_cares('raid', info, 100):
                     create_message('egg', info, human)
-                    log.info("Alerting {} about level {} raid".format(human['name'],info['level']))
+                    log.info(
+                        "Alerting {} about level {} raid".format(
+                            human['name'], info['level']))
             else:
-                log.info('Egg level {} has appeared, but no one cares'.format(info['level']))
+                log.info(
+                    'Egg level {} has appeared, but no one cares'.format(
+                        info['level']))
 
 
 def gym_info(info):
@@ -128,40 +146,46 @@ def gym_info(info):
             address = ' '.join(
                 np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode('utf-8')
         else:
-            address = ' '.join(np.array(revgeoloc([lat,lon]))[[3, 2, 1, 0]]).encode('utf-8')
-        save_geocoding(id,team,address,name,description,url,lat,lon)
+            address = ' '.join(np.array(revgeoloc([lat, lon]))[
+                               [3, 2, 1, 0]]).encode('utf-8')
+        save_geocoding(id, team, address, name, description, url, lat, lon)
         makemap(lat, lon, id)
 
     else:
-        update_team(id,team)
+        update_team(id, team)
     if args.weatheruser:
         if not check_if_weather(id):
             path = get_weather_area_name([lat, lon])
-            update_weather_path(id,path)
+            update_weather_path(id, path)
 
 
 def get_monster_name(id):
     legend = json.loads(open('utils/dict/pokemon.json').read())
     return legend['{}'.format(int(id))]['name']
 
+
 def get_monster_move(id):
     legend = json.loads(open('utils/dict/moves.json').read())
     return legend['{}'.format(int(id))]['name']
+
 
 def get_monster_color(id):
     legend = json.loads(open('utils/dict/pokemon.json').read())
     return legend['{}'.format(int(id))]['types'][0]['color']
 
+
 def get_team_color(id):
     legend = json.loads(open('utils/dict/teams.json').read())
     return legend['{}'.format(int(id))]['color']
 
-def get_monster_form(id,form):
+
+def get_monster_form(id, form):
     legend = json.loads(open('utils/dict/forms.json').read())
     return legend[str(id)][str(form)]
 
+
 def get_forecast(area):
-    if (int(time.time()) - get_weather_updated(area))>21600:
+    if (int(time.time()) - get_weather_updated(area)) > 21600:
         weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
         weather = requests.get(weatherurl, timeout=5)
         tree = ET.fromstring(weather.content)[5][0][0]
@@ -171,8 +195,10 @@ def get_forecast(area):
             description = tag.attrib['name']
         for tag in tree.iter('temperature'):
             temp = tag.attrib['value']
-        update_weather(area,description,wind,temp)
+        log.info('getting new weather forecast for {}'.format(area))
+        update_weather(area, description, wind, temp)
     return get_weather(area)
+
 
 def create_message(type, data, human):
 
@@ -187,27 +213,44 @@ def create_message(type, data, human):
         d['moves_enabled'] = human['moves_enabled']
         d['geo_enabled'] = human['address_enabled']
         d['iv_enabled'] = human['iv_enabled']
-        d['address'] = get_address(data['spawnpoint_id'])[0]['address'].encode('utf-8')
-        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(data['seconds_until_despawn']))
-        d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['disappear_time'])))
-        d['thumb'] = args.imgurl + '{}.png'.format(data['pokemon_id']).encode('utf-8')
+        d['address'] = get_address(data['spawnpoint_id'])[
+            0]['address'].encode('utf-8')
+        d['tth'] = time.strftime(
+            "%Mm %Ss", time.gmtime(
+                data['seconds_until_despawn']))
+        d['time'] = time.strftime("%H:%M:%S",
+                                  time.localtime(int(data['disappear_time'])))
+        d['thumb'] = args.imgurl + \
+            '{}.png'.format(data['pokemon_id']).encode('utf-8')
         if 'individual_attack' in data:
             d['atk'] = data['individual_attack']
             d['def'] = data['individual_defense']
-            d['sta'] =  data['individual_stamina']
+            d['sta'] = data['individual_stamina']
             d['cp'] = data['cp']
             d['level'] = data['pokemon_level']
             d['move1'] = get_monster_move(int(data['move_1'])).encode('utf-8')
             d['move2'] = get_monster_move(int(data['move_2'])).encode('utf-8')
-            d['perfection'] = round(float(((data['individual_attack'] + data['individual_defense'] + data['individual_stamina']) * 100) / float(45)),2)
+            d['perfection'] = round(
+                float(
+                    ((data['individual_attack'] +
+                      data['individual_defense'] +
+                        data['individual_stamina']) *
+                        100) /
+                    float(45)),
+                2)
         if 'form' in data:
-            d['form'] = get_monster_form(int(data['pokemon_id']), data['form']).encode('utf-8')
+            d['form'] = get_monster_form(
+                int(data['pokemon_id']), data['form']).encode('utf-8')
         if args.mapurl:
-            d['mapurl'] = args.mapurl + '?lat=' + str(data['latitude']) + '&lon=' + str(data['longitude'])
+            d['mapurl'] = args.mapurl + '?lat=' + \
+                str(data['latitude']) + '&lon=' + str(data['longitude'])
         if args.forms and 'form' in data:
-            d['thumb'] = args.imgurl + '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
-        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/'+data['spawnpoint_id']+'.png'.encode('utf-8')
+            d['thumb'] = args.imgurl + \
+                '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
+        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
+            str(data['latitude']) + ',' + str(data['longitude'])
+        d['static'] = 'utils/images/geocoded/' + \
+            data['spawnpoint_id'] + '.png'.encode('utf-8')
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
             weather = get_forecast(areaname)
@@ -222,7 +265,7 @@ def create_message(type, data, human):
     elif type == 'raid':
         geo = get_geocoded(data['gym_id'])
         seconds_until_despawn = data['end'] - int(time.time())
-        #print json.dumps(human,indent=4,sort_keys=True)
+        # print json.dumps(human,indent=4,sort_keys=True)
 
         d = {}
         d['channel'] = human['id']
@@ -242,10 +285,12 @@ def create_message(type, data, human):
         d['description'] = geo['description'].encode('utf-8')
         d['img'] = geo['url']
         d['thumb'] = args.imgurl + '{}.png'.format(data['pokemon_id'])
-        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/'+data['gym_id']+'.png'
+        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
+            str(data['latitude']) + ',' + str(data['longitude'])
+        d['static'] = 'utils/images/geocoded/' + data['gym_id'] + '.png'
         if args.mapurl:
-            d['mapurl'] = args.mapurl + '?lat=' + str(geo['latitude']) + '&lon=' + str(geo['longitude'])
+            d['mapurl'] = args.mapurl + '?lat=' + \
+                str(geo['latitude']) + '&lon=' + str(geo['longitude'])
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
             weather = get_forecast(areaname)
@@ -270,15 +315,18 @@ def create_message(type, data, human):
         d['map_enabled'] = human['map_enabled']
         d['geo_enabled'] = human['address_enabled']
         d['tth'] = time.strftime("%Mm %Ss", time.gmtime(time_til_hatch))
-        d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['start'])))
-        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/'+data['gym_id']+'.png'
+        d['time'] = time.strftime(
+            "%H:%M:%S", time.localtime(int(data['start'])))
+        d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
+            str(data['latitude']) + ',' + str(data['longitude'])
+        d['static'] = 'utils/images/geocoded/' + data['gym_id'] + '.png'
         d['iv_enabled'] = human['iv_enabled']
         d['gym_name'] = geo['gym_name'].encode('utf-8')
         d['description'] = geo['description'].encode('utf-8')
         d['address'] = geo['address'].encode('utf-8')
         if args.mapurl:
-            d['mapurl'] = args.mapurl + '?lat=' + str(geo['latitude']) + '&lon=' + str(geo['longitude'])
+            d['mapurl'] = args.mapurl + '?lat=' + \
+                str(geo['latitude']) + '&lon=' + str(geo['longitude'])
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
             weather = get_forecast(areaname)

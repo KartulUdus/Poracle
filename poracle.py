@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import logging
-import os, errno
+import os
+import errno
 import subprocess
 from alarm import filter
 from utils.args import args as get_args
@@ -27,6 +28,7 @@ log.addHandler(ch)
 
 args = get_args()
 
+
 def make_configs():
     try:
         os.remove('config.json')
@@ -39,19 +41,24 @@ def make_configs():
     with open('config.json', 'w') as config:
         json.dump(template, config, indent=4, sort_keys=False)
 
-def potato():
 
-    log.info("Poracle is running on: http://{}:{}".format(args.host, args.port))
+def runserver():
+
+    log.info("Poracle is running on: http://{}:{}".format(args.host,
+                                                          args.port))
     server = wsgi.WSGIServer(
         (args.host, args.port), app, log=logging.getLogger('Webserver'))
     server.serve_forever()
 
+
 def run_bot():
     subprocess.Popen('python -m disco.cli ', shell=True)
+
 
 @app.route('/', methods=['GET'])
 def index():
     return "Schwing!"
+
 
 @app.route('/', methods=['POST'])
 def accept_webhook():
@@ -62,11 +69,14 @@ def accept_webhook():
             hook_q.put(frame)
         spawn(send_hooks_to_filter, hook_q)
     except Exception as e:
-        log.error("I am unhappy! computer says: {}: {}".format(type(e).__name__, e))
+        log.error(
+            "I am unhappy! computer says: {}: {}".format(
+                type(e).__name__, e))
         abort(400)
     return "OK"  # request ok
 
 hook_q.join()
+
 
 def send_hooks_to_filter(q):
     while not q.empty():
@@ -76,9 +86,10 @@ def send_hooks_to_filter(q):
         filter(data)
         q.task_done()
 
+
 if __name__ == '__main__':
-     log.info("Poracle initializing.")
-     verify_database_schema()
-     make_configs()
-     run_bot()
-     potato()
+    log.info("Poracle initializing.")
+    verify_database_schema()
+    make_configs()
+    run_bot()
+    runserver()
