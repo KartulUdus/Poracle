@@ -304,7 +304,7 @@ Enables or disables fields of the alarm
                     else:
                         update_egg_tracking(discordid, level, dis)
                         event.msg.reply(
-                            args.eggupdated.format(level, dis, iv))
+                            args.eggupdated.format(level, dis))
             else:
                 event.msg.reply(args.onlyregistered)
         else:
