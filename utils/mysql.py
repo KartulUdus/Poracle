@@ -9,7 +9,8 @@ from peewee import (InsertQuery, MySQLDatabase, Model,
 
 # Globals
 
-sb_schema_version = 1
+sb_schema_version = 2
+now = int(time.time())
 
 # Logging
 
@@ -111,6 +112,15 @@ class schema_version(BaseModel):
     key = CharField()
     val = SmallIntegerField()
 
+
+class cache(BaseModel):
+    id = CharField(primary_key=True, index=True, max_length=50)
+    despawn = IntegerField(index=True, null=True)
+    hatch = IntegerField(index=True, null=True)
+    raid_end = IntegerField(index=True, null=True)
+
+
+
     class Meta:
         primary_key = False
 
@@ -135,10 +145,41 @@ def verify_database_schema():
                     schema_version.key: 'schema_version',
                     schema_version.val: 1}).execute()
 
+        if not cache.table_exists():
+            InsertQuery(schema_version, {
+                schema_version.key: 'schema_version',
+                schema_version.val: 2}).execute()
+            db.create_table(cache, safe=True)
+
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
             e.args[0], e.args[1]))
         exit(1)
+
+
+########################################################
+# Caching
+########################################################
+
+def cache_exist(id, col):
+    return cache.select().where(
+        (cache.id == id) & (col >= now)).exists()
+
+def cache_insert(id, time, col):
+    try:
+        if args.debug:
+            log.debug('updating {} cache'.format(col))
+        InsertQuery(cache, {
+            cache.id: id,
+            col: time
+        }).execute()
+    except IntegrityError:
+        cache.update(**{col: time}).where(cache.id == id).execute()
+        db.close()
+
+
+def clear_cache():
+    cache.delete().where((cache.despawn < now )|(cache.raid_end < now))
 
 
 ########################################################
@@ -419,7 +460,6 @@ def update_team(id, team):
 
 
 def update_weather(area, desc, wind, temp):
-    now = time.time()
     weather.update(
         description=desc,
         windspeed=wind,

@@ -9,7 +9,7 @@ from utils.mysql import (check_if_geocoded, save_geocoding, update_team,
     who_cares, monster_any, spawn_geocoding, get_address,
     add_alarm_counter, get_geocoded, check_if_weather,
     update_weather_path, raid_any, update_weather, get_weather,
-    get_weather_updated)
+    get_weather_updated, cache_exist, cache_insert, clear_cache)
 from utils.discord.discord import Alert
 from utils.args import args as get_args
 from utils.geo import distance, revgeoloc, makemap, get_weather_area_name
@@ -29,7 +29,7 @@ log.addHandler(ch)
 # Globals and defaults
 
 args = get_args()
-
+now = int(time.time())
 min_iv = 0
 adress = 'NULL'
 gym_name = 'NULL'
@@ -43,10 +43,12 @@ def filter(hook):
     info = data['message']
     if type == 'pokemon':
         if info['verified']:
-            if data['message']['disappear_time'] > int(time.time()):
-                if True:   ## Write caching
+            if data['message']['disappear_time'] > now:
+                if not cache_exist(info['encounter_id'], 'despawn'):
+                    cache_insert(info['encounter_id'], info['disappear_time'], 'despawn')
                     pokemon(info)
-                else:log.info('I have already processed this monster')
+                else:
+                    log.info('I have already processed this monster')
             else:
                 log.warning('Weird, the monster already disappeared')
         else:
@@ -57,9 +59,14 @@ def filter(hook):
         gym_info(info)
     elif type == 'raid':
 
-
-        ## Check if already and cache
-        raid(info)
+        if info['pokemon_id'] is not None:
+            if not cache_exist(info['gym_id'],'raid_end'):
+                cache_insert(info['gym_id'], info['end'], 'raid_end')
+                raid(info)
+        else:
+            if not cache_exist(info['gym_id'],'hatch'):
+                cache_insert(info['gym_id'], info['spawn'], 'hatch')
+                raid(info)
 
 
 
@@ -99,6 +106,7 @@ def pokemon(info):
                         100) /
                     float(45)),
                 2)
+        clear_cache()
         for human in who_cares('monster', info, iv):
             dis = distance([info['latitude'], info['longitude']], [
                            human['latitude'], human['longitude']])
@@ -200,7 +208,7 @@ def get_monster_form(id, form):
 
 
 def get_forecast(area):
-    if (int(time.time()) - get_weather_updated(area)) > 21600:
+    if now - get_weather_updated(area) > 21600:
         weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
         weather = requests.get(weatherurl, timeout=5)
         tree = ET.fromstring(weather.content)[5][0][0]
@@ -279,7 +287,7 @@ def create_message(type, data, human):
 
     elif type == 'raid':
         geo = get_geocoded(data['gym_id'])
-        seconds_until_despawn = data['end'] - int(time.time())
+        seconds_until_despawn = data['end'] - now
         # print json.dumps(human,indent=4,sort_keys=True)
 
         d = {}
@@ -319,7 +327,7 @@ def create_message(type, data, human):
 
     elif type == 'egg':
         geo = get_geocoded(data['gym_id'])
-        time_til_hatch = data['spawn'] - int(time.time())
+        time_til_hatch = data['spawn'] - now
         d = {}
 
         d['thumb'] = args.imgurl + 'egg.png'
