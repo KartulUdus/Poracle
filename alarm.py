@@ -108,11 +108,14 @@ def raid(info):
         if check_if_geocoded(id):
             if raid_any(info['pokemon_id'], 0):
                 for human in who_cares('raid', info, 100):
-                    create_message('raid', info, human)
-                    log.info(
-                        "Alerting {} about {} raid".format(
-                            human['name'], get_monster_name(
-                                info['pokemon_id'])))
+                    dis = distance([info['latitude'], info['longitude']], [
+                        human['latitude'], human['longitude']])
+                    if dis <= human['distance']:
+                        create_message('raid', info, human)
+                        log.info(
+                            "Alerting {} about {} raid".format(
+                                human['name'], get_monster_name(
+                                    info['pokemon_id'])))
             else:
                 log.info(
                     'Raid agains {} has appeared, but no one cares'.format(
@@ -122,10 +125,13 @@ def raid(info):
         if check_if_geocoded(id):
             if raid_any(info['level'], 1):
                 for human in who_cares('raid', info, 100):
-                    create_message('egg', info, human)
-                    log.info(
-                        "Alerting {} about level {} raid".format(
-                            human['name'], info['level']))
+                    dis = distance([info['latitude'], info['longitude']], [
+                        human['latitude'], human['longitude']])
+                    if dis <= human['distance']:
+                        create_message('egg', info, human)
+                        log.info(
+                            "Alerting {} about level {} raid".format(
+                                human['name'], info['level']))
             else:
                 log.info(
                     'Egg level {} has appeared, but no one cares'.format(
