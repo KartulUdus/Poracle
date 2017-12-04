@@ -458,7 +458,7 @@ def who_cares(type, data, iv):
             monsters.min_iv <= iv).dicts()
 
     elif type == 'raid':
-        if 'pokemon_id' in data:
+        if data['pokemon_id'] is not None:
             return humans.select(
                 humans.id,
                 humans.name,

@@ -150,10 +150,10 @@ def gym_info(info):
         log.info('Geocoding info for gym {}'.format(name))
         if args.usaddress:
             address = ' '.join(
-                np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode('utf-8')
+                np.array(revgeoloc([lat, lon]))[[0,1,2,3]]).encode('utf-8')
         else:
             address = ' '.join(np.array(revgeoloc([lat, lon]))[
-                               [3, 2, 1, 0]]).encode('utf-8')
+                               [3,2,1,0]]).encode('utf-8')
         save_geocoding(id, team, address, name, description, url, lat, lon)
         makemap(lat, lon, id)
 
