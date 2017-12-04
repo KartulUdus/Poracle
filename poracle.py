@@ -66,9 +66,11 @@ def index():
 @app.route('/', methods=['POST'])
 def accept_webhook():
     try:
-        log.debug("{} Sent me something.".format(request.remote_addr))
         data = json.loads(request.data)
         for frame in data:
+            if args.debug:
+                di = json.dumps(frame, indent=4, sort_keys=True)
+                log.debug("{} Sent me:\n{} .".format(request.remote_addr,di))
             hook_q.put(frame)
         spawn(send_hooks_to_filter, hook_q)
     except Exception as e:

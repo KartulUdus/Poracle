@@ -104,7 +104,7 @@ def pokemon(info):
 
 def raid(info):
     id = info['gym_id']
-    if 'pokemon_id' in info:
+    if info['pokemon_id'] is not None:
         if check_if_geocoded(id):
             if raid_any(info['pokemon_id'], 0):
                 for human in who_cares('raid', info, 100):

@@ -27,6 +27,8 @@ token:              # Your discord token. Required
 #mapurl:            # personal RM url, will be included in all messages if enabled
 #usaddress          # turns address string the other way around <house number, street, suburb, city>
 
+#debug              # enabled more logging
+
 ##############################################################################
 ##Weather
 ##############################################################################
