@@ -42,16 +42,25 @@ def filter(hook):
     type = data['type']
     info = data['message']
     if type == 'pokemon':
-        if data['message']['disappear_time'] > int(time.time()):
-            pokemon(info)
+        if info['verified']:
+            if data['message']['disappear_time'] > int(time.time()):
+                if True:   ## Write caching
+                    pokemon(info)
+                else:log.info('I have already processed this monster')
+            else:
+                log.warning('Weird, the monster already disappeared')
         else:
-            log.warning("Weird, the monster already disappeared")
+            log.info('The monster isn\'t verified, I don\'t trust it')
     elif type == 'gym_details':
         if 'pokemon' in info:
             del info['pokemon']
         gym_info(info)
     elif type == 'raid':
+
+
+        ## Check if already and cache
         raid(info)
+
 
 
 def pokemon(info):
@@ -310,7 +319,7 @@ def create_message(type, data, human):
 
     elif type == 'egg':
         geo = get_geocoded(data['gym_id'])
-        time_til_hatch = data['start'] - int(time.time())
+        time_til_hatch = data['spawn'] - int(time.time())
         d = {}
 
         d['thumb'] = args.imgurl + 'egg.png'
