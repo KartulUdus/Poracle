@@ -32,7 +32,6 @@ from utils.mysql import (
     switch)
 
 args = get_args()
-iv = 0
 
 
 def get_monster_id_from_name(id):
@@ -194,8 +193,9 @@ Enables or disables fields of the alarm
 
             # Set or update tracking for monster
 
-    @Plugin.command('track', '<monster:str>, <dis:int> [iv:int]')
-    def command_track(self, event, monster, dis):
+    @Plugin.command('track', '<monster:str>, <dis:int>, [iv:int]')
+    def command_track(self, event, monster, dis, **kwargs):
+        iv = kwargs.get('iv', 0)
         discordid = event.msg.channel.id
         name = event.msg.author
         if event.msg.channel.is_dm:

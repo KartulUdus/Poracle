@@ -222,7 +222,8 @@ def add_tracking(id, monster, distance, iv):
         monsters.human_id: id,
         monsters.pokemon_id: monster,
         monsters.distance: distance,
-        monsters.min_iv: iv}).execute()
+        monsters.min_iv: iv
+        }).execute()
     db.close()
 
 
