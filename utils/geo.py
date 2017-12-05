@@ -25,12 +25,14 @@ def distance(loc1, loc2):
 def get_weather_area_name(loc):
     loc = GeoNames(username=args.weatheruser).reverse(loc, exactly_one=True)
     server = json.loads(json.dumps(loc.raw))
+    if args.debug:
+        log.debug('Geonames Pulled:\n {}'.format(json.dumps(server, indent=4, sort_keys=True)))
     return (
         server['countryName'] +
         '/' +
         server['adminName1'] +
         '/' +
-        server['name']).replace(
+        server['toponymName']).replace(
         " ",
         "_")
 
