@@ -256,7 +256,7 @@ Enables or disables fields of the alarm
                     else:
                         update_raid_tracking(discordid, id, dis)
                         event.msg.reply(
-                            args.raidupd.format(monster, dis, iv))
+                            args.raidupd.format(monster, dis))
                 else:
                     event.msg.reply(args.monnotfound.format(monster))
             else:
