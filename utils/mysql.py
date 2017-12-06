@@ -162,8 +162,15 @@ def verify_database_schema():
 ########################################################
 
 def cache_exist(id, col):
-    return cache.select().where(
-        (cache.id == id) & (col >= now)).exists()
+    if not cache.select().where(cache.id == id).exists():
+        return False
+    else:
+        f = cache.select().where(cache.id == id).dicts()
+        if f[0][col] > now:
+            return True
+        else:
+            return False
+
 
 def cache_insert(id, time, col):
     try:
@@ -179,7 +186,8 @@ def cache_insert(id, time, col):
 
 
 def clear_cache():
-    cache.delete().where((cache.despawn < now )|(cache.raid_end < now))
+    cache.delete().where((cache.despawn <= now )|(cache.raid_end <= now))\
+        .execute()
 
 
 ########################################################

@@ -62,12 +62,13 @@ def filter(hook):
         if info['pokemon_id'] is not None:
             if not cache_exist(info['gym_id'],'raid_end'):
                 cache_insert(info['gym_id'], info['end'], 'raid_end')
+                cache_insert(info['gym_id'], info['spawn'], 'hatch')
                 raid(info)
         else:
             if not cache_exist(info['gym_id'],'hatch'):
                 cache_insert(info['gym_id'], info['spawn'], 'hatch')
+                cache_insert(info['gym_id'], info['end'], 'raid_end')
                 raid(info)
-
 
 
 def pokemon(info):
@@ -146,9 +147,7 @@ def raid(info):
                         human['latitude'], human['longitude']])
                     if dis <= human['distance']:
                         create_message('egg', info, human)
-                        log.info(
-                            "Alerting {} about level {} raid".format(
-                                human['name'], info['level']))
+
             else:
                 log.info(
                     'Egg level {} has appeared, but no one cares'.format(
@@ -167,10 +166,10 @@ def gym_info(info):
         log.info('Geocoding info for gym {}'.format(name))
         if args.usaddress:
             address = ' '.join(
-                np.array(revgeoloc([lat, lon]))[[0,1,2,3]]).encode('utf-8')
+                np.array(revgeoloc([lat, lon]))[[0,1,2]]).encode('utf-8')
         else:
             address = ' '.join(np.array(revgeoloc([lat, lon]))[
-                               [3,2,1,0]]).encode('utf-8')
+                               [2,1,0]]).encode('utf-8')
         save_geocoding(id, team, address, name, description, url, lat, lon)
         makemap(lat, lon, id)
 
@@ -288,7 +287,6 @@ def create_message(type, data, human):
     elif type == 'raid':
         geo = get_geocoded(data['gym_id'])
         seconds_until_despawn = data['end'] - now
-        # print json.dumps(human,indent=4,sort_keys=True)
 
         d = {}
         d['channel'] = human['id']
@@ -357,6 +355,9 @@ def create_message(type, data, human):
             d['wtemp'] = weather['temperature']
             d['wwind'] = weather['windspeed']
         if time_til_hatch > 0:
+            log.info(
+                "Alerting {} about level {} raid".format(
+                    human['name'], data['level']))
             Alert(args.token).egg_alert(d)
         else:
             log.warning("Weird, the egg already hatched")

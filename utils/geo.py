@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import ujson as json
 import logging
+import requests
+from xml.etree import ElementTree as ET
 from cHaversine import haversine
 from geopy.geocoders import Nominatim, GeoNames
 from staticmap import StaticMap, IconMarker
@@ -23,18 +25,18 @@ def distance(loc1, loc2):
 
 
 def get_weather_area_name(loc):
-    loc = GeoNames(username=args.weatheruser).reverse(loc, exactly_one=True)
-    server = json.loads(json.dumps(loc.raw))
-    if args.debug:
-        log.debug('Geonames Pulled:\n {}'.format(json.dumps(server, indent=4, sort_keys=True)))
-    return (
-        server['countryName'] +
-        '/' +
-        server['adminName1'] +
-        '/' +
-        server['toponymName']).replace(
-        " ",
-        "_")
+
+    GNurl = 'http://api.geonames.org/extendedFindNearby?lat={}&lng={}' \
+            '&username={}'.format(loc[0],loc[1],args.weatheruser)
+    geoname = requests.get(GNurl, timeout=5)
+    tree = ET.fromstring(geoname.content)
+    for geo in tree:
+        if 'ADM1' in geo.find('fcode').text:
+            country = geo.find('countryName').text
+            muni = geo.find('toponymName').text
+        elif 'P' in geo.find('fcl').text:
+            place = geo.find('toponymName').text
+    return ('{}/{}/{}'.format(country,muni,place)).replace(" ","_")
 
 
 # Geocodes words into coords

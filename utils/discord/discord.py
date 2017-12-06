@@ -444,7 +444,6 @@ class Alert(APIClient):
             self.channels_messages_create(d['channel'], attachment=list(img))
 
     def egg_alert(self, d):
-        print json.dumps(d, indent=4, sort_keys=True)
         img = ''
         embed = MessageEmbed(color=d['color'])
         embed.author = MessageEmbedAuthor(
@@ -453,8 +452,6 @@ class Alert(APIClient):
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
-        print d['thumb']
-        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
 
         embed.fields.append(
             MessageEmbedField(name=args.emtitle.format(d['level']),
@@ -479,6 +476,8 @@ class Alert(APIClient):
                     name=args.weathertitle.format(
                         d['wdescription']), value=args.weatherbody.format(
                         d['wtemp'], d['wwind'])))
+
+        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'])
 
         self.channels_messages_create(
             d['channel'], attachment=img, embed=embed)

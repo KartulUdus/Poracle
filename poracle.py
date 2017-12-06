@@ -12,6 +12,8 @@ from flask import Flask, request, abort
 import Queue
 import ujson as json
 
+from utils.geo import get_weather_area_name
+
 app = Flask(__name__)
 hook_q = Queue.Queue()
 
@@ -98,3 +100,5 @@ if __name__ == '__main__':
     make_configs()
     run_bot()
     runserver()
+
+
