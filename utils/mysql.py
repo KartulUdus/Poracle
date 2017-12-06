@@ -146,10 +146,10 @@ def verify_database_schema():
                     schema_version.val: 1}).execute()
 
         if not cache.table_exists():
-            InsertQuery(schema_version, {
-                schema_version.key: 'schema_version',
-                schema_version.val: 2}).execute()
+            schema_version.update(val=2).where(
+                schema_version.key == 'schema_version').execute()
             db.create_table(cache, safe=True)
+            db.close()
 
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
