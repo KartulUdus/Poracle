@@ -409,7 +409,8 @@ def update_weather_path(id, path):
             weather.updated: 0
         }).execute()
     except IntegrityError:
-        log.debug('tried to update weather where it already exists')
+        if args.debug:
+            log.debug('tried to update weather where it already exists')
     db.close()
 
 
