@@ -109,138 +109,109 @@ def args():
 # Bot respond dts
     parser.add_argument(
         '--registering',
-        help='',
         default='Hello {}, thank you for registering!')
     parser.add_argument(
         '--alreadyreg',
-        help='',
         default='Hello {}, you are already registered')
     parser.add_argument(
         '--onlyinchannel',
-        help='',
         default='Hello {}, !register is only available in #{}')
     parser.add_argument(
         '--notregistered',
-        help='',
         default='Hello {}, You are not currenlty registered!')
     parser.add_argument(
         '--unregistered',
-        help='',
         default='Hello {}, You are no longer registered!')
     parser.add_argument(
         '--start',
-        help='',
         default='Your alarms have been activated!')
     parser.add_argument(
         '--onlyregistered',
-        help='',
         default='This command is only available for registered users :eyes:')
     parser.add_argument(
         '--locationfirst',
-        help='',
         default='Please use `!location <location>` to set your location first'
                 ' :slight_smile:')
     parser.add_argument(
         '--stop',
-        help='',
         default='Your alarms have been stopped!')
     parser.add_argument(
         '--onlydm',
-        help='',
         default='Hello {}, This command is only available in DM ')
     parser.add_argument(
         '--notfind',
-        help='',
         default='I was unable to locate {}')
     parser.add_argument(
         '--locationset',
-        help='',
         default='I have set your location to {}. \n You can double check: {}')
     parser.add_argument(
         '--badswitch',
-        help='',
         default=':no_good: Invalid command.\nOptions: [map, address, iv,'
                 ' moveset, weather]')
     parser.add_argument(
         '--switchyes',
-        help='',
         default='I have turned {} on in your alarms')
     parser.add_argument(
         '--switchno',
-        help='',
         default='I have turned {} off in your alarms')
     parser.add_argument(
         '--trackingadd',
-        help='',
-        default='I have updated tracking for: {} within {}m at least {}%'
+        default='I have added tracking for: {} within {}m at least {}%'
                 ' perfect')
     parser.add_argument(
         '--trackingupd',
-        help='',
         default='I have updated tracking for: {} within {}m at least {}%'
                 ' perfect')
     parser.add_argument(
         '--monnotfound',
-        help='',
         default='I could not find {}')
     parser.add_argument(
         '--nottracking',
-        help='',
         default='You are not currently tracking {} :eyes:')
     parser.add_argument(
         '--removedtracking',
-        help='',
         default='I have removed tracking for: {}')
     parser.add_argument(
         '--raidadded',
-        help='',
         default='I have added tracking for: {} raids within {}m')
     parser.add_argument(
         '--raidupd',
-        help='',
         default='I have updated tracking for: {} raids distance to {}m')
     parser.add_argument(
         '--invalidraidlvl',
-        help='',
         default='Invalid raid level :no_good:')
     parser.add_argument(
         '--eggadded',
-        help='',
         default='I have added tracking for level {} raids within {}m ')
     parser.add_argument(
         '--eggupdated',
-        help='',
         default='I have updated changed level{} raid tracking distance to {}m')
     parser.add_argument(
         '--eggnottracked',
-        help='',
         default='You are not currently tracking lvl{} raid eggs :eyes:')
     parser.add_argument(
         '--eggremoved',
-        help='',
         default='I have removed tracking for level{} raids ')
 
 # Monster alarm dts
 
     parser.add_argument(
         '--pmtitle',
-        help='',
         default='a wild {} has appeared!')
     parser.add_argument(
         '--pmintro',
-        help='',
         default='It will despawn at {}, you have {} left')
-    parser.add_argument('--pltitle', help='', default=':map:')
+    parser.add_argument('--pltitle',  default=':map:')
     parser.add_argument(
         '--plfield',
         help='field in location box *',
         default='Location: {}')
-    parser.add_argument('--pivtitle', help='', default=':medal:')
+    parser.add_argument('--pivtitle',  default=':medal:')
     parser.add_argument(
         '--pivfield',
         help='field in iv box ******',
         default='Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)')
-    parser.add_argument('--pmvtitle', help='', default=':dancer:')
+    parser.add_argument('--pmvtitle',  default=':dancer:')
     parser.add_argument(
         '--pmvfield',
         help='field in moveset box **',
@@ -249,38 +220,32 @@ def args():
 # Raid alarm dts
     parser.add_argument(
         '--rmtitle',
-        help='',
         default='Raid against {} has started!')
     parser.add_argument(
         '--rmintro',
-        help='',
         default='It will end at {}, in {}')
-    parser.add_argument('--rltitle', help='', default=':map:')
-    parser.add_argument('--rlfield', help='', default='{}')
-    parser.add_argument('--rmvtitle', help='', default=':dancer:')
+    parser.add_argument('--rltitle',  default=':map:')
+    parser.add_argument('--rlfield',  default='{}')
+    parser.add_argument('--rmvtitle',  default=':dancer:')
     parser.add_argument(
         '--rmvfield',
-        help='',
         default='Quick move: {}, Charge Move: {}')
-    parser.add_argument('--rivtitle', help='', default='{}')
-    parser.add_argument('--rivfield', help='', default='{}')
+    parser.add_argument('--rivtitle',  default='{}')
+    parser.add_argument('--rivfield',  default='{}')
 # Eggs
-    parser.add_argument('--emtitle', help='', default='Level {} egg appeared!')
+    parser.add_argument('--emtitle',  default='Level {} egg appeared!')
     parser.add_argument(
         '--emintro',
-        help='',
         default='It will begin at {}, (in {})')
 
 # Weather and map link used globally
     parser.add_argument(
         '--weathertitle',
-        help='',
         default=':white_sun_cloud: {}')
     parser.add_argument(
         '--weatherbody',
-        help='',
         default='Temperature {}°C, {}')
-    parser.add_argument('--RMtitle', help='', default=':eyes:')
-    parser.add_argument('--RMlink', help='', default='{}')
+    parser.add_argument('--RMtitle',  default=':eyes:')
+    parser.add_argument('--RMlink',  default='{}')
 
     return parser.parse_args()

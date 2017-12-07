@@ -40,64 +40,64 @@ token:              # Your discord token. Required
 #############################################################################
 ## Bot respond dts
 
-#registering: 'Hello {}, thank you for registering!'
-#alreadyreg: 'Hello {}, you are already registered'
-#onlyinchannel: 'Hello {}, !register is only available in #{}'
-#notregistered: 'Hello {}, You are not currenlty registered!'
-#unregistered: 'Hello {}, You are no longer registered!'
-#start: 'Your alarms have been activated!'
-#onlyregistered: 'This command is only available for registered humans! :eyes:'
-#locationfirst: 'Please use `!location <location>` to set your location first :slight_smile:'
-#stop: 'Your alarms have been stopped!'
-#onlydm: 'Hello {}, This command is only available in DM '
-#notfind: 'I was unable to locate {}'
-#locationset: 'I have set your location to {}. \n You can double check: {}'
-#badswitch: ':no_good: Invalid command.\nOptions: [map, address, iv, moveset, weather]'
-#switchyes: 'I have turned {} on in your alarms'
-#switchno: 'I have turned {} off in your alarms'
-#trackingadd: 'I have updated tracking for: {} within {}m at least {}% perfect'
-#trackingupd: 'I have updated tracking for: {} within {}m at least {}% perfect'
-#monnotfound: 'I could not find {}'
-#nottracking: 'You are not currently tracking {} :eyes:'
-#removedtracking: 'I have removed tracking for: {}'
-#raidadded: 'I have added tracking for: {} raids within {}m'
-#raidupd: 'I have updated tracking for: {} raids distance to {}m'
-#invalidraidlvl: 'Invalid raid level :no_good:'
-#eggadded: 'I have added tracking for level {} raids within {}m '
-#eggupdated: 'I have updated changed level{} raid tracking distance to {}m'
-#eggnottracked: 'You are not currently tracking lvl{} raid eggs :eyes:'
-#eggremoved: 'I have removed tracking for level{} raids '
+#registering: Hello {}, thank you for registering!
+#alreadyreg: Hello {}, you are already registered
+#onlyinchannel: Hello {}, !register is only available in #{}
+#notregistered: Hello {}, You are not currenlty registered!
+#unregistered: Hello {}, You are no longer registered!
+#start: Your alarms have been activated!
+#onlyregistered: This command is only available for registered humans! :eyes:
+#locationfirst: Please use `!location <location>` to set your location first :slight_smile:
+#stop: Your alarms have been stopped!
+#onlydm: Hello {}, This command is only available in DM
+#notfind: I was unable to locate {}
+#locationset: I have set your location to {}. \n You can double check: {}
+#badswitch: :no_good: Invalid command.\nOptions: [map, address, iv, moveset, weather]
+#switchyes: I have turned {} on in your alarms
+#switchno: I have turned {} off in your alarms
+#trackingadd: I have added tracking for: {} within {}m at least {}% perfect
+#trackingupd: I have updated tracking for: {} within {}m at least {}% perfect
+#monnotfound: I could not find {}
+#nottracking: You are not currently tracking {} :eyes:
+#removedtracking: I have removed tracking for: {}
+#raidadded: I have added tracking for: {} raids within {}m
+#raidupd: I have updated tracking for: {} raids distance to {}m
+#invalidraidlvl: Invalid raid level :no_good:
+#eggadded: I have added tracking for level {} raids within {}m
+#eggupdated: I have updated changed level{} raid tracking distance to {}m
+#eggnottracked: You are not currently tracking lvl{} raid eggs :eyes:
+#eggremoved: I have removed tracking for level{} raids
 
 ## Monster alarm dts
 
-#pmtitle: 'a wild {} has appeared!'
-#pmintro: 'It will despawn at {}, you have {} left'
-#pltitle: ':map:'
-#plfield', help='field in location box *', default='Location: {}'
-#pivtitle: ':medal:'
-#pivfield', help='field in iv box ******', default='Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)'
-#pmvtitle: ':dancer:'
-#pmvfield', help='field in moveset box **', default='Quick move: {}, Charge Move: {}'
+#pmtitle: a wild {} has appeared!
+#pmintro: It will despawn at {}, you have {} left
+#pltitle: :map:
+#plfield': Location: {}
+#pivtitle: :medal:
+#pivfield: Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)
+#pmvtitle: :dancer:
+#pmvfield: Quick move: {}, Charge Move: {}
 
 ## Raid alarm dts
 
-#rmtitle: 'Raid against {} has started!'
-#rmintro: 'It will end at {}, in {}'
-#rltitle: ':map:'
-#rlfield: '{}'
-#rmvtitle: ':dancer:'
-#rmvfield: 'Quick move: {}, Charge Move: {}'
-#rivtitle: '{}'
-#rivfield: '{}'
+#rmtitle: Raid against {} has started!
+#rmintro: It will end at {}, in {}
+#rltitle: :map:
+#rlfield: {}
+#rmvtitle: :dancer:
+#rmvfield: Quick move: {}, Charge Move: {}
+#rivtitle: {}
+#rivfield: {}
 
 ## Eggs
 
-#emtitle: 'Level {} egg appeared!'
-#emintro: 'It will begin at {}, (in {})'
+#emtitle: Level {} egg appeared!
+#emintro: It will begin at {}, (in {})
 
 ## Weather and map link used globally
 
-#weathertitle: ':white_sun_cloud: {}'
-#weatherbody: 'Temperature {}°C, {}'
-#RMtitle: ':eyes:'
-#RMlink: '{}'
+#weathertitle: :white_sun_cloud: {}
+#weatherbody: Temperature {}°C, {}
+#RMtitle: :eyes:
+#RMlink: {}
