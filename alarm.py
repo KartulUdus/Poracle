@@ -3,7 +3,7 @@
 import numpy as np
 from xml.etree import ElementTree as ET
 import requests
-import time
+import time, os
 import logging
 from utils.mysql import (check_if_geocoded, save_geocoding, update_team,
     who_cares, monster_any, spawn_geocoding, get_address,
@@ -28,6 +28,7 @@ log.addHandler(ch)
 
 # Globals and defaults
 
+abspath = os.path.abspath(__file__)
 args = get_args()
 now = int(time.time())
 min_iv = 0
@@ -273,8 +274,8 @@ def create_message(type, data, human):
                 '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/' + \
-            data['spawnpoint_id'] + '.png'.encode('utf-8')
+        d['static'] = os.path.join(os.path.dirname(abspath),
+                    'utils/images/geocoded/' + data['spawnpoint_id'] + '.png')
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
             weather = get_forecast(areaname)
@@ -310,7 +311,8 @@ def create_message(type, data, human):
         d['thumb'] = args.imgurl + '{}.png'.format(data['pokemon_id'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/' + data['gym_id'] + '.png'
+        d['static'] = os.path.join(os.path.dirname(abspath),
+                            'utils/images/geocoded/' + data['gym_id'] + '.png')
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
@@ -342,7 +344,8 @@ def create_message(type, data, human):
             "%H:%M:%S", time.localtime(int(data['start'])))
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = 'utils/images/geocoded/' + data['gym_id'] + '.png'
+        d['static'] = os.path.join(os.path.dirname(abspath),
+                            'utils/images/geocoded/' + data['gym_id'] + '.png')
         d['iv_enabled'] = human['iv_enabled']
         d['gym_name'] = geo['gym_name'].encode('utf-8')
         d['description'] = geo['description'].encode('utf-8')

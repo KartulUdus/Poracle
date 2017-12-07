@@ -15,11 +15,12 @@ import ujson as json
 
 app = Flask(__name__)
 hook_q = Queue.Queue()
-
-# create logger
+abspath = os.path.abspath(__file__)
 
 reload(sys)
 sys.setdefaultencoding('UTF8')
+
+# create logger
 
 log = logging.getLogger('Poracle')
 log.setLevel(logging.DEBUG)
@@ -39,7 +40,7 @@ def make_configs():
     except OSError as e:
         if e.errno != errno.ENOENT:
             raise
-    template = json.loads(open('utils/discord/config.json').read())
+    template = json.loads(open(os.path.join(os.path.dirname(abspath),'utils/discord/config.json')).read())
     template['token'] = args.token
     template['bot']['commands_prefix'] = args.prefix
     with open('config.json', 'w') as config:
