@@ -281,13 +281,13 @@ def create_message(type, data, human):
         staticmon = os.path.join(os.path.dirname(abspath),
                     'utils/images/geocoded/' + data['spawnpoint_id'] + '.png')
         d['static'] = os.path.abspath(staticmon)
-        if args.weatheruser and human['weather_enabled']\
-                and get_forecast(areaname):
+        if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
-            weather = get_forecast(areaname)
-            d['wdescription'] = weather['description']
-            d['wtemp'] = weather['temperature']
-            d['wwind'] = weather['windspeed']
+            if get_forecast(areaname):
+                weather = get_forecast(areaname)
+                d['wdescription'] = weather['description']
+                d['wtemp'] = weather['temperature']
+                d['wwind'] = weather['windspeed']
 
         add_alarm_counter(human['id'])
 
@@ -324,13 +324,13 @@ def create_message(type, data, human):
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
-        if args.weatheruser and human['weather_enabled']\
-                and get_forecast(areaname):
+        if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
-            weather = get_forecast(areaname)
-            d['wdescription'] = weather['description']
-            d['wtemp'] = weather['temperature']
-            d['wwind'] = weather['windspeed']
+            if get_forecast(areaname):
+                weather = get_forecast(areaname)
+                d['wdescription'] = weather['description']
+                d['wtemp'] = weather['temperature']
+                d['wwind'] = weather['windspeed']
         if seconds_until_despawn > 0:
             Alert(args.token).raid_alert(d)
         else:
@@ -363,13 +363,14 @@ def create_message(type, data, human):
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
-        if args.weatheruser and human['weather_enabled']\
-                and get_forecast(areaname):
+        if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
-            weather = get_forecast(areaname)
-            d['wdescription'] = weather['description']
-            d['wtemp'] = weather['temperature']
-            d['wwind'] = weather['windspeed']
+            if get_forecast(areaname):
+                areaname = get_geocoded(data['gym_id'])['weather_path']
+                weather = get_forecast(areaname)
+                d['wdescription'] = weather['description']
+                d['wtemp'] = weather['temperature']
+                d['wwind'] = weather['windspeed']
         if time_til_hatch > 0:
             log.info(
                 "Alerting {} about level {} raid".format(
