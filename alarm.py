@@ -211,18 +211,22 @@ def get_monster_form(id, form):
 
 def get_forecast(area):
     if now - get_weather_updated(area) > 21600:
-        weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
-        weather = requests.get(weatherurl, timeout=5)
-        tree = ET.fromstring(weather.content)[5][0][0]
-        for tag in tree.iter('windSpeed'):
-            wind = '{}: {}mps'.format(tag.attrib['name'], tag.attrib['mps'])
-        for tag in tree.iter('symbol'):
-            description = tag.attrib['name']
-        for tag in tree.iter('temperature'):
-            temp = tag.attrib['value']
         log.info('getting new weather forecast for {}'.format(area))
-        update_weather(area, description, wind, temp)
-    return get_weather(area)
+        weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
+        try:
+            weather = requests.get(weatherurl, timeout=5)
+            tree = ET.fromstring(weather.content)[5][0][0]
+            for tag in tree.iter('windSpeed'):
+                wind = '{}: {}mps'.format(tag.attrib['name'], tag.attrib['mps'])
+            for tag in tree.iter('symbol'):
+                description = tag.attrib['name']
+            for tag in tree.iter('temperature'):
+                temp = tag.attrib['value']
+            update_weather(area, description, wind, temp)
+            return get_weather(area)
+        except IndexError:
+            return False
+
 
 
 def create_message(type, data, human):
@@ -277,7 +281,8 @@ def create_message(type, data, human):
         staticmon = os.path.join(os.path.dirname(abspath),
                     'utils/images/geocoded/' + data['spawnpoint_id'] + '.png')
         d['static'] = os.path.abspath(staticmon)
-        if args.weatheruser and human['weather_enabled']:
+        if args.weatheruser and human['weather_enabled']\
+                and get_forecast(areaname):
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
             weather = get_forecast(areaname)
             d['wdescription'] = weather['description']
@@ -319,7 +324,8 @@ def create_message(type, data, human):
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
-        if args.weatheruser and human['weather_enabled']:
+        if args.weatheruser and human['weather_enabled']\
+                and get_forecast(areaname):
             areaname = get_geocoded(data['gym_id'])['weather_path']
             weather = get_forecast(areaname)
             d['wdescription'] = weather['description']
@@ -357,7 +363,8 @@ def create_message(type, data, human):
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
-        if args.weatheruser and human['weather_enabled']:
+        if args.weatheruser and human['weather_enabled']\
+                and get_forecast(areaname):
             areaname = get_geocoded(data['gym_id'])['weather_path']
             weather = get_forecast(areaname)
             d['wdescription'] = weather['description']
