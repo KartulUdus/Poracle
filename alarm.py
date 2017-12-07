@@ -138,7 +138,7 @@ def raid(info):
                                     info['pokemon_id'])))
             else:
                 log.info(
-                    'Raid agains {} has appeared, but no one cares'.format(
+                    'Raid against {} has appeared, but no one cares'.format(
                         get_monster_name(
                             info['pokemon_id'])))
     else:

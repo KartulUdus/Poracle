@@ -360,7 +360,7 @@
     "spawn_rate": "1619"
   },
   "29": {
-    "name": "Nidoran♀",
+    "name": "Nidoran-f",
     "rarity": "Uncommon",
     "types": [
       {
@@ -397,7 +397,7 @@
     "spawn_rate": "1398"
   },
   "32": {
-    "name": "Nidoran♂",
+    "name": "Nidoran-m",
     "rarity": "Uncommon",
     "types": [
       {
