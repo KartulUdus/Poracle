@@ -45,7 +45,8 @@ def filter(hook):
         if info['verified']:
             if data['message']['disappear_time'] > now:
                 if not cache_exist(info['encounter_id'], 'despawn'):
-                    cache_insert(info['encounter_id'], info['disappear_time'], 'despawn')
+                    cache_insert(info['encounter_id'],
+                                 info['disappear_time'], 'despawn')
                     pokemon(info)
                 else:
                     log.info('I have already processed this monster')
