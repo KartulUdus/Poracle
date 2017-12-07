@@ -34,12 +34,14 @@ def get_weather_area_name(loc):
     tree = ET.fromstring(geoname.content)
 
     for geo in tree:
-        if 'ADM1' in geo.find('fcode').text is not None:
-            country = geo.find('countryName').text
-            muni = geo.find('toponymName').text
-        elif 'P' in geo.find('fcl').text is not None:
-            place = geo.find('toponymName').text
-
+        try:
+            if 'ADM1' in geo.find('fcode').text is not None:
+                country = geo.find('countryName').text
+                muni = geo.find('toponymName').text
+            elif 'P' in geo.find('fcl').text is not None:
+                place = geo.find('toponymName').text
+        except AttributeError:
+            continue
     try:
         path = '{}/{}/{}'.format(country, muni, place).replace(" ", "_")
 
