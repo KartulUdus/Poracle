@@ -274,8 +274,9 @@ def create_message(type, data, human):
                 '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = os.path.join(os.path.dirname(abspath),
+        staticmon = os.path.join(os.path.dirname(abspath),
                     'utils/images/geocoded/' + data['spawnpoint_id'] + '.png')
+        d['static'] = os.path.abspath(staticmon)
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
             weather = get_forecast(areaname)
@@ -311,8 +312,9 @@ def create_message(type, data, human):
         d['thumb'] = args.imgurl + '{}.png'.format(data['pokemon_id'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = os.path.join(os.path.dirname(abspath),
+        staticgym = os.path.join(os.path.dirname(abspath),
                             'utils/images/geocoded/' + data['gym_id'] + '.png')
+        d['static'] = os.path.abspath(staticgym)
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
@@ -344,8 +346,9 @@ def create_message(type, data, human):
             "%H:%M:%S", time.localtime(int(data['start'])))
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
-        d['static'] = os.path.join(os.path.dirname(abspath),
+        staticegg = os.path.join(os.path.dirname(abspath),
                             'utils/images/geocoded/' + data['gym_id'] + '.png')
+        d['static'] = os.path.abspath(staticegg)
         d['iv_enabled'] = human['iv_enabled']
         d['gym_name'] = geo['gym_name'].encode('utf-8')
         d['description'] = geo['description'].encode('utf-8')
