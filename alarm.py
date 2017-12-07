@@ -241,7 +241,7 @@ def create_message(type, data, human):
         d['address'] = get_address(data['spawnpoint_id'])[
             0]['address'].encode('utf-8')
         d['tth'] = time.strftime(
-            "%Mm %Ss", time.gmtime(
+            "%Mm %Ss", time.localtime(
                 data['seconds_until_despawn']))
         d['time'] = time.strftime("%H:%M:%S",
                                   time.localtime(int(data['disappear_time'])))
@@ -303,7 +303,8 @@ def create_message(type, data, human):
         d['iv_enabled'] = human['iv_enabled']
         d['move1'] = get_monster_move(int(data['move_1'])).encode('utf-8')
         d['move2'] = get_monster_move(int(data['move_2'])).encode('utf-8')
-        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(seconds_until_despawn))
+        d['tth'] = time.strftime("%Mm %Ss",
+                                 time.localtime(seconds_until_despawn))
         d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['end'])))
         d['address'] = geo['address'].encode('utf-8')
         d['gym_name'] = geo['gym_name'].encode('utf-8')
@@ -341,7 +342,7 @@ def create_message(type, data, human):
         d['color'] = get_team_color(geo['team'])
         d['map_enabled'] = human['map_enabled']
         d['geo_enabled'] = human['address_enabled']
-        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(time_til_hatch))
+        d['tth'] = time.strftime("%Mm %Ss", time.localtime(time_til_hatch))
         d['time'] = time.strftime(
             "%H:%M:%S", time.localtime(int(data['start'])))
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
