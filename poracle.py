@@ -6,7 +6,7 @@ import errno
 import subprocess
 from alarm import filter
 from utils.args import args as get_args
-from utils.mysql import verify_database_schema
+from utils.mysql import verify_database_schema, get_all_weather_paths
 from gevent import wsgi, spawn
 from flask import Flask, request, abort
 import Queue
@@ -95,10 +95,11 @@ def send_hooks_to_filter(q):
 
 
 if __name__ == '__main__':
-    log.info("Poracle initializing.")
+    #log.info("Poracle initializing.")
     verify_database_schema()
-    make_configs()
-    run_bot()
-    runserver()
-
+    #make_configs()
+    #run_bot()
+    #runserver()
+    for weather in get_all_weather_paths():
+        print weather
 

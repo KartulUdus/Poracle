@@ -6,7 +6,7 @@ import logging
 from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
                     BooleanField, TextField, OperationalError, IntegrityError)
-
+from peewee import *
 # Globals
 
 sb_schema_version = 2
@@ -86,7 +86,7 @@ class raid(BaseModel):
 class geocoded(BaseModel):
     id = CharField(primary_key=True, index=True, max_length=50)
     type = CharField(index=True, max_length=20)
-    weather_path = CharField(null=True, max_length=100)
+    weather_path = ForeignKeyField('self', null=True)
     team = SmallIntegerField(null=True)
     address = CharField(index=True)
     gym_name = CharField(index=True, max_length=50, null=True)
@@ -419,6 +419,11 @@ def get_weather_path(id):
         geocoded.weather_path).where(
         geocoded.id == id).dicts()
 
+def get_all_weather_paths():
+    paths = geocoded.select(geocoded.weather_path,
+                           geocoded.latitude,
+                           geocoded.longitude).where(geocoded.weather_path).group_by(geocoded.weather_path)
+    return paths.dicts()
 
 def get_weather(area):
     return weather.select().where(weather.area == area).dicts()[0]
