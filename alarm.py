@@ -67,7 +67,6 @@ def filter(hook):
         else:
             if not cache_exist(info['gym_id'],'hatch'):
                 cache_insert(info['gym_id'], info['spawn'], 'hatch')
-                cache_insert(info['gym_id'], info['end'], 'raid_end')
                 raid(info)
 
 
@@ -94,7 +93,8 @@ def pokemon(info):
         if args.weatheruser:
             if not check_if_weather(id):
                 path = get_weather_area_name([lat, lon])
-                update_weather_path(id, path)
+                if path is not None:
+                    update_weather_path(id, path)
 
         if info['individual_attack'] is None:
             iv = 0
@@ -178,7 +178,8 @@ def gym_info(info):
     if args.weatheruser:
         if not check_if_weather(id):
             path = get_weather_area_name([lat, lon])
-            update_weather_path(id, path)
+            if path is not None:
+                update_weather_path(id, path)
 
 
 def get_monster_name(id):

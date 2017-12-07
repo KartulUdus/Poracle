@@ -8,6 +8,8 @@ from cHaversine import haversine
 from geopy.geocoders import Nominatim, GeoNames
 from staticmap import StaticMap, IconMarker
 from args import args as get_args
+from utils.mysql import get_all_weather_paths
+
 
 args = get_args()
 log = logging.getLogger('mysql')
@@ -25,18 +27,37 @@ def distance(loc1, loc2):
 
 
 def get_weather_area_name(loc):
-
+    path = None
     GNurl = 'http://api.geonames.org/extendedFindNearby?lat={}&lng={}' \
             '&username={}'.format(loc[0],loc[1],args.weatheruser)
     geoname = requests.get(GNurl, timeout=5)
     tree = ET.fromstring(geoname.content)
+
     for geo in tree:
         if 'ADM1' in geo.find('fcode').text:
             country = geo.find('countryName').text
             muni = geo.find('toponymName').text
         elif 'P' in geo.find('fcl').text:
             place = geo.find('toponymName').text
-    return ('{}/{}/{}'.format(country,muni,place)).replace(" ","_")
+
+    try:
+        path = '{}/{}/{}'.format(country, muni, place).replace(" ", "_")
+
+    except UnboundLocalError:
+        closest = 100000
+        paths = get_all_weather_paths()
+        if args.debug:
+            log.debug('Unable to get weather path for {}'
+                      .format([loc[0],loc[1]]))
+            log.debug('Doing {} distance calculations to find the closest area'
+                      .format(len(paths)))
+        for area in paths:
+            dis = distance([loc[0],loc[1]],
+                           [area['latitude'],area['longitude']])
+            if dis<closest:
+                closest = dis
+                path = area['weather_path']
+    return path
 
 
 # Geocodes words into coords

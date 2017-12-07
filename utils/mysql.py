@@ -84,9 +84,9 @@ class raid(BaseModel):
 
 
 class geocoded(BaseModel):
-    id = CharField(primary_key=True, index=True, max_length=50)
+    id = CharField(index=True, max_length=50)
     type = CharField(index=True, max_length=20)
-    weather_path = ForeignKeyField('self', null=True)
+    weather_path = CharField(index=True, null=True, max_length=100)
     team = SmallIntegerField(null=True)
     address = CharField(index=True)
     gym_name = CharField(index=True, max_length=50, null=True)
@@ -97,7 +97,7 @@ class geocoded(BaseModel):
 
     class Meta:
         indexes = ((('latitude', 'longitude'), False),)
-        order_by = ('id',)
+        primary_key = False
 
 
 class weather(BaseModel):
@@ -422,7 +422,7 @@ def get_weather_path(id):
 def get_all_weather_paths():
     paths = geocoded.select(geocoded.weather_path,
                            geocoded.latitude,
-                           geocoded.longitude).where(geocoded.weather_path).group_by(geocoded.weather_path)
+                           geocoded.longitude).where(geocoded.weather_path.is_null(False)).distinct(geocoded.weather_path)
     return paths.dicts()
 
 def get_weather(area):
