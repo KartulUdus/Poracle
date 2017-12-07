@@ -225,6 +225,7 @@ def register(id, name):
 def unregister(id):
     humans.delete().where(humans.id == id).execute()
     monsters.delete().where(monsters.human_id == id).execute()
+    raid.delete().where(raid.human_id == id).execute()
     db.close()
 
 
