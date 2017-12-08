@@ -289,7 +289,8 @@ def create_message(type, data, human):
                 d['wtemp'] = weather['temperature']
                 d['wwind'] = weather['windspeed']
             except TypeError:
-                continue
+                if args.debug:
+                    log.debug('Unable to construct weather for message')
         add_alarm_counter(human['id'])
 
         Alert(args.token).monster_alert(d)
@@ -333,7 +334,8 @@ def create_message(type, data, human):
                 d['wtemp'] = weather['temperature']
                 d['wwind'] = weather['windspeed']
             except TypeError:
-                continue
+                if args.debug:
+                    log.debug('Unable to construct weather for message')
         if seconds_until_despawn > 0:
             Alert(args.token).raid_alert(d)
         else:
@@ -375,7 +377,8 @@ def create_message(type, data, human):
                 d['wtemp'] = weather['temperature']
                 d['wwind'] = weather['windspeed']
             except TypeError:
-                continue
+                if args.debug:
+                    log.debug('Unable to construct weather for message')
         if time_til_hatch > 0:
             log.info(
                 "Alerting {} about level {} raid".format(
