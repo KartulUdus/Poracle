@@ -283,7 +283,7 @@ def create_message(type, data, human):
         d['static'] = os.path.abspath(staticmon)
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['spawnpoint_id'])['weather_path']
-            if get_forecast(areaname):
+            if get_forecast(areaname) is not None:
                 weather = get_forecast(areaname)
                 d['wdescription'] = weather['description']
                 d['wtemp'] = weather['temperature']
@@ -326,7 +326,7 @@ def create_message(type, data, human):
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
-            if get_forecast(areaname):
+            if get_forecast(areaname) is not None:
                 weather = get_forecast(areaname)
                 d['wdescription'] = weather['description']
                 d['wtemp'] = weather['temperature']
@@ -365,7 +365,7 @@ def create_message(type, data, human):
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
         if args.weatheruser and human['weather_enabled']:
             areaname = get_geocoded(data['gym_id'])['weather_path']
-            if get_forecast(areaname):
+            if get_forecast(areaname) is not None:
                 areaname = get_geocoded(data['gym_id'])['weather_path']
                 weather = get_forecast(areaname)
                 d['wdescription'] = weather['description']
