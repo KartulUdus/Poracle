@@ -89,6 +89,14 @@ def args():
         '--weatheruser',
         help='Username to GeoNames',
         default=False)
+    parser.add_argument(
+        '--owner',
+        help='Username of owner',
+        type=str,
+        default=False)
+
+
+
     # Static Map size
 
     parser.add_argument(

@@ -32,7 +32,7 @@ from utils.mysql import (
     switch)
 
 args = get_args()
-
+runner = args.owner.replace("$","#")
 
 def get_monster_id_from_name(id):
     num = False
@@ -88,6 +88,30 @@ Enables or disables fields of the alarm
             else:
                 event.msg.reply(args.onlyinchannel.format(ping, args.channel))
 
+    @Plugin.command('add channel')
+    def command_add_channel(self, event):
+        chid = event.msg.channel.id
+        name = event.msg.channel.name
+        owner = event.msg.author
+        if str(owner) == runner:
+            if not (registered(chid)):
+                register(chid, name)
+                event.msg.reply(args.registering.format(name))
+            else:
+                event.msg.reply(args.alreadyreg.format(name))
+
+    @Plugin.command('remove channel')
+    def command_remove_channel(self, event):
+        chid = event.msg.channel.id
+        name = event.msg.channel.name
+        owner = event.msg.author
+        if str(owner) == runner:
+            if (registered(chid)):
+                unregister(chid)
+                event.msg.reply(args.unregistered.format(name))
+            else:
+                event.msg.reply(args.notregistered.format(name))
+
     @Plugin.command('unregister')
     def command_unregister(self, event):
         if not event.msg.channel.is_dm:
@@ -137,22 +161,37 @@ Enables or disables fields of the alarm
         name = event.msg.author
         ping = event.msg.author.mention
         content = content.encode('utf-8')
-        if event.msg.channel.is_dm:
-            if not (registered_by_name(name)):
-                event.msg.reply(args.onlyregistered)
+
+        if str(name) == runner:
+            loc = geoloc(content)
+            if loc == 'ERROR':
+                event.msg.reply(args.notfind.format(content))
             else:
-                loc = geoloc(content)
-                if loc == 'ERROR':
-                    event.msg.reply(args.notfind.format(content))
-                else:
-                    set_location(name, loc[0], loc[1])
-                    maplink = 'https://www.google.com/maps/search/' \
-                              '?api=1&query=' + \
-                              str(loc[0]) + ',' + str(loc[1])
-                    event.msg.reply(
-                        args.locationset.format(content, maplink))
+                if not event.msg.channel.is_dm:
+                    name = event.msg.channel.name
+                set_location(name, loc[0], loc[1])
+                maplink = 'https://www.google.com/maps/search/' \
+                          '?api=1&query=' + \
+                          str(loc[0]) + ',' + str(loc[1])
+                event.msg.reply(
+                    args.locationset.format(content, maplink))
         else:
-            event.msg.reply(args.onlydm.format(ping))
+            if event.msg.channel.is_dm:
+                if not (registered_by_name(name)):
+                    event.msg.reply(args.onlyregistered)
+                else:
+                    loc = geoloc(content)
+                    if loc == 'ERROR':
+                        event.msg.reply(args.notfind.format(content))
+                    else:
+                        set_location(name, loc[0], loc[1])
+                        maplink = 'https://www.google.com/maps/search/' \
+                                  '?api=1&query=' + \
+                                  str(loc[0]) + ',' + str(loc[1])
+                        event.msg.reply(
+                            args.locationset.format(content, maplink))
+            else:
+                event.msg.reply(args.onlydm.format(ping))
 
             # Configure alarm blocks
 
@@ -198,26 +237,43 @@ Enables or disables fields of the alarm
         iv = kwargs.get('iv', 0)
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
+        if str(name) == runner:
             if get_monster_id_from_name(monster):
                 id = get_monster_id_from_name(monster)
-                if registered_by_name(name):
-                    if not (check_if_tracked(discordid, id)):
-                        add_tracking(discordid, id, dis, iv)
-                        event.msg.reply(
-                            args.trackingadd.format(
-                                monster, dis, iv))
-                    else:
-                        update_tracking(discordid, id, dis, iv)
-                        event.msg.reply(
-                            args.trackingupd.format(
-                                monster, dis, iv))
+
+                if not (check_if_tracked(discordid, id)):
+                    add_tracking(discordid, id, dis, iv)
+                    event.msg.reply(
+                        args.trackingadd.format(
+                            monster, dis, iv))
                 else:
-                    event.msg.reply(args.onlyregistered)
+                    update_tracking(discordid, id, dis, iv)
+                    event.msg.reply(
+                        args.trackingupd.format(
+                            monster, dis, iv))
             else:
                 event.msg.reply(args.monnotfound.format(monster))
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if get_monster_id_from_name(monster):
+                    id = get_monster_id_from_name(monster)
+                    if registered_by_name(name):
+                        if not (check_if_tracked(discordid, id)):
+                            add_tracking(discordid, id, dis, iv)
+                            event.msg.reply(
+                                args.trackingadd.format(
+                                    monster, dis, iv))
+                        else:
+                            update_tracking(discordid, id, dis, iv)
+                            event.msg.reply(
+                                args.trackingupd.format(
+                                    monster, dis, iv))
+                    else:
+                        event.msg.reply(args.onlyregistered)
+                else:
+                    event.msg.reply(args.monnotfound.format(monster))
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
             # Untrack monster:
 
@@ -225,45 +281,73 @@ Enables or disables fields of the alarm
     def command_untrack(self, event, monster):
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
+
+        if str(name) == runner:
             if get_monster_id_from_name(monster):
                 id = get_monster_id_from_name(monster)
-                if registered_by_name(name):
-                    if not (check_if_tracked(discordid, id)):
-                        event.msg.reply(args.nottracking.format(monster))
-                    else:
-                        remove_tracking(discordid, id)
-                        event.msg.reply(args.removedtracking.format(monster))
+                if not (check_if_tracked(discordid, id)):
+                    event.msg.reply(args.nottracking.format(monster))
                 else:
-                    event.msg.reply(args.onlyregistered)
-
+                    remove_tracking(discordid, id)
+                    event.msg.reply(args.removedtracking.format(monster))
+            else:
+                event.msg.reply(args.monnotfound.format(monster))
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if get_monster_id_from_name(monster):
+                    id = get_monster_id_from_name(monster)
+                    if registered_by_name(name):
+                        if not (check_if_tracked(discordid, id)):
+                            event.msg.reply(args.nottracking.format(monster))
+                        else:
+                            remove_tracking(discordid, id)
+                            event.msg.reply(args.removedtracking.format(
+                                monster))
+                    else:
+                        event.msg.reply(args.onlyregistered)
+
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
     @Plugin.command('raid', '<monster:str> <dis:int>')
     def command_track_raid(self, event, monster, dis):
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
-            if registered_by_name(name):
-                if get_monster_id_from_name(monster):
-                    id = get_monster_id_from_name(monster)
-                    if not (check_if_raid_tracked(discordid, id)):
-                        add_raid_tracking(discordid, id, dis)
-                        event.msg.reply(
-                            args.raidadded.format(
-                                monster, dis))
-                    else:
-                        update_raid_tracking(discordid, id, dis)
-                        event.msg.reply(
-                            args.raidupd.format(monster, dis))
+        if str(name) == runner:
+            if get_monster_id_from_name(monster):
+                id = get_monster_id_from_name(monster)
+                if not (check_if_raid_tracked(discordid, id)):
+                    add_raid_tracking(discordid, id, dis)
+                    event.msg.reply(
+                        args.raidadded.format(
+                            monster, dis))
                 else:
-                    event.msg.reply(args.monnotfound.format(monster))
+                    update_raid_tracking(discordid, id, dis)
+                    event.msg.reply(
+                        args.raidupd.format(monster, dis))
             else:
-                event.msg.reply(args.onlyregistered)
-
+                event.msg.reply(args.monnotfound.format(monster))
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+                    if get_monster_id_from_name(monster):
+                        id = get_monster_id_from_name(monster)
+                        if not (check_if_raid_tracked(discordid, id)):
+                            add_raid_tracking(discordid, id, dis)
+                            event.msg.reply(
+                                args.raidadded.format(
+                                    monster, dis))
+                        else:
+                            update_raid_tracking(discordid, id, dis)
+                            event.msg.reply(
+                                args.raidupd.format(monster, dis))
+                    else:
+                        event.msg.reply(args.monnotfound.format(monster))
+                else:
+                    event.msg.reply(args.onlyregistered)
+
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
             # Untrack monster:
 
@@ -271,21 +355,34 @@ Enables or disables fields of the alarm
     def command_raid_remove(self, event, monster):
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
-            if registered_by_name(name):
-                if get_monster_id_from_name(monster):
-                    id = get_monster_id_from_name(monster)
-                    if not (check_if_raid_tracked(discordid, id)):
-                        event.msg.reply(args.nottracking.format(monster))
-                    else:
-                        remove_raid_tracking(discordid, id)
-                        event.msg.reply(args.removedtracking.format(monster))
+        if str(name) == runner:
+            if get_monster_id_from_name(monster):
+                id = get_monster_id_from_name(monster)
+                if not (check_if_raid_tracked(discordid, id)):
+                    event.msg.reply(args.nottracking.format(monster))
                 else:
-                    event.msg.reply(args.monnotfound.format(monster))
+                    remove_raid_tracking(discordid, id)
+                    event.msg.reply(args.removedtracking.format(
+                        monster))
             else:
-                event.msg.reply(args.onlyregistered)
+                event.msg.reply(args.monnotfound.format(monster))
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+                    if get_monster_id_from_name(monster):
+                        id = get_monster_id_from_name(monster)
+                        if not (check_if_raid_tracked(discordid, id)):
+                            event.msg.reply(args.nottracking.format(monster))
+                        else:
+                            remove_raid_tracking(discordid, id)
+                            event.msg.reply(args.removedtracking.format(
+                                monster))
+                    else:
+                        event.msg.reply(args.monnotfound.format(monster))
+                else:
+                    event.msg.reply(args.onlyregistered)
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
             # Eggs
 
@@ -293,40 +390,64 @@ Enables or disables fields of the alarm
     def command_track_egg(self, event, level, dis):
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
-            if registered_by_name(name):
-                if level < 1 or level > 6:
-                    event.msg.reply(args.invalidraidlvl)
-                else:
-                    if not (check_if_egg_tracked(discordid, level)):
-                        add_egg_tracking(discordid, level, dis)
-                        event.msg.reply(args.eggadded.format(level, dis))
-                    else:
-                        update_egg_tracking(discordid, level, dis)
-                        event.msg.reply(
-                            args.eggupdated.format(level, dis))
+        if str(name) == runner:
+            if level < 1 or level > 6:
+                event.msg.reply(args.invalidraidlvl)
             else:
-                event.msg.reply(args.onlyregistered)
+                if not (check_if_egg_tracked(discordid, level)):
+                    add_egg_tracking(discordid, level, dis)
+                    event.msg.reply(args.eggadded.format(level, dis))
+                else:
+                    update_egg_tracking(discordid, level, dis)
+                    event.msg.reply(
+                        args.eggupdated.format(level, dis))
+
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+                    if level < 1 or level > 6:
+                        event.msg.reply(args.invalidraidlvl)
+                    else:
+                        if not (check_if_egg_tracked(discordid, level)):
+                            add_egg_tracking(discordid, level, dis)
+                            event.msg.reply(args.eggadded.format(level, dis))
+                        else:
+                            update_egg_tracking(discordid, level, dis)
+                            event.msg.reply(
+                                args.eggupdated.format(level, dis))
+                else:
+                    event.msg.reply(args.onlyregistered)
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
     @Plugin.command('egg remove', '<level:int>')
     def command_egg_remove(self, event, level):
         discordid = event.msg.channel.id
         name = event.msg.author
-        if event.msg.channel.is_dm:
-            if registered_by_name(name):
 
-                if not (check_if_egg_tracked(discordid, level)):
-                    event.msg.reply(args.eggnottracked
-                                    .format(level))
-                else:
-                    remove_egg_tracking(discordid, level)
-                    event.msg.reply(args.eggremoved.format(level))
+        if str(name) == runner:
+
+            if not (check_if_egg_tracked(discordid, level)):
+                event.msg.reply(args.eggnottracked
+                                .format(level))
             else:
-                event.msg.reply(args.onlyregistered)
+                remove_egg_tracking(discordid, level)
+                event.msg.reply(args.eggremoved.format(level))
+
         else:
-            event.msg.reply(args.onlydm.format(event.msg.author.mention))
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+
+                    if not (check_if_egg_tracked(discordid, level)):
+                        event.msg.reply(args.eggnottracked
+                                        .format(level))
+                    else:
+                        remove_egg_tracking(discordid, level)
+                        event.msg.reply(args.eggremoved.format(level))
+                else:
+                    event.msg.reply(args.onlyregistered)
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
 
 class Alert(APIClient):

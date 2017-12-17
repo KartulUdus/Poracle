@@ -1,3 +1,13 @@
 config/*.ini
 utils/images/geocoded/*.png
 config.json
+.idea/
+alarm.pyc
+*.log
+utils/__init__.pyc
+utils/__pycache__/
+utils/args.pyc
+utils/discord/__init__.pyc
+utils/discord/discord.pyc
+utils/geo.pyc
+utils/mysql.pyc

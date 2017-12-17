@@ -26,7 +26,7 @@ token:              # Your discord token. Required
 #imgurl:            # use other source of images, need to incldue <number>.png
 #mapurl:            # personal RM url, will be included in all messages if enabled
 #usaddress          # turns address string the other way around <house number, street, suburb, city>
-
+#owner:             # the owner who is able to register public channels
 #debug              # enabled more logging
 
 ##############################################################################
