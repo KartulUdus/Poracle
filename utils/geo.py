@@ -69,7 +69,7 @@ def geoloc(loc):
     log.info("Figuring out where {} is".format(loc))
     geo = Nominatim()
     try:
-        pos = geo.geocode(loc, exactly_one=True)
+        pos = geo.geocode(loc, exactly_one=True, timeout=None)
         return pos.latitude, pos.longitude
     except AttributeError:
         return 'ERROR'
@@ -80,7 +80,7 @@ def geoloc(loc):
 
 def revgeoloc(loc):
     geo = Nominatim()
-    pos = geo.reverse((tuple(loc))[0:2], exactly_one=True)
+    pos = geo.reverse((tuple(loc))[0:2], exactly_one=True, timeout=None)
     address = (pos.raw['display_name']).split(",")
     return address
 
