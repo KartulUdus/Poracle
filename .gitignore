@@ -1,6 +1,7 @@
 config/*.ini
 utils/images/geocoded/*.png
 config.json
+!utils/discord/config.json
 .idea/
 alarm.pyc
 *.log
