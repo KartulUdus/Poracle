@@ -62,6 +62,7 @@ Hello, once you have reigstered in {0}, you can use the following commands:
 {1}track <pokemon name> <max distance> [<minimum IV>] - will send alarms about 
 monsters that are less than <max distance> meters away from the users set 
 location, minimum IV is optional and defaults to 0
+{1}tracked - Will print out a list of currently tracked monsters
 {1}untrack <pokemon name> - stops tracking monster
 {1}raid <pokemon name> <max distance> - sends alarms for raid boss closer than 
 <max distance> to user
@@ -486,6 +487,17 @@ Enables or disables fields of the alarm
                 message += '\nlevel:' + (egg['pokemon_id']) + \
                            ', distance:' + '{}'.format(egg['distance'])
 
-            event.msg.reply(message)
+            # See if message is under discord limit
+            print len(message)
+            if len(message)>2000:
+                rows = message.split('\n')
+                chunks = [rows[x:x + 50] for x in xrange(0, len(rows), 50)]
+                for batch in chunks:
+                    altmessage = ''
+                    for line in batch:
+                        altmessage+='\n' + line
+                    event.msg.reply(altmessage)
+            else:
+                event.msg.reply(message)
         else:
             event.msg.reply(args.channelnotfound)
