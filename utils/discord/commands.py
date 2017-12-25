@@ -56,7 +56,7 @@ class Commands(Plugin):
         help = '''
 Hello, once you have reigstered in {0}, you can use the following commands:
 ```
-{1}register - only avaiable in #{0}, registers user to start tracking
+{1}poracle - only avaiable in #{0}, registers user to start tracking
 {1}unregister - only avaiable in #{0}, unregisters user
 {1}location <place> - sets your base location to the address or place entered
 {1}track <pokemon name> <max distance> [<minimum IV>] - will send alarms about 
