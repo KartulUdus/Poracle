@@ -79,7 +79,7 @@ Enables or disables fields of the alarm
 
         # Register DM id as human
 
-    @Plugin.command('register')
+    @Plugin.command('poracle')
     def command_register(self, event):
         dmid = event.msg.author.open_dm().id
         name = event.msg.author
