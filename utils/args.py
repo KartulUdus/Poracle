@@ -137,6 +137,10 @@ def args():
         '--onlyregistered',
         default='This command is only available for registered users :eyes:')
     parser.add_argument(
+        '--channelnotfound',
+        default='This channel isn\'t registered :eyes:')
+
+    parser.add_argument(
         '--locationfirst',
         default='Please use `!location <location>` to set your location first'
                 ' :slight_smile:')

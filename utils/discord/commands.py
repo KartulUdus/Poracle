@@ -25,10 +25,19 @@ from utils.mysql import (
     remove_egg_tracking,
     add_egg_tracking,
     update_egg_tracking,
-    switch)
+    switch,
+    get_human_location,
+    get_mon_tracked,
+    get_raid_tracked,
+    get_egg_tracked)
 
 args = get_args()
 runner = args.owner.replace("$","#")
+
+
+def get_monster_name(id):
+    legend = json.loads(open('utils/dict/pokemon.json').read())
+    return legend['{}'.format(int(id))]['name']
 
 def get_monster_id_from_name(id):
     num = False
@@ -445,3 +454,38 @@ Enables or disables fields of the alarm
             else:
                 event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
+
+    @Plugin.command('tracked')
+    def command_check_tracked(self, event):
+        chid = event.msg.channel.id
+        ping = event.msg.author.mention
+        if (registered(chid)):
+            message = ''
+            human = get_human_location(chid)[0]
+            maplink = 'https://www.google.com/maps/search/' \
+                      '?api=1&query=' + \
+                      str(human['latitude']) + ',' + str(
+                human['longitude'])
+            # Confirm user location
+            message += ':wave: ' + ping + '\nyour location is' \
+                                          ' currently:\n' + maplink
+            message += '\n**Tracked Pokemon:**'
+            # List all tracked pokemon
+            for mon in get_mon_tracked(chid):
+                message += '\n' + get_monster_name(mon['pokemon_id']) +\
+                           ', distance:' + '{}'.format(mon['distance']) + \
+                           'm, min iv:' + '{}'.format(mon['min_iv'])
+            message += '\n**Tracked Raids:**'
+            # List all tracked raids
+            for raid in get_raid_tracked(chid):
+                message += '\n' + get_monster_name(raid['pokemon_id']) + \
+                           ', distance:' + '{}'.format(raid['distance'])
+            message += '\n**Tracked Eggs:**'
+            # List all tracked eggs
+            for egg in get_egg_tracked(chid):
+                message += '\nlevel:' + (egg['pokemon_id']) + \
+                           ', distance:' + '{}'.format(egg['distance'])
+
+            event.msg.reply(message)
+        else:
+            event.msg.reply(args.channelnotfound)
