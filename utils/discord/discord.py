@@ -9,7 +9,8 @@ from utils.args import args as get_args
 
 
 args = get_args()
-runner = args.owner.replace("$","#")
+if args.owner:
+    runner = args.owner.replace("$","#")
 
 def get_monster_id_from_name(id):
     num = False
