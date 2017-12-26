@@ -88,7 +88,7 @@ class Alert(APIClient):
         img = ''
         embed = MessageEmbed(color=d['color'])
         embed.title = (d['mon_name'])
-        embed.url(d['gmapurl'])
+        embed.url = (d['gmapurl'])
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
@@ -134,8 +134,8 @@ class Alert(APIClient):
     def egg_alert(self, d):
         img = ''
         embed = MessageEmbed(color=d['color'])
-        embed.title('Raid level {}'.format(d['level']))
-        embed.url(d['gmapurl'])
+        embed.title = ('Raid level {}'.format(d['level']))
+        embed.url = (d['gmapurl'])
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
