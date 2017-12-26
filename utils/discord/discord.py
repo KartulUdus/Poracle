@@ -26,15 +26,12 @@ class Alert(APIClient):
         embed = MessageEmbed(color=d['color'])
         img = ''
         if 'form' in d:
-            embed.author = MessageEmbedAuthor(
-                name=(
-                    d['mon_name'] +
-                    ' (form: {})'.format(
-                        d['form'])),
-                url=d['gmapurl'])
+            embed.title = (
+                d['mon_name'] + ' (form: {})'.format(d['form']))
+            embed.url = d['gmapurl']
         else:
-            embed.author = MessageEmbedAuthor(
-                name=d['mon_name'], url=d['gmapurl'])
+            embed.title = d['mon_name']
+            embed.url = d['gmapurl']
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
@@ -90,9 +87,8 @@ class Alert(APIClient):
     def raid_alert(self, d):
         img = ''
         embed = MessageEmbed(color=d['color'])
-        embed.author = MessageEmbedAuthor(
-            name=(d['mon_name']),
-            url=d['gmapurl'])
+        embed.title = (d['mon_name'])
+        embed.url(d['gmapurl'])
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
@@ -138,9 +134,8 @@ class Alert(APIClient):
     def egg_alert(self, d):
         img = ''
         embed = MessageEmbed(color=d['color'])
-        embed.author = MessageEmbedAuthor(
-            name=('Raid level {}'.format(d['level'])),
-            url=d['gmapurl'])
+        embed.title('Raid level {}'.format(d['level']))
+        embed.url(d['gmapurl'])
         if not args.bottommap:
             if d['map_enabled']:
                 img = ['static.png', open(d['static'], 'r')]
