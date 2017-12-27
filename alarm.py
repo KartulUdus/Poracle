@@ -43,6 +43,7 @@ def filter(hook):
     info = data['message']
     if type == 'pokemon':
         if info['verified']:
+            now = int(time.time())
             if data['message']['disappear_time'] > now:
                 if not cache_exist(info['encounter_id'], 'despawn'):
                     cache_insert(info['encounter_id'],
@@ -209,6 +210,7 @@ def get_monster_form(id, form):
 
 
 def get_forecast(area):
+    now = int(time.time())
     if now - get_weather_updated(area) > 21600:
         log.info('getting new weather forecast for {}'.format(area))
         weatherurl = 'https://www.yr.no/place/{}/forecast.xml'.format(area)
