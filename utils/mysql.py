@@ -6,7 +6,7 @@ import logging
 from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
                     BooleanField, TextField, OperationalError, IntegrityError)
-from peewee import *
+#from peewee import *
 # Globals
 
 sb_schema_version = 2
@@ -72,7 +72,6 @@ class monsters(BaseModel):
         order_by = ('id',)
 
 
-# noinspection PyPep8Naming
 class raid(BaseModel):
     human_id = CharField(index=True, max_length=30)
     pokemon_id = CharField(index=True, max_length=20)
@@ -255,6 +254,21 @@ def set_location(name, lat, lon):
 ########################################################
 # Monsters:
 
+
+def get_mon_tracked(discordid):
+    return monsters.select().where(monsters.human_id == discordid).order_by(
+        monsters.pokemon_id.asc()).dicts()
+
+def get_raid_tracked(discordid):
+    return raid.select().where((raid.human_id == discordid) &
+                    (raid.egg == 0)).order_by(raid.pokemon_id.asc()).dicts()
+
+def get_egg_tracked(discordid):
+    return raid.select().where((raid.human_id == discordid) &
+                               (raid.egg == 1)).dicts()
+
+def get_human_location(discordid):
+    return humans.select().where(humans.id == discordid).dicts()
 
 def check_if_tracked(discordid, monster):
     return monsters.select().where(

@@ -232,7 +232,7 @@ def get_forecast(area):
 def create_message(type, data, human):
 
     if type == 'monster':
-
+        seconds_until_despawn = data['disappear_time'] - now
         d = {}
         d['channel'] = human['id']
         d['mon_name'] = get_monster_name(data['pokemon_id']).encode('utf-8')
@@ -245,8 +245,7 @@ def create_message(type, data, human):
         d['address'] = get_address(data['spawnpoint_id'])[
             0]['address'].encode('utf-8')
         d['tth'] = time.strftime(
-            "%Mm %Ss", time.localtime(
-                data['seconds_until_despawn']))
+            "%Mm %Ss", time.localtime(seconds_until_despawn))
         d['time'] = time.strftime("%H:%M:%S",
                                   time.localtime(int(data['disappear_time'])))
         d['thumb'] = args.imgurl + \

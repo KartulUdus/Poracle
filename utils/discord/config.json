@@ -3,7 +3,7 @@
   "log_level": "warning",
   "bot": {
     "plugins": [
-      "utils.discord.discord"
+      "utils.discord.commands"
     ],
     "commands_require_mention": false,
     "commands_prefix": ""
