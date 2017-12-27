@@ -30,7 +30,6 @@ log.addHandler(ch)
 
 abspath = os.path.abspath(__file__)
 args = get_args()
-now = int(time.time())
 min_iv = 0
 adress = 'NULL'
 gym_name = 'NULL'
@@ -232,6 +231,7 @@ def get_forecast(area):
 def create_message(type, data, human):
 
     if type == 'monster':
+        now = int(time.time())
         seconds_until_despawn = data['disappear_time'] - now
         d = {}
         d['channel'] = human['id']
@@ -295,6 +295,7 @@ def create_message(type, data, human):
         Alert(args.token).monster_alert(d)
 
     elif type == 'raid':
+        now = int(time.time())
         geo = get_geocoded(data['gym_id'])
         seconds_until_despawn = data['end'] - now
 
@@ -341,6 +342,7 @@ def create_message(type, data, human):
             log.warning("Weird, the raid already ended")
 
     elif type == 'egg':
+        now = int(time.time())
         geo = get_geocoded(data['gym_id'])
         time_til_hatch = data['spawn'] - now
         d = {}
