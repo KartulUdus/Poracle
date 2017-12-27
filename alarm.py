@@ -245,7 +245,7 @@ def create_message(type, data, human):
         d['address'] = get_address(data['spawnpoint_id'])[
             0]['address'].encode('utf-8')
         d['tth'] = time.strftime(
-            "%Mm %Ss", time.localtime(seconds_until_despawn))
+            "%Mm %Ss", time.gmtime(seconds_until_despawn))
         d['time'] = time.strftime("%H:%M:%S",
                                   time.localtime(int(data['disappear_time'])))
         d['thumb'] = args.imgurl + \
@@ -310,7 +310,7 @@ def create_message(type, data, human):
         d['move1'] = get_monster_move(int(data['move_1'])).encode('utf-8')
         d['move2'] = get_monster_move(int(data['move_2'])).encode('utf-8')
         d['tth'] = time.strftime("%Mm %Ss",
-                                 time.localtime(seconds_until_despawn))
+                                 time.gmtime(seconds_until_despawn))
         d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['end'])))
         d['address'] = geo['address'].encode('utf-8')
         d['gym_name'] = geo['gym_name'].encode('utf-8')
@@ -352,7 +352,7 @@ def create_message(type, data, human):
         d['color'] = get_team_color(geo['team'])
         d['map_enabled'] = human['map_enabled']
         d['geo_enabled'] = human['address_enabled']
-        d['tth'] = time.strftime("%Mm %Ss", time.localtime(time_til_hatch))
+        d['tth'] = time.strftime("%Mm %Ss", time.gmtime(time_til_hatch))
         d['time'] = time.strftime(
             "%H:%M:%S", time.localtime(int(data['start'])))
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
@@ -368,7 +368,6 @@ def create_message(type, data, human):
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(geo['latitude']) + '&lon=' + str(geo['longitude'])
         if args.weatheruser and human['weather_enabled']:
-            areaname = get_geocoded(data['gym_id'])['weather_path']
             try:
                 areaname = get_geocoded(data['gym_id'])['weather_path']
                 weather = get_forecast(areaname)
