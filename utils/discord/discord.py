@@ -71,6 +71,13 @@ class Alert(APIClient):
                     name=args.weathertitle.format(
                         d['wdescription']), value=args.weatherbody.format(
                         d['wtemp'], d['wwind'])))
+
+        if 'boost' in d:
+            embed.fields.append(
+                MessageEmbedField(
+                    name=args.weathertitle.format(' **Game weather:**'),
+                    value='Boost: {}'.format(d['boost'])))
+
         if args.mapurl:
             embed.fields.append(
                 MessageEmbedField(name=args.RMtitle,

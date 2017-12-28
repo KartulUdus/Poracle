@@ -184,6 +184,10 @@ def gym_info(info):
                 update_weather_path(id, path)
 
 
+def get_weather_name(id):
+    legend = json.loads(open('utils/dict/gameweather.json').read())
+    return legend['{}'.format(int(id))]
+
 def get_monster_name(id):
     legend = json.loads(open('utils/dict/pokemon.json').read())
     return legend['{}'.format(int(id))]['name']
@@ -292,6 +296,9 @@ def create_message(type, data, human):
             except TypeError:
                 if args.debug:
                     log.debug('Unable to construct weather for message')
+        if 'weather' in data:
+            d['boost'] = get_weather_name(data['weather'])
+
         add_alarm_counter(human['id'])
 
         Alert(args.token).monster_alert(d)
