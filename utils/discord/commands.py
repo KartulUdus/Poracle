@@ -146,7 +146,7 @@ Enables or disables fields of the alarm
             else:
                 event.msg.reply(args.locationfirst)
         else:
-            event.msg.reply(args.dmonly.format(ping))
+            event.msg.reply(args.onlydm.format(ping))
 
     @Plugin.command('stop')
     def command_stop(self, event):
@@ -480,12 +480,12 @@ Enables or disables fields of the alarm
             # List all tracked raids
             for raid in get_raid_tracked(chid):
                 message += '\n' + get_monster_name(raid['pokemon_id']) + \
-                           ', distance:' + '{}'.format(raid['distance'])
+                           ', distance:' + '{}m'.format(raid['distance'])
             message += '\n**Tracked Eggs:**'
             # List all tracked eggs
             for egg in get_egg_tracked(chid):
                 message += '\nlevel:' + (egg['pokemon_id']) + \
-                           ', distance:' + '{}'.format(egg['distance'])
+                           ', distance:' + '{}m'.format(egg['distance'])
 
             # See if message is under discord limit
             print len(message)
