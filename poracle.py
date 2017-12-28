@@ -1,16 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import logging
-import os, sys
-import errno
-import subprocess
+import os, sys, logging, errno, subprocess, Queue, time
 from alarm import filter
 from utils.args import args as get_args
 from utils.mysql import verify_database_schema
 from gevent import wsgi, spawn
 from flask import Flask, request, abort
-import Queue
 import ujson as json
+from threading import Thread
 
 
 app = Flask(__name__)
@@ -49,6 +46,10 @@ def make_configs():
 
 def runserver():
 
+    t = Thread(target=provision_bot,)
+    t.daemon = True
+    t.start()   # Start thread for discord bot
+
     log.info("Poracle is running on: http://{}:{}".format(args.host,
                                                           args.port))
     server = wsgi.WSGIServer(
@@ -56,8 +57,20 @@ def runserver():
     server.serve_forever()
 
 
+def provision_bot():
+
+    p = run_bot()
+    while True:
+
+        res = p.poll()
+        if res is not None:
+            log.warn("Discord bot {} was killed, restarting it.".format(p.pid))
+            p = run_bot()
+        time.sleep(1)
+
+
 def run_bot():
-    subprocess.Popen('python -m disco.cli ', shell=True)
+    return subprocess.Popen('python -m disco.cli', shell=True)
 
 
 @app.route('/', methods=['GET'])
@@ -98,7 +111,6 @@ if __name__ == '__main__':
     log.info("Poracle initializing.")
     verify_database_schema()
     make_configs()
-    run_bot()
     runserver()
-
+    potato()
 
