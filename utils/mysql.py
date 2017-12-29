@@ -4,7 +4,8 @@ import time, logging, sys
 from args import args as get_args
 from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
-                    BooleanField, TextField, OperationalError, IntegrityError)
+                    BooleanField,  OperationalError, IntegrityError)
+from playhouse.migrate import *
 #from peewee import *
 # Globals
 
@@ -91,7 +92,7 @@ class geocoded(BaseModel):
     team = SmallIntegerField(null=True)
     address = CharField(index=True)
     gym_name = CharField(index=True, max_length=50, null=True)
-    description = TextField(null=True, default="")
+    description = CharField(null=True, max_length=191)
     url = CharField(null=True)
     latitude = DoubleField()
     longitude = DoubleField()
@@ -165,6 +166,8 @@ def verify_table_encoding():
             db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
 
 
+def get_database_version():
+    return schema_version.select(schema_version.val).where(schema_version.key == 'schema_version').dicts()[0]['val']
 
 def verify_database_schema():
     log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
@@ -183,7 +186,19 @@ def verify_database_schema():
                 schema_version.key == 'schema_version').execute()
             db.create_table(cache, safe=True)
             db.close()
-
+        if int(get_database_version())<3:
+            schema_version.update(val=3).where(
+                schema_version.key == 'schema_version').execute()
+            migrator = MySQLMigrator(db)
+            with db.transaction():
+                migrate(
+                    migrator.drop_column('geocoded', 'description'),
+                )
+            with db.transaction():
+                migrate(
+                    migrator.add_column('geocoded', 'description', geocoded.description),
+                )
+            db.close()
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
             e.args[0], e.args[1]))
