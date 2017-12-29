@@ -142,12 +142,12 @@ def verify_table_encoding():
         log.info('Changing collation and charset on humans.',)
 
         db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
-        for table in change_tables:
-            log.debug('Changing collation and charset on table %s.',
-                      table[0])
-            cmd_sql = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
-                        COLLATE utf8mb4_unicode_ci;''' % str(table[0])
-            db.execute_sql(cmd_sql)
+
+        log.debug('Changing collation and charset on table %s.',
+                  table[0])
+        cmd_sql = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
+                    COLLATE utf8mb4_unicode_ci;''' % str(table[0])
+        db.execute_sql(cmd_sql)
         db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
 
 
