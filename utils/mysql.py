@@ -135,23 +135,10 @@ def create_tables():
                       weather, schema_version], safe=True)
 
 
-def verify_table_encoding():
-
-    with db.execution_context():
-
-        log.info('Changing collation and charset on humans.',)
-
-        db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
-
-        log.debug('changing collation of humans')
-        cmd_sql = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
-                    COLLATE utf8mb4_unicode_ci;'''
-        db.execute_sql(cmd_sql)
-        db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
-
 
 def get_database_version():
-    return schema_version.select(schema_version.val).where(schema_version.key == 'schema_version').dicts()[0]['val']
+    return schema_version.select(schema_version.val).where(
+            schema_version.key == 'schema_version').dicts()[0]['val']
 
 def verify_database_schema():
     log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
@@ -170,7 +157,25 @@ def verify_database_schema():
                 schema_version.key == 'schema_version').execute()
             db.create_table(cache, safe=True)
             db.close()
-#        if int(get_database_version())<3:
+        if int(get_database_version())<3:
+            schema_version.update(val=3).where(
+                schema_version.key == 'schema_version').execute()
+            with db.execution_context():
+                log.info('Changing collation and charset on humans.', )
+
+                db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
+
+                log.debug('changing db encoding')
+                cmd_sql_db = '''ALTER DATABASE {} CHARACTER 
+                    SET utf8mb4 COLLATE utf8mb4_unicode_ci;'''.format(
+                    args.database)
+                db.execute_sql(cmd_sql_db)
+                log.debug('changing collation of humans')
+
+                cmd_sql_table = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
+                            COLLATE utf8mb4_unicode_ci;'''
+                db.execute_sql(cmd_sql_table)
+                db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
 
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
