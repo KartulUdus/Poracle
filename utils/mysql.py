@@ -138,32 +138,21 @@ def create_tables():
 def verify_table_encoding():
 
     with db.execution_context():
-        cmd_sql = '''
-            SELECT table_name FROM information_schema.tables WHERE
-            table_collation != "utf8mb4_unicode_ci"
-            AND table_schema = "%s";
-            ''' % args.database
-        change_tables = db.execute_sql(cmd_sql)
 
-        cmd_sql = "SHOW tables;"
-        tables = db.execute_sql(cmd_sql)
+        log.info('Changing collation and charset on humans.',)
 
-        if change_tables.rowcount > 0:
-            log.info('Changing collation and charset on %s tables.',
-                     change_tables.rowcount)
+        if change_tables.rowcount == tables.rowcount:
+            log.info('Changing whole database,' +
+                     ' this might a take while.')
 
-            if change_tables.rowcount == tables.rowcount:
-                log.info('Changing whole database,' +
-                         ' this might a take while.')
-
-            db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
-            for table in change_tables:
-                log.debug('Changing collation and charset on table %s.',
-                          table[0])
-                cmd_sql = '''ALTER TABLE %s CONVERT TO CHARACTER SET utf8mb4
-                            COLLATE utf8mb4_unicode_ci;''' % str(table[0])
-                db.execute_sql(cmd_sql)
-            db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
+        db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
+        for table in change_tables:
+            log.debug('Changing collation and charset on table %s.',
+                      table[0])
+            cmd_sql = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
+                        COLLATE utf8mb4_unicode_ci;''' % str(table[0])
+            db.execute_sql(cmd_sql)
+        db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
 
 
 def get_database_version():
@@ -186,19 +175,8 @@ def verify_database_schema():
                 schema_version.key == 'schema_version').execute()
             db.create_table(cache, safe=True)
             db.close()
-        if int(get_database_version())<3:
-            schema_version.update(val=3).where(
-                schema_version.key == 'schema_version').execute()
-            migrator = MySQLMigrator(db)
-            with db.transaction():
-                migrate(
-                    migrator.drop_column('geocoded', 'description'),
-                )
-            with db.transaction():
-                migrate(
-                    migrator.add_column('geocoded', 'description', geocoded.description),
-                )
-            db.close()
+#        if int(get_database_version())<3:
+
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
             e.args[0], e.args[1]))
