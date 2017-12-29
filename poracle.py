@@ -3,7 +3,7 @@
 import os, sys, logging, errno, subprocess, Queue, time
 from alarm import filter
 from utils.args import args as get_args
-from utils.mysql import verify_database_schema
+from utils.mysql import verify_database_schema, verify_table_encoding
 from gevent import wsgi, spawn
 from flask import Flask, request, abort
 import ujson as json
@@ -110,5 +110,6 @@ def send_hooks_to_filter(q):
 if __name__ == '__main__':
     log.info("Poracle initializing.")
     verify_database_schema()
+    verify_table_encoding()
     make_configs()
     runserver()

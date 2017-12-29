@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import time
+import time, logging, sys
 from args import args as get_args
-import logging
 from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
                     BooleanField, TextField, OperationalError, IntegrityError)
@@ -26,14 +25,17 @@ log.addHandler(ch)
 args = get_args()
 # Test Db Connection
 
+reload(sys)
+sys.setdefaultencoding('UTF8')
 
 db = MySQLDatabase(host="{}".format(
     args.dbhost), port=int("{}".format(
     args.dbport)), user="{}".format(
     args.user), passwd="{}".format(
     args.password), database='{}'.format(args.database),
-    connect_timeout=10)
-
+    connect_timeout=10,
+    use_unicode=True,
+    charset='utf8mb4')
 
 ########################################################
 # Tables and MySQL migration
@@ -130,6 +132,38 @@ class cache(BaseModel):
 def create_tables():
     db.create_tables([humans, monsters, raid, geocoded,
                       weather, schema_version], safe=True)
+
+
+def verify_table_encoding():
+
+    with db.execution_context():
+        cmd_sql = '''
+            SELECT table_name FROM information_schema.tables WHERE
+            table_collation != "utf8mb4_unicode_ci"
+            AND table_schema = "%s";
+            ''' % args.database
+        change_tables = db.execute_sql(cmd_sql)
+
+        cmd_sql = "SHOW tables;"
+        tables = db.execute_sql(cmd_sql)
+
+        if change_tables.rowcount > 0:
+            log.info('Changing collation and charset on %s tables.',
+                     change_tables.rowcount)
+
+            if change_tables.rowcount == tables.rowcount:
+                log.info('Changing whole database,' +
+                         ' this might a take while.')
+
+            db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
+            for table in change_tables:
+                log.debug('Changing collation and charset on table %s.',
+                          table[0])
+                cmd_sql = '''ALTER TABLE %s CONVERT TO CHARACTER SET utf8mb4
+                            COLLATE utf8mb4_unicode_ci;''' % str(table[0])
+                db.execute_sql(cmd_sql)
+            db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
+
 
 
 def verify_database_schema():
