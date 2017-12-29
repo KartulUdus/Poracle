@@ -141,10 +141,6 @@ def verify_table_encoding():
 
         log.info('Changing collation and charset on humans.',)
 
-        if change_tables.rowcount == tables.rowcount:
-            log.info('Changing whole database,' +
-                     ' this might a take while.')
-
         db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
         for table in change_tables:
             log.debug('Changing collation and charset on table %s.',
