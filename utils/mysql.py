@@ -166,14 +166,14 @@ def verify_database_schema():
                 db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
 
                 log.debug('changing db encoding')
-                cmd_sql_db = '''ALTER DATABASE {} CHARACTER 
-                    SET utf8mb4 COLLATE utf8mb4_unicode_ci;'''.format(
+                cmd_sql_db = '''ALTER DATABASE {} DEFAULT CHARACTER 
+                    SET utf8 COLLATE utf8_unicode_ci;'''.format(
                     args.database)
                 db.execute_sql(cmd_sql_db)
                 log.debug('changing collation of humans')
 
-                cmd_sql_table = '''ALTER TABLE humans CONVERT TO CHARACTER SET utf8mb4
-                            COLLATE utf8mb4_unicode_ci;'''
+                cmd_sql_table = '''ALTER TABLE humans CONVERT TO 
+                    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'''
                 db.execute_sql(cmd_sql_table)
                 db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
 
