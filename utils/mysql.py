@@ -42,14 +42,19 @@ db = MySQLDatabase(host="{}".format(
 # Tables and MySQL migration
 ########################################################
 
+class Utf8mb4CharField(CharField):
+    def __init__(self, max_length=191, *args, **kwargs):
+        self.max_length = max_length
+        super(CharField, self).__init__(*args, **kwargs)
+
 class BaseModel(Model):
     class Meta:
         database = db
 
 
 class humans(BaseModel):
-    id = CharField(primary_key=True, index=True, unique=True)
-    name = CharField(index=True, max_length=50)
+    id = Utf8mb4CharField(primary_key=True, index=True, unique=True)
+    name = Utf8mb4CharField(index=True, max_length=50)
     alerts_sent = IntegerField(index=True, default=0)
     enabled = BooleanField(default=True)
     address_enabled = BooleanField(default=True)
@@ -66,7 +71,7 @@ class humans(BaseModel):
 
 
 class monsters(BaseModel):
-    human_id = CharField(index=True, max_length=30)
+    human_id = Utf8mb4CharField(index=True, max_length=30)
     pokemon_id = SmallIntegerField(index=True)
     distance = IntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
@@ -76,8 +81,8 @@ class monsters(BaseModel):
 
 
 class raid(BaseModel):
-    human_id = CharField(index=True, max_length=30)
-    pokemon_id = CharField(index=True, max_length=20)
+    human_id = Utf8mb4CharField(index=True, max_length=30)
+    pokemon_id = Utf8mb4CharField(index=True, max_length=20)
     egg = BooleanField(default=False)
     distance = IntegerField(index=True)
 
@@ -86,14 +91,14 @@ class raid(BaseModel):
 
 
 class geocoded(BaseModel):
-    id = CharField(index=True, max_length=50)
-    type = CharField(index=True, max_length=20)
-    weather_path = CharField(index=True, null=True, max_length=100)
+    id = Utf8mb4CharField(index=True, max_length=50)
+    type = Utf8mb4CharField(index=True, max_length=20)
+    weather_path = Utf8mb4CharField(index=True, null=True, max_length=100)
     team = SmallIntegerField(null=True)
-    address = CharField(index=True)
-    gym_name = CharField(index=True, max_length=50, null=True)
-    description = CharField(null=True, max_length=191)
-    url = CharField(null=True)
+    address = Utf8mb4CharField(index=True)
+    gym_name = Utf8mb4CharField(index=True, max_length=50, null=True)
+    description = Utf8mb4CharField(null=True, max_length=191)
+    url = Utf8mb4CharField(null=True)
     latitude = DoubleField()
     longitude = DoubleField()
 
@@ -103,10 +108,10 @@ class geocoded(BaseModel):
 
 
 class weather(BaseModel):
-    area = CharField(primary_key=True, index=True, max_length=100)
+    area = Utf8mb4CharField(primary_key=True, index=True, max_length=100)
     updated = IntegerField(index=True, null=True)
-    description = CharField(null=True, index=True, max_length=50)
-    windspeed = CharField(null=True, index=True, max_length=50)
+    description = Utf8mb4CharField(null=True, index=True, max_length=50)
+    windspeed = Utf8mb4CharField(null=True, index=True, max_length=50)
     temperature = IntegerField(null=True, index=True)
 
 
@@ -116,7 +121,7 @@ class schema_version(BaseModel):
 
 
 class cache(BaseModel):
-    id = CharField(primary_key=True, index=True, max_length=50)
+    id = Utf8mb4CharField(primary_key=True, index=True, max_length=50)
     despawn = IntegerField(index=True, null=True)
     hatch = IntegerField(index=True, null=True)
     raid_end = IntegerField(index=True, null=True)
