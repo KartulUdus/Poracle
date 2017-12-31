@@ -82,7 +82,7 @@ def revgeoloc(loc):
 
     if args.gmaps:
         geo = GoogleV3(api_key=args.gmaps[0], timeout=1)
-        pos = geo.reverse([59.426372, 24.7705570], exactly_one=True, timeout=5)
+        pos = geo.reverse(loc, exactly_one=True, timeout=5)
         return json.loads(json.dumps(pos, indent=4, sort_keys=True))[0]
     else:
         geo = Nominatim()
