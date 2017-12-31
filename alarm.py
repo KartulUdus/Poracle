@@ -80,14 +80,17 @@ def pokemon(info):
     name = get_monster_name(monster_id)
     if monster_any(monster_id):
         if not check_if_geocoded(id):
-            if args.usaddress:
-                address = ' '.join(
-                    np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode(
-                    'utf-8')
+            if args.gmaps:
+                address = revgeoloc([lat, lon])
             else:
-                address = ' '.join(
-                    np.array(revgeoloc([lat, lon]))[[3, 2, 1, 0]]).encode(
-                    'utf-8')
+                if args.usaddress:
+                    address = ' '.join(
+                        np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode(
+                        'utf-8')
+                else:
+                    address = ' '.join(
+                        np.array(revgeoloc([lat, lon]))[[3, 2, 1, 0]]).encode(
+                        'utf-8')
             spawn_geocoding(id, address, lat, lon)
             makemap(float(lat), float(lon), id)
             log.info('Made geocoded info for {}'.format(address))
@@ -166,12 +169,15 @@ def gym_info(info):
     lon = info['longitude']
     if not check_if_geocoded(id):
         log.info('Geocoding info for gym {}'.format(name))
-        if args.usaddress:
-            address = ' '.join(
-                np.array(revgeoloc([lat, lon]))[[0,1,2]]).encode('utf-8')
+        if args.gmaps:
+            address = revgeoloc([lat, lon])
         else:
-            address = ' '.join(np.array(revgeoloc([lat, lon]))[
-                               [2,1,0]]).encode('utf-8')
+            if args.usaddress:
+                address = ' '.join(
+                    np.array(revgeoloc([lat, lon]))[[0,1,2]]).encode('utf-8')
+            else:
+                address = ' '.join(np.array(revgeoloc([lat, lon]))[
+                                   [2,1,0]]).encode('utf-8')
         save_geocoding(id, team, address, name, description, url, lat, lon)
         makemap(lat, lon, id)
 
