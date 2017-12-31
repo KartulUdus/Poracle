@@ -67,12 +67,20 @@ def get_weather_area_name(loc):
 
 def geoloc(loc):
     log.info("Figuring out where {} is".format(loc))
-    geo = Nominatim()
-    try:
-        pos = geo.geocode(loc, exactly_one=True, timeout=None)
-        return pos.latitude, pos.longitude
-    except AttributeError:
-        return 'ERROR'
+    if args.gmaps:
+        geo = GoogleV3(api_key=args.gmaps[0], timeout=1)
+        try:
+            pos = geo.geocode(loc, exactly_one=True, timeout=5)
+            return pos.latitude, pos.longitude
+        except AttributeError:
+            return 'ERROR'
+    else:
+        geo = Nominatim()
+        try:
+            pos = geo.geocode(loc, exactly_one=True, timeout=5)
+            return pos.latitude, pos.longitude
+        except AttributeError:
+            return 'ERROR'
 
 
 # Reverse geocodes coords like [59.426372, 24.7705570] into words
@@ -81,7 +89,7 @@ def geoloc(loc):
 def revgeoloc(loc):
 
     if args.gmaps:
-        geo = GoogleV3(api_key=args.gmaps[0], timeout=1)
+        geo = GoogleV3(api_key=args.gmaps[0], timeout=5)
         pos = geo.reverse(loc, exactly_one=True, timeout=5)
         return json.loads(json.dumps(pos, indent=4, sort_keys=True))[0]
     else:
