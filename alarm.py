@@ -79,21 +79,6 @@ def pokemon(info):
     monster_id = info['pokemon_id']
     name = get_monster_name(monster_id)
     if monster_any(monster_id):
-        if not check_if_geocoded(id):
-            if args.gmaps:
-                address = revgeoloc([lat, lon])
-            else:
-                if args.usaddress:
-                    address = ' '.join(
-                        np.array(revgeoloc([lat, lon]))[[0, 1, 2, 3]]).encode(
-                        'utf-8')
-                else:
-                    address = ' '.join(
-                        np.array(revgeoloc([lat, lon]))[[3, 2, 1, 0]]).encode(
-                        'utf-8')
-            spawn_geocoding(id, address, lat, lon)
-            makemap(float(lat), float(lon), id)
-            log.info('Made geocoded info for {}'.format(address))
 
         if args.weatheruser:
             if not check_if_weather(id):
@@ -117,6 +102,24 @@ def pokemon(info):
             dis = distance([info['latitude'], info['longitude']], [
                            human['latitude'], human['longitude']])
             if dis <= human['distance']:
+                if not check_if_geocoded(id):
+                    if args.gmaps:
+                        address = revgeoloc([lat, lon])
+                    else:
+                        if args.usaddress:
+                            address = ' '.join(
+                                np.array(revgeoloc([lat, lon]))[
+                                    [0, 1, 2, 3]]).encode(
+                                'utf-8')
+                        else:
+                            address = ' '.join(
+                                np.array(revgeoloc([lat, lon]))[
+                                    [3, 2, 1, 0]]).encode(
+                                'utf-8')
+                    spawn_geocoding(id, address, lat, lon)
+                    makemap(float(lat), float(lon), id)
+                    log.info('Made geocoded info for {}'.format(address))
+
                 log.info("Alerting {} about {}".format(human['name'], name))
 
                 create_message('monster', info, human)
