@@ -100,6 +100,11 @@ def args():
     # Static Map size
 
     parser.add_argument(
+        '-gm',
+        '--gmaps',
+        help='google maps api key', default=None, action='append')
+
+    parser.add_argument(
         '-mw',
         '--mapwidth',
         type=int,

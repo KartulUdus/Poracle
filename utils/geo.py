@@ -5,7 +5,7 @@ import logging
 import requests
 from xml.etree import ElementTree as ET
 from cHaversine import haversine
-from geopy.geocoders import Nominatim, GeoNames
+from geopy.geocoders import Nominatim, GeoNames, GoogleV3
 from staticmap import StaticMap, IconMarker
 from args import args as get_args
 from utils.mysql import get_all_weather_paths
@@ -67,22 +67,36 @@ def get_weather_area_name(loc):
 
 def geoloc(loc):
     log.info("Figuring out where {} is".format(loc))
-    geo = Nominatim()
-    try:
-        pos = geo.geocode(loc, exactly_one=True, timeout=None)
-        return pos.latitude, pos.longitude
-    except AttributeError:
-        return 'ERROR'
+    if args.gmaps:
+        geo = GoogleV3(api_key=args.gmaps[0], timeout=1)
+        try:
+            pos = geo.geocode(loc, exactly_one=True, timeout=5)
+            return pos.latitude, pos.longitude
+        except AttributeError:
+            return 'ERROR'
+    else:
+        geo = Nominatim()
+        try:
+            pos = geo.geocode(loc, exactly_one=True, timeout=5)
+            return pos.latitude, pos.longitude
+        except AttributeError:
+            return 'ERROR'
 
 
 # Reverse geocodes coords like [59.426372, 24.7705570] into words
 
 
 def revgeoloc(loc):
-    geo = Nominatim()
-    pos = geo.reverse((tuple(loc))[0:2], exactly_one=True, timeout=None)
-    address = (pos.raw['display_name']).split(",")
-    return address
+
+    if args.gmaps:
+        geo = GoogleV3(api_key=args.gmaps[0], timeout=5)
+        pos = geo.reverse(loc, exactly_one=True, timeout=5)
+        return json.loads(json.dumps(pos, indent=4, sort_keys=True))[0]
+    else:
+        geo = Nominatim()
+        pos = geo.reverse((tuple(loc))[0:2], exactly_one=True, timeout=5)
+        address = (pos.raw['display_name']).split(",")
+        return address
 
 
 # Stores static map image in images/geocoded/<spawn_gym_id>.png
