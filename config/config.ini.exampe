@@ -28,7 +28,7 @@ token:              # Your discord token. Required
 #usaddress          # turns address string the other way around <house number, street, suburb, city>
 #owner:             # the owner who is able to register public channels
 #debug              # enabled more logging
-
+#gmaps:             # Add gmaps key for alternative geocoding through google
 ##############################################################################
 ##Weather
 ##############################################################################
@@ -74,7 +74,7 @@ token:              # Your discord token. Required
 #pmtitle: a wild {} has appeared!
 #pmintro: It will despawn at {}, you have {} left
 #pltitle: :map:
-#plfield': Location: {}
+#plfield: Location: {}
 #pivtitle: :medal:
 #pivfield: Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)
 #pmvtitle: :dancer:

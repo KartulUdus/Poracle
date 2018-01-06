@@ -38,6 +38,7 @@ db = MySQLDatabase(host="{}".format(
     use_unicode=True,
     charset='utf8mb4')
 
+
 ########################################################
 # Tables and MySQL migration
 ########################################################
