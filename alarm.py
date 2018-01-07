@@ -245,8 +245,14 @@ def create_message(type, data, human):
         d['city'] = data['geocoded'][3]['short_name']
         d['tth'] = time.strftime(
             "%Mm %Ss", time.gmtime(seconds_until_despawn))
-        d['time'] = time.strftime("%H:%M:%S",
+
+        if not args.imperial:
+            d['time'] = time.strftime("%H:%M:%S",
                                   time.localtime(int(data['disappear_time'])))
+        else:
+            d['time'] = time.strftime("%H:%M:%S %p",
+                                      time.localtime(
+                                          int(data['disappear_time'])))
         d['thumb'] = args.imgurl + \
             '{}.png'.format(data['pokemon_id']).encode('utf-8')
         if data['individual_attack'] is not None:
@@ -303,7 +309,13 @@ def create_message(type, data, human):
         d['move2'] = get_monster_move(int(data['move_2'])).encode('utf-8')
         d['tth'] = time.strftime("%Mm %Ss",
                                  time.gmtime(seconds_until_despawn))
-        d['time'] = time.strftime("%H:%M:%S", time.localtime(int(data['end'])))
+        if not arts.imperial:
+            d['time'] = time.strftime(
+                "%H:%M:%S", time.localtime(int(data['end'])))
+        else:
+            d['time'] = time.strftime(
+                "%H:%M:%S %p", time.localtime(int(data['end'])))
+
         d['street_num'] = data['geocoded'][0]['short_name']
         d['street'] = data['geocoded'][1]['short_name']
         d['suburb'] = data['geocoded'][2]['short_name']
@@ -339,8 +351,14 @@ def create_message(type, data, human):
         d['map_enabled'] = human['map_enabled']
         d['geo_enabled'] = human['address_enabled']
         d['tth'] = time.strftime("%Mm %Ss", time.gmtime(time_til_hatch))
-        d['time'] = time.strftime(
-            "%H:%M:%S", time.localtime(int(data['start'])))
+
+        if not args.imperial:
+            d['time'] = time.strftime(
+               "%H:%M:%S", time.localtime(int(data['start'])))
+        else:
+            d['time'] = time.strftime(
+                "%H:%M:%S %p", time.localtime(int(data['start'])))
+
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
         d['static'] = data['googlemap']

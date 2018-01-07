@@ -32,15 +32,19 @@ token:              # Your discord token. Required
 #debug              # enabled more logging
 #gmaps:             # Add gmaps key for alternative geocoding through google
 
-##############################################################################
-##Weather
-##############################################################################
+#imperial           # Changes time units to AM/PM 12h mode
 
-#weatheruser:       # Required to receive weather report in alarms (GeoNames username). GeoNames also needs enabled free web services
+
+##############################################################################
+##Static map options
+##############################################################################
+#mapwidth:          # Width of static map, default 250
+#mapheight:         # Height of static map, default 175
+#zoom:              # Zoom level of static map- default 15
 
 ##############################################################################
 ##DTS: bot command responses below
-#############################################################################
+##############################################################################
 
 ## Bot respond dts
 

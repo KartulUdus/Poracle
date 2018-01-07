@@ -91,7 +91,12 @@ def args():
         type=str,
         default='poracle$1234')
 
-
+    parser.add_argument(
+        '-Imp',
+        '--imperial',
+        help='Time in 12h format',
+        action='store_true',
+        default=False)
 
     # Static Map size
 
