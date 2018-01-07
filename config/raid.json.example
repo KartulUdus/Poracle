@@ -1,0 +1,9 @@
+{
+  "raid": "Raid against <MON> has started!\n",
+  "time": "It will end at <DESPAWN>, in <TTH>\n",
+  "address": "Address: <SUB> <STR> <STR_NUM>\n",
+  "gyminfo": "**<GYM>** \n <INFO>\n",
+  "moves": "Quick move: <MOVE1>, Charge Move: <MOVE2>\n",
+  "weather": "boosted by  <WEA>\n",
+  "RM": "<RM>\n"
+}

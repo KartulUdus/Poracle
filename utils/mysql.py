@@ -6,7 +6,7 @@ from peewee import (InsertQuery, MySQLDatabase, Model,
                     SmallIntegerField, IntegerField, CharField, DoubleField,
                     BooleanField,  OperationalError, IntegrityError)
 from playhouse.migrate import *
-#from peewee import *
+
 # Globals
 
 sb_schema_version = 2
@@ -98,7 +98,7 @@ class geocoded(BaseModel):
     team = SmallIntegerField(null=True)
     address = Utf8mb4CharField(index=True)
     gym_name = Utf8mb4CharField(index=True, max_length=50, null=True)
-    description = Utf8mb4CharField(null=True, max_length=191)
+    description = TextField(null=True, default="")
     url = Utf8mb4CharField(null=True)
     latitude = DoubleField()
     longitude = DoubleField()
@@ -152,6 +152,7 @@ def verify_database_schema():
     try:
 
         if not schema_version.table_exists():
+            log.info('Creting database tables.')
             create_tables()
             if humans.table_exists():
                 InsertQuery(schema_version, {
@@ -159,6 +160,7 @@ def verify_database_schema():
                     schema_version.val: 1}).execute()
 
         if not cache.table_exists():
+            log.info('Upgrading to Db schema 2.')
             schema_version.update(val=2).where(
                 schema_version.key == 'schema_version').execute()
             db.create_table(cache, safe=True)
@@ -167,7 +169,7 @@ def verify_database_schema():
             schema_version.update(val=3).where(
                 schema_version.key == 'schema_version').execute()
             with db.execution_context():
-                log.info('Changing collation and charset on humans.', )
+                log.info('Upgrading to Db schema 3.')
 
                 db.execute_sql('SET FOREIGN_KEY_CHECKS=0;')
 
@@ -182,6 +184,13 @@ def verify_database_schema():
                     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'''
                 db.execute_sql(cmd_sql_table)
                 db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
+        elif int(get_database_version()) < 4:
+            log.info('Upgrading to Db schema 4.')
+            schema_version.update(val=4).where(
+                schema_version.key == 'schema_version').execute()
+            with db.execution_context():
+                db.execute_sql(
+                    'ALTER TABLE geocoded MODIFY description LONGTEXT;')
 
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
@@ -443,30 +452,6 @@ def switch(id, col):
 def check_if_geocoded(id):
     return geocoded.select().where(geocoded.id == id).exists()
 
-
-def check_if_weather(id):
-    return geocoded.select(geocoded.weather_path).where(
-        (geocoded.id == id) & geocoded.weather_path.is_null(False)).exists()
-
-
-def update_weather_path(id, path):
-    geocoded.update(weather_path=path).where(geocoded.id == id).execute()
-    try:
-        InsertQuery(weather, {
-            weather.area: path,
-            weather.updated: 0
-        }).execute()
-    except IntegrityError:
-        if args.debug:
-            log.debug('tried to update weather where it already exists')
-    db.close()
-
-
-def get_weather_path(id):
-    return geocoded.select(
-        geocoded.weather_path).where(
-        geocoded.id == id).dicts()
-
 def get_all_weather_paths():
     paths = geocoded.select(geocoded.weather_path,
                            geocoded.latitude,
@@ -475,16 +460,6 @@ def get_all_weather_paths():
 
 def get_weather(area):
     return weather.select().where(weather.area == area).dicts()[0]
-
-
-def get_weather_updated(area):
-    return weather.select(weather.updated).where(
-        weather.area == area).dicts()[0]['updated']
-
-
-def get_address(id):
-    return geocoded.select(geocoded.address).where(geocoded.id == id).dicts()
-
 
 def get_geocoded(id):
     return geocoded.select().where(geocoded.id == id).dicts()[0]
@@ -505,29 +480,8 @@ def save_geocoding(id, team, address, gym_name, description, url, lat, lon):
     db.close()
 
 
-def spawn_geocoding(id, addr, lat, lon):
-    InsertQuery(geocoded, {
-        geocoded.id: id,
-        geocoded.type: 'spawn',
-        geocoded.address: addr,
-        geocoded.latitude: lat,
-        geocoded.longitude: lon
-    }).execute()
-    db.close()
-
-
 def update_team(id, team):
     geocoded.update(team=team).where(geocoded.id == id).execute()
-    db.close()
-
-
-def update_weather(area, desc, wind, temp):
-    weather.update(
-        description=desc,
-        windspeed=wind,
-        temperature=temp,
-        updated=now).where(
-        weather.area == area).execute()
     db.close()
 
 

@@ -1,0 +1,9 @@
+{
+  "mon": "a wild <MON> has \nappeared!\n",
+  "time": "It will despawn at <DESPAWN>, you have <TTH> left\n",
+  "address": "Address: <SUB> <STR> <STR_NUM>\n",
+  "iv":"Perfection: **<IV>%** , (<ATK>/<DEF>/<STA>), Level:**<LVL>** (cp:**<CP>**)\n",
+  "moves": "Quick move: <MOVE1>, Charge Move: <MOVE2>\n",
+  "weather": "boosted by  <WEA>\n",
+  "RM": "<RM>"
+}

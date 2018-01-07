@@ -8,6 +8,7 @@
 ##############################################################################
 ## Database (mandatory to fill out)
 ##############################################################################
+
 user:
 password:
 database:
@@ -18,6 +19,7 @@ dbhost:
 ##Discord
 ##############################################################################
 ##
+
 #channel: general   # Channel where register command is available
 token:              # Your discord token. Required
 #prefix: ?          # Prefix for bot commands, default is !
@@ -29,6 +31,7 @@ token:              # Your discord token. Required
 #owner:             # the owner who is able to register public channels
 #debug              # enabled more logging
 #gmaps:             # Add gmaps key for alternative geocoding through google
+
 ##############################################################################
 ##Weather
 ##############################################################################
@@ -36,8 +39,9 @@ token:              # Your discord token. Required
 #weatheruser:       # Required to receive weather report in alarms (GeoNames username). GeoNames also needs enabled free web services
 
 ##############################################################################
-##DTS: All values below
+##DTS: bot command responses below
 #############################################################################
+
 ## Bot respond dts
 
 #registering: Hello {}, thank you for registering!
@@ -69,36 +73,3 @@ token:              # Your discord token. Required
 #eggnottracked: You are not currently tracking lvl{} raid eggs :eyes:
 #eggremoved: I have removed tracking for level{} raids
 
-## Monster alarm dts
-
-#pmtitle: a wild {} has appeared!
-#pmintro: It will despawn at {}, you have {} left
-#pltitle: :map:
-#plfield: Location: {}
-#pivtitle: :medal:
-#pivfield: Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)
-#pmvtitle: :dancer:
-#pmvfield: Quick move: {}, Charge Move: {}
-
-## Raid alarm dts
-
-#rmtitle: Raid against {} has started!
-#rmintro: It will end at {}, in {}
-#rltitle: :map:
-#rlfield: {}
-#rmvtitle: :dancer:
-#rmvfield: Quick move: {}, Charge Move: {}
-#rivtitle: {}
-#rivfield: {}
-
-## Eggs
-
-#emtitle: Level {} egg appeared!
-#emintro: It will begin at {}, (in {})
-
-## Weather and map link used globally
-
-#weathertitle: :white_sun_cloud: {}
-#weatherbody: Temperature {}°C, {}
-#RMtitle: :eyes:
-#RMlink: {}

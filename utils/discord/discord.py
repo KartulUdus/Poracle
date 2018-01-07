@@ -1,8 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import re
 import ujson as json
 from disco.api.client import APIClient
-from disco.types.message import (MessageEmbed, MessageEmbedField,
+from disco.types.message import (MessageEmbed,
                                  MessageEmbedThumbnail, MessageEmbedAuthor,
                                  MessageEmbedImage)
 from utils.args import args as get_args
@@ -23,158 +24,155 @@ def get_monster_id_from_name(id):
 
 class Alert(APIClient):
     def monster_alert(self, d):
-        embed = MessageEmbed(color=d['color'])
-        img = ''
+        legend = json.loads(open('config/monsters.json').read())
+
         if 'form' in d:
-            embed.title = (
-                d['mon_name'] + ' (form: {})'.format(d['form']))
-            embed.url = d['gmapurl']
+            pmtitle = re.sub('<MON>', d['mon_name']+'({})'.format(d['form']),
+                             legend['mon'])
         else:
-            embed.title = d['mon_name']
-            embed.url = d['gmapurl']
-        if not args.bottommap:
-            if d['map_enabled']:
-                img = ['static.png', open(d['static'], 'r')]
-        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
-        embed.fields.append(
-            MessageEmbedField(name=args.pmtitle.format(d['mon_name']),
-                              value=args.pmintro.format(d['time'], d['tth']))
-        )
+            pmtitle = re.sub('<MON>', d['mon_name'], legend['mon'])
+        pmintro = re.sub('<DESPAWN>', d['time'], legend['time'])
+        pmintro = re.sub('<TTH>', d['tth'], pmintro)
 
+        description = pmintro
         if d['geo_enabled']:
-            embed.fields.append(
-                MessageEmbedField(name=args.pltitle,
-                                  value=args.plfield.format(d['address']))
-            )
-
+            adreu = d['street'] + d['street_num']
+            adrus = d['street_num'] + d['street']
+            address = legend['address']
+            address = re.sub('<CITY>', d['city'], address)
+            address = re.sub('<SUB>', d['suburb'], address)
+            address = re.sub('<STR>', d['street'], address)
+            address = re.sub('<STR_NUM>', d['street_num'], address)
+            address = re.sub('<ADDR_EU>', adreu, address)
+            address = re.sub('<ADDR_US>', adrus, address)
+            description += address
         if 'atk' in d and d['iv_enabled']:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.pivtitle,
-                    value=args.pivfield.format(
-                        d['perfection'],
-                        d['atk'],
-                        d['def'],
-                        d['sta'],
-                        d['level'],
-                        d['cp'])))
+            stats = legend['iv']
+            stats = re.sub('<IV>',  str(d['perfection']), stats)
+            stats = re.sub('<ATK>', str(d['atk']), stats)
+            stats = re.sub('<DEF>', str(d['def']), stats)
+            stats = re.sub('<STA>', str(d['sta']), stats)
+            stats = re.sub('<LVL>', str(d['level']), stats)
+            stats = re.sub('<CP>', str(d['cp']), stats)
+            description += stats
         if 'atk' in d and d['moves_enabled']:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.pmvtitle,
-                    value=args.pmvfield.format(
-                        d['move1'],
-                        d['move2'])))
-        if args.weatheruser and 'wtemp' in d:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.weathertitle.format(
-                        d['wdescription']), value=args.weatherbody.format(
-                        d['wtemp'], d['wwind'])))
-
-        if 'boost' in d:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.weathertitle.format(' **Game weather:**'),
-                    value='Boost: {}'.format(d['boost'])))
-
+            moves = legend['moves']
+            moves = re.sub('<MOVE1>', d['move1'], moves)
+            moves = re.sub('<MOVE2>', d['move2'], moves)
+            description += moves
+        if 'boost' in d and d['weather_enabled']:
+            boost = legend['weather']
+            boost = re.sub('<WEA>', d['boost'], boost)
+            description += boost
         if args.mapurl:
-            embed.fields.append(
-                MessageEmbedField(name=args.RMtitle,
-                                  value=args.RMlink.format(d['mapurl']))
-            )
+            rmlinkfield = re.sub('<RM>', d['mapurl'], legend['RM'])
+            description += rmlinkfield
 
-        self.channels_messages_create(
-            d['channel'], attachment=img, embed=embed)
+        embed = MessageEmbed(color=d['color'], description=description)
 
-        if args.bottommap and d['map_enabled']:
-            img = ['static.png', open(d['static'], 'r')]
-            self.channels_messages_create(d['channel'], attachment=list(img))
+        if d['map_enabled']:
+            embed.image = MessageEmbedImage(url=d['static'])
+
+        embed.author = MessageEmbedAuthor(url=d['gmapurl'],
+                                              name=pmtitle)
+        embed.title = 'Google Maps'
+        embed.url = d['gmapurl']
+        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
+
+        self.channels_messages_create(d['channel'], embed=embed)
+
 
     def raid_alert(self, d):
-        img = ''
-        embed = MessageEmbed(color=d['color'])
-        embed.title = (d['mon_name'])
-        embed.url = (d['gmapurl'])
-        if not args.bottommap:
-            if d['map_enabled']:
-                img = ['static.png', open(d['static'], 'r')]
-        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
-        embed.fields.append(
-            MessageEmbedField(name=args.rmtitle.format(d['mon_name']),
-                              value=args.rmintro.format(d['time'], d['tth']))
-        )
+        legend = json.loads(open('config/raid.json').read())
+
+        rmtitle = re.sub('<MON>', d['mon_name'], legend['raid'])
+        rlfield = re.sub('<DESPAWN>', d['time'], legend['time'])
+        rlfield = re.sub('<TTH>', d['tth'], rlfield)
+
+        description = rlfield
+
 
         if d['geo_enabled']:
-            embed.fields.append(
-                MessageEmbedField(name=args.rltitle,
-                                  value=args.rlfield.format(d['address']))
-            )
-            embed.image = MessageEmbedImage(url=d['img'], width=50, height=50)
-
-        if d['moves_enabled']:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.rmvtitle,
-                    value=args.rmvfield.format(
-                        d['move1'],
-                        d['move2'])))
-
+            adreu = d['street'] + d['street_num']
+            adrus = d['street_num'] + d['street']
+            address = legend['address']
+            address = re.sub('<CITY>', d['city'], address)
+            address = re.sub('<SUB>', d['suburb'], address)
+            address = re.sub('<STR>', d['street'], address)
+            address = re.sub('<STR_NUM>', d['street_num'], address)
+            address = re.sub('<ADDR_EU>', adreu, address)
+            address = re.sub('<ADDR_US>', adrus, address)
+            description += address
         if d['iv_enabled']:
-            embed.fields.append(
-                MessageEmbedField(name=args.rivtitle.format(d['gym_name']),
-                                  value=args.rivfield.format(d['description']))
-            )
+            gyminfo = re.sub('<GYM>', d['gym_name'], legend['gyminfo'])
+            gyminfo = re.sub('<INFO>', d['description'], gyminfo)
+            description += gyminfo
+        if d['moves_enabled']:
+            moves = legend['moves']
+            moves = re.sub('<MOVE1>', d['move1'], moves)
+            moves = re.sub('<MOVE2>', d['move2'], moves)
+            description += moves
+        if 'boost' in d and d['weather_enabled']:
+            boost = legend['weather']
+            boost = re.sub('<WEA>', d['boost'], boost)
+            description += boost
+        if args.mapurl:
+            rmlinkfield = re.sub('<RM>', d['mapurl'], legend['RM'])
+            description += rmlinkfield
 
-        if args.weatheruser and 'wtemp' in d:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.weathertitle.format(
-                        d['wdescription']), value=args.weatherbody.format(
-                        d['wtemp'], d['wwind'])))
-        self.channels_messages_create(
-            d['channel'], attachment=img, embed=embed)
-        if args.bottommap and d['map_enabled']:
-            img = ['static.png', open(d['static'], 'r')]
-            self.channels_messages_create(d['channel'], attachment=list(img))
+
+        embed = MessageEmbed(color=d['color'], description=description)
+        embed.url = (d['gmapurl'])
+        embed.thumbnail = MessageEmbedThumbnail(url=d['img'])
+        embed.author = MessageEmbedAuthor(icon_url=d['thumb'].lower(),
+                                          name=rmtitle)
+        embed.title = 'Google Maps'
+        embed.url = d['gmapurl']
+        if d['map_enabled']:
+            embed.image = MessageEmbedImage(url=d['static'])
+
+        self.channels_messages_create(d['channel'], embed=embed)
+
 
     def egg_alert(self, d):
-        img = ''
-        embed = MessageEmbed(color=d['color'])
-        embed.title = ('Raid level {}'.format(d['level']))
-        embed.url = (d['gmapurl'])
-        if not args.bottommap:
-            if d['map_enabled']:
-                img = ['static.png', open(d['static'], 'r')]
 
-        embed.fields.append(
-            MessageEmbedField(name=args.emtitle.format(d['level']),
-                              value=args.emintro.format(d['time'], d['tth']))
-        )
-        if d['iv_enabled']:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.rivtitle.format(
-                        d['gym_name']), value=args.rivfield.format(
-                        d['description'])))
+        legend = json.loads(open('config/egg.json').read())
+
+        rmtitle = re.sub('<LVL>', str(d['level']), legend['raid'])
+        rlfield = re.sub('<HATCH>', d['time'], legend['time'])
+        rlfield = re.sub('<TTH>', d['tth'], rlfield)
+        description = rlfield
         if d['geo_enabled']:
-            embed.fields.append(
-                MessageEmbedField(name=args.rltitle,
-                                  value=args.rlfield.format(d['address']))
-            )
-            embed.image = MessageEmbedImage(url=d['img'], width=50, height=50)
+            adreu = d['street'] + d['street_num']
+            adrus = d['street_num'] + d['street']
+            address = legend['address']
+            address = re.sub('<CITY>', d['city'], address)
+            address = re.sub('<SUB>', d['suburb'], address)
+            address = re.sub('<STR>', d['street'], address)
+            address = re.sub('<STR_NUM>', d['street_num'], address)
+            address = re.sub('<ADDR_EU>', adreu, address)
+            address = re.sub('<ADDR_US>', adrus, address)
+            description += address
+        if d['iv_enabled']:
+            gyminfo = re.sub('<GYM>', d['gym_name'], legend['gyminfo'])
+            gyminfo = re.sub('<INFO>', d['description'], gyminfo)
+            description += gyminfo
+        if 'boost' in d and d['weather_enabled']:
+            boost = legend['weather']
+            boost = re.sub('<WEA>', d['boost'], boost)
+            description += boost
+        if args.mapurl:
+            rmlinkfield = re.sub('<RM>', d['mapurl'], legend['RM'])
+            description += rmlinkfield
 
-        if args.weatheruser and 'wtemp' in d:
-            embed.fields.append(
-                MessageEmbedField(
-                    name=args.weathertitle.format(
-                        d['wdescription']), value=args.weatherbody.format(
-                        d['wtemp'], d['wwind'])))
+        embed = MessageEmbed(color=d['color'], description=description)
+        embed.title = 'Google Maps'
+        embed.url = d['gmapurl']
+        embed.author = MessageEmbedAuthor(icon_url=d['thumb'].lower(),
+                                          name=rmtitle)
+        embed.thumbnail = MessageEmbedThumbnail(url=d['img'])
 
-        embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'])
+        if d['map_enabled']:
+            embed.image = MessageEmbedImage(url=d['static'])
 
-        self.channels_messages_create(
-            d['channel'], attachment=img, embed=embed)
-        if args.bottommap and d['map_enabled']:
-            img = ['static.png', open(d['static'], 'r')]
-            self.channels_messages_create(d['channel'], attachment=list(img))
+        self.channels_messages_create(d['channel'], embed=embed)

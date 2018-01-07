@@ -488,7 +488,6 @@ Enables or disables fields of the alarm
                            ', distance:' + '{}m'.format(egg['distance'])
 
             # See if message is under discord limit
-            print len(message)
             if len(message)>2000:
                 rows = message.split('\n')
                 chunks = [rows[x:x + 50] for x in xrange(0, len(rows), 50)]

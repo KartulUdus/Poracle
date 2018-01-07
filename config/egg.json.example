@@ -1,0 +1,8 @@
+{
+  "raid": "level <LVL> egg has appeared!\n",
+  "time": "It will hatch at <HATCH>, in <TTH>\n",
+  "address": "Address: <SUB> <STR> <STR_NUM>\n",
+  "gyminfo": "**<GYM>** \n <INFO>\n",
+  "weather": "current weather:  <WEA>\n",
+  "RM": "<RM>\n"
+}

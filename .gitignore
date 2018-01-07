@@ -1,5 +1,5 @@
 config/*.ini
-utils/images/geocoded/*.png
+config/*.json
 config.json
 !utils/discord/config.json
 .idea/

@@ -32,6 +32,26 @@ args = get_args()
 
 
 def make_configs():
+    if not os.path.isfile('./config/monsters.json'):
+        log.info('Creating monster dts config')
+        template = json.loads(open(os.path.join(os.path.dirname(
+            abspath), 'config/monsters.json.example')).read())
+        with open('./config/monsters.json', 'w') as monconf:
+            json.dump(template, monconf, indent=4, sort_keys=False)
+
+    if not os.path.isfile('./config/raid.json'):
+        log.info('Creating raids dts config')
+        template = json.loads(open(os.path.join(os.path.dirname(
+            abspath), 'config/raid.json.example')).read())
+        with open('./config/raid.json', 'w') as raidconf:
+            json.dump(template, raidconf, indent=4, sort_keys=False)
+
+    if not os.path.isfile('./config/egg.json'):
+        log.info('Creating egg dts config')
+        template = json.loads(open(os.path.join(os.path.dirname(
+            abspath), 'config/egg.json.example')).read())
+        with open('./config/egg.json', 'w') as eggconf:
+            json.dump(template, eggconf, indent=4, sort_keys=False)
     try:
         os.remove('config.json')
     except OSError as e:

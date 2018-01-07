@@ -86,10 +86,6 @@ def args():
         action='store_true',
         default=False)
     parser.add_argument(
-        '--weatheruser',
-        help='Username to GeoNames',
-        default=False)
-    parser.add_argument(
         '--owner',
         help='Username of owner',
         type=str,
@@ -102,7 +98,8 @@ def args():
     parser.add_argument(
         '-gm',
         '--gmaps',
-        help='google maps api key', default=None, action='append')
+        help='google maps api key', default=None, action='append',
+        required=True)
 
     parser.add_argument(
         '-mw',
@@ -114,9 +111,15 @@ def args():
         '-mh',
         '--mapheight',
         type=int,
-        help='static map height ',
+        help='static map height',
         default=175)
 
+    parser.add_argument(
+        '-z',
+        '--zoom',
+        type=int,
+        help='static map zoom',
+        default=15)
     # DTS args
 
 # Bot respond dts
@@ -209,60 +212,5 @@ def args():
     parser.add_argument(
         '--eggremoved',
         default='I have removed tracking for level{} raids ')
-
-# Monster alarm dts
-
-    parser.add_argument(
-        '--pmtitle',
-        default='a wild {} has appeared!')
-    parser.add_argument(
-        '--pmintro',
-        default='It will despawn at {}, you have {} left')
-    parser.add_argument('--pltitle',  default=':map:')
-    parser.add_argument(
-        '--plfield',
-        help='field in location box *',
-        default='Location: {}')
-    parser.add_argument('--pivtitle',  default=':medal:')
-    parser.add_argument(
-        '--pivfield',
-        help='field in iv box ******',
-        default='Perfection: **{}%** , ({}/{}/{}), Level:**{}** (cp:**{}**)')
-    parser.add_argument('--pmvtitle',  default=':dancer:')
-    parser.add_argument(
-        '--pmvfield',
-        help='field in moveset box **',
-        default='Quick move: {}, Charge Move: {}')
-
-# Raid alarm dts
-    parser.add_argument(
-        '--rmtitle',
-        default='Raid against {} has started!')
-    parser.add_argument(
-        '--rmintro',
-        default='It will end at {}, in {}')
-    parser.add_argument('--rltitle',  default=':map:')
-    parser.add_argument('--rlfield',  default='{}')
-    parser.add_argument('--rmvtitle',  default=':dancer:')
-    parser.add_argument(
-        '--rmvfield',
-        default='Quick move: {}, Charge Move: {}')
-    parser.add_argument('--rivtitle',  default='{}')
-    parser.add_argument('--rivfield',  default='{}')
-# Eggs
-    parser.add_argument('--emtitle',  default='Level {} egg appeared!')
-    parser.add_argument(
-        '--emintro',
-        default='It will begin at {}, (in {})')
-
-# Weather and map link used globally
-    parser.add_argument(
-        '--weathertitle',
-        default=':white_sun_cloud: {}')
-    parser.add_argument(
-        '--weatherbody',
-        default='Temperature {}°C, {}')
-    parser.add_argument('--RMtitle',  default=':eyes:')
-    parser.add_argument('--RMlink',  default='{}')
 
     return parser.parse_args()

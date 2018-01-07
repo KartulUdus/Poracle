@@ -23,45 +23,6 @@ def distance(loc1, loc2):
     return haversine((tuple(loc1))[0:2], (tuple(loc2))[0:2])
 
 
-# Get's place name to later use for weather
-
-
-def get_weather_area_name(loc):
-    path = None
-    GNurl = 'http://api.geonames.org/extendedFindNearby?lat={}&lng={}' \
-            '&username={}'.format(loc[0],loc[1],args.weatheruser)
-    geoname = requests.get(GNurl, timeout=5)
-    tree = ET.fromstring(geoname.content)
-
-    for geo in tree:
-        try:
-            if 'ADM1' in geo.find('fcode').text is not None:
-                country = geo.find('countryName').text
-                muni = geo.find('toponymName').text
-            elif 'P' in geo.find('fcl').text is not None:
-                place = geo.find('toponymName').text
-        except AttributeError:
-            continue
-    try:
-        path = '{}/{}/{}'.format(country, muni, place).replace(" ", "_")
-
-    except UnboundLocalError:
-        closest = 100000
-        paths = get_all_weather_paths()
-        if args.debug:
-            log.debug('Unable to get weather path for {}'
-                      .format([loc[0],loc[1]]))
-            log.debug('Doing {} distance calculations to find the closest area'
-                      .format(len(paths)))
-        for area in paths:
-            dis = distance([loc[0],loc[1]],
-                           [area['latitude'],area['longitude']])
-            if dis<closest:
-                closest = dis
-                path = area['weather_path']
-    return path
-
-
 # Geocodes words into coords
 
 
@@ -91,7 +52,7 @@ def revgeoloc(loc):
     if args.gmaps:
         geo = GoogleV3(api_key=args.gmaps[0], timeout=5)
         pos = geo.reverse(loc, exactly_one=True, timeout=5)
-        return json.loads(json.dumps(pos, indent=4, sort_keys=True))[0]
+        return json.loads(json.dumps(pos.raw['address_components']))
     else:
         geo = Nominatim()
         pos = geo.reverse((tuple(loc))[0:2], exactly_one=True, timeout=5)
@@ -99,14 +60,17 @@ def revgeoloc(loc):
         return address
 
 
-# Stores static map image in images/geocoded/<spawn_gym_id>.png
+def get_static_map_link(loc):
+    width = args.mapwidth
+    height = args.mapheight
+    zoom = args.zoom
 
-def makemap(lat, lon, id):
-    map = StaticMap(args.mapwidth, args.mapheight, 80,
-                    url_template='http://a.tile.osm.org/{z}/{x}/{y}.png')
-    marker = IconMarker((lon, lat), 'utils/images/icon-flag.png', 12, 32)
-    map.add_marker(marker)
-    image = map.render(zoom=15)
-    image.save('utils/images/geocoded/{}.png'.format(id))
-    log.info("Generated and saved {}.png".format(id))
-    return
+    center = '{},{}'.format(loc[0],loc[1])
+    query_center = 'center={}'.format(center)
+    query_markers = 'markers=color:red%7C{}'.format(center)
+    query_size = 'size={}x{}'.format(width, height)
+    query_zoom = 'zoom={}'.format(zoom)
+    query_key = 'key={}'.format(args.gmaps[0])
+    return ('https://maps.googleapis.com/maps/api/staticmap?' +
+            query_center + '&' + query_markers + '&' +
+            '&' + query_size + '&' + query_zoom + '&' + query_key)
