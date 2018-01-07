@@ -250,7 +250,7 @@ def create_message(type, data, human):
             d['time'] = time.strftime("%H:%M:%S",
                                   time.localtime(int(data['disappear_time'])))
         else:
-            d['time'] = time.strftime("%H:%M:%S %p",
+            d['time'] = time.strftime("%I:%M:%S %p",
                                       time.localtime(
                                           int(data['disappear_time'])))
         d['thumb'] = args.imgurl + \
@@ -314,7 +314,7 @@ def create_message(type, data, human):
                 "%H:%M:%S", time.localtime(int(data['end'])))
         else:
             d['time'] = time.strftime(
-                "%H:%M:%S %p", time.localtime(int(data['end'])))
+                "%I:%M:%S %p", time.localtime(int(data['end'])))
 
         d['street_num'] = data['geocoded'][0]['short_name']
         d['street'] = data['geocoded'][1]['short_name']
@@ -357,7 +357,7 @@ def create_message(type, data, human):
                "%H:%M:%S", time.localtime(int(data['start'])))
         else:
             d['time'] = time.strftime(
-                "%H:%M:%S %p", time.localtime(int(data['start'])))
+                "%I:%M:%S %p", time.localtime(int(data['start'])))
 
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \
             str(data['latitude']) + ',' + str(data['longitude'])
