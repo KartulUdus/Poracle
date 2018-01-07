@@ -75,7 +75,7 @@ class Alert(APIClient):
 
         embed.author = MessageEmbedAuthor(url=d['gmapurl'],
                                               name=pmtitle)
-        embed.title = 'Google Maps'
+        embed.title = '{}'.format(d['mon_name'])
         embed.url = d['gmapurl']
         embed.thumbnail = MessageEmbedThumbnail(url=d['thumb'].lower())
 
@@ -126,7 +126,7 @@ class Alert(APIClient):
         embed.thumbnail = MessageEmbedThumbnail(url=d['img'])
         embed.author = MessageEmbedAuthor(icon_url=d['thumb'].lower(),
                                           name=rmtitle)
-        embed.title = 'Google Maps'
+        embed.title = '{}'.format(d['mon_name'])
         embed.url = d['gmapurl']
         if d['map_enabled']:
             embed.image = MessageEmbedImage(url=d['static'])
@@ -166,7 +166,7 @@ class Alert(APIClient):
             description += rmlinkfield
 
         embed = MessageEmbed(color=d['color'], description=description)
-        embed.title = 'Google Maps'
+        embed.title = '{}'.format(d['mon_name'])
         embed.url = d['gmapurl']
         embed.author = MessageEmbedAuthor(icon_url=d['thumb'].lower(),
                                           name=rmtitle)
