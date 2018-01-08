@@ -309,7 +309,7 @@ def create_message(type, data, human):
         d['move2'] = get_monster_move(int(data['move_2'])).encode('utf-8')
         d['tth'] = time.strftime("%Mm %Ss",
                                  time.gmtime(seconds_until_despawn))
-        if not arts.imperial:
+        if not args.imperial:
             d['time'] = time.strftime(
                 "%H:%M:%S", time.localtime(int(data['end'])))
         else:
