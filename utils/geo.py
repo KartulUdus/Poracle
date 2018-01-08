@@ -71,6 +71,7 @@ def get_static_map_link(loc):
     query_size = 'size={}x{}'.format(width, height)
     query_zoom = 'zoom={}'.format(zoom)
     query_key = 'key={}'.format(args.gmaps[0])
+    query_maptype = 'maptype={}'.format(args.map_type)
     return ('https://maps.googleapis.com/maps/api/staticmap?' +
-            query_center + '&' + query_markers + '&' +
+            query_center + '&' + query_markers + '&' + query_maptype + '&' +
             '&' + query_size + '&' + query_zoom + '&' + query_key)

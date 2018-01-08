@@ -125,6 +125,14 @@ def args():
         type=int,
         help='static map zoom',
         default=15)
+
+    parser.add_argument(
+        '-mt',
+        '--map-type',
+        type=str,
+        help='static map style',
+        default='roadmap')
+
     # DTS args
 
 # Bot respond dts

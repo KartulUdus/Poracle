@@ -166,7 +166,7 @@ class Alert(APIClient):
             description += rmlinkfield
 
         embed = MessageEmbed(color=d['color'], description=description)
-        embed.title = '{}'.format(d['mon_name'])
+        embed.title = 'Raid level {}'.format(d['level'])
         embed.url = d['gmapurl']
         embed.author = MessageEmbedAuthor(icon_url=d['thumb'].lower(),
                                           name=rmtitle)
