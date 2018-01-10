@@ -76,4 +76,6 @@ token:              # Your discord token. Required
 #eggupdated: I have updated changed level{} raid tracking distance to {}m
 #eggnottracked: You are not currently tracking lvl{} raid eggs :eyes:
 #eggremoved: I have removed tracking for level{} raids
-
+#perfect-added: I have added :100: alarms within {}m
+#perfect-updated: I have updated :100: alarms within {}m
+#special-removed: I have removed tracking for {} pokemon
