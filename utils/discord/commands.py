@@ -14,15 +14,19 @@ from utils.mysql import (
     set_location,
     check_if_tracked,
     add_tracking,
+    add_special,
     update_tracking,
+    update_special,
     remove_tracking,
     check_if_location_set,
     check_if_raid_tracked,
+    check_if_special_tracked,
     remove_raid_tracking,
     add_raid_tracking,
     update_raid_tracking,
     check_if_egg_tracked,
     remove_egg_tracking,
+    remove_special,
     add_egg_tracking,
     update_egg_tracking,
     switch,
@@ -73,6 +77,9 @@ location, minimum IV is optional and defaults to 0
 {1}start - start alarms (true by default on first registration)
 {1}switch [address, iv, moves, map, weather] - 1 option only. 
 Enables or disables fields of the alarm
+{1}alert perfect <max distance> - alerts about all iv 100 wild spawns
+{1}alert remove perfect - removes alerts for iv 100 wild spawns
+
 ```
         '''.format(args.channel, args.prefix)
         event.msg.reply(help)
@@ -238,6 +245,38 @@ Enables or disables fields of the alarm
 
             # Set or update tracking for monster
 
+    @Plugin.command('alert perfect', '<dis:int>')
+    def command_perfect_tracking(self, event, dis):
+        discordid = event.msg.channel.id
+        name = event.msg.author
+        if str(name) == runner:
+            if not check_if_special_tracked(discordid, 'perfect'):
+                add_special(discordid, 'perfect', dis)
+                event.msg.reply(
+                args.perfect_added.format(dis))
+            else:
+                update_special(discordid, 'perfect', dis)
+                event.msg.reply(
+                args.perfect_updated.format(dis))
+
+        else:
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+                    if not check_if_special_tracked(discordid, 'perfect'):
+                        add_special(discordid,'perfect', dis)
+                        event.msg.reply(
+                        args.perfect_added.format(dis))
+                    else:
+                        update_special(discordid,'perfect', dis)
+                        event.msg.reply(
+                        args.perfect_updated.format(dis))
+                else:
+                    event.msg.reply(args.onlyregistered)
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
+
+
+
     @Plugin.command('track', '<monster:str>, <dis:int>, [iv:int]')
     def command_track(self, event, monster, dis, **kwargs):
         iv = kwargs.get('iv', 0)
@@ -282,6 +321,33 @@ Enables or disables fields of the alarm
                 event.msg.reply(args.onlydm.format(event.msg.author.mention))
 
             # Untrack monster:
+
+    @Plugin.command('alert remove', '<specialty:str>')
+    def command_remove_special(self, event, specialty):
+        discordid = event.msg.channel.id
+        name = event.msg.author
+        if str(name) == runner:
+            if not (check_if_special_tracked(discordid, specialty)):
+                event.msg.reply(args.nottracking.format(specialty))
+
+            else:
+                remove_special(discordid, specialty)
+                event.msg.reply(args.special_removed.format(specialty))
+        else:
+            if event.msg.channel.is_dm:
+                if registered_by_name(name):
+                    if not check_if_special_tracked(discordid, specialty):
+                        event.msg.reply(args.nottracking.format(specialty))
+                    else:
+                        remove_special(discordid, specialty)
+                        event.msg.reply(args.special_removed.format(
+                                                                    specialty))
+                else:
+                    event.msg.reply(args.onlyregistered)
+            else:
+                event.msg.reply(args.onlydm.format(event.msg.author.mention))
+
+
 
     @Plugin.command('untrack', '<monster:str>')
     def command_untrack(self, event, monster):

@@ -2,13 +2,9 @@
 # -*- coding: utf-8 -*-
 import ujson as json
 import logging
-import requests
-from xml.etree import ElementTree as ET
 from cHaversine import haversine
-from geopy.geocoders import Nominatim, GeoNames, GoogleV3
-from staticmap import StaticMap, IconMarker
+from geopy.geocoders import Nominatim, GoogleV3
 from args import args as get_args
-from utils.mysql import get_all_weather_paths
 
 
 args = get_args()

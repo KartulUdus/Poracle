@@ -225,5 +225,13 @@ def args():
     parser.add_argument(
         '--eggremoved',
         default='I have removed tracking for level{} raids ')
-
+    parser.add_argument(
+        '--perfect-added',
+        default='I have added :100: alarms within {}m')
+    parser.add_argument(
+        '--perfect-updated',
+        default='I have updated :100: alarms within {}m')
+    parser.add_argument(
+        '--special-removed',
+        default='I have removed tracking for {} pokemon')
     return parser.parse_args()

@@ -71,17 +71,22 @@ def pokemon(info):
     lon = info['longitude']
     monster_id = info['pokemon_id']
     name = get_monster_name(monster_id)
+
+    if info['individual_attack'] is None:
+        iv = 0
+    else:
+        iv = round(
+            float(
+                ((info['individual_attack'] +
+                  info['individual_defense'] +
+                  info['individual_stamina']) *
+                 100) / float(45)), 2)
+    print iv
+    if iv == 100:
+        perfect_alert(info)
+
     if monster_any(monster_id):
 
-        if info['individual_attack'] is None:
-            iv = 0
-        else:
-            iv = round(
-                float(
-                    ((info['individual_attack'] +
-                      info['individual_defense'] +
-                        info['individual_stamina']) *
-                        100) / float(45)), 2)
         someone_is_close_enough = False
         for human in who_cares('monster', info, iv):
 
@@ -108,6 +113,40 @@ def pokemon(info):
     else:
         log.info('{} has appeared, but no one cares'.format(name))
 
+def perfect_alert(info):
+    if monster_any(9000):
+        lat = info['latitude']
+        lon = info['longitude']
+        monster_id = info['pokemon_id']
+        name = get_monster_name(monster_id)
+        someone_is_close_enough = False
+        info['pokemon_id'] = 9000
+
+        for human in who_cares('monster', info, 100):
+
+            dis = distance([info['latitude'], info['longitude']], [
+                human['latitude'], human['longitude']])
+            if dis <= human['distance']:
+                someone_is_close_enough = True
+                clear_cache()
+                continue
+        if someone_is_close_enough:
+            info['googlemap'] = get_static_map_link([lat, lon])
+            info['geocoded'] = revgeoloc([info['latitude'], info['longitude']])
+            for human in who_cares('monster', info, 100):
+                human['pokemon_id'] = info['pokemon_id']
+                dis = distance([info['latitude'], info['longitude']], [
+                    human['latitude'], human['longitude']])
+                if dis <= human['distance']:
+                    human['pokemon_id'] = monster_id
+                    info['pokemon_id'] = monster_id
+                    log.info(
+                        'Alerting {} about {}'.format(human['name'], name))
+                    create_message('monster', info, human)
+        else:
+            log.info(
+            'perfect {} has appeared, but no one was close enough'.format(
+                                                                        name))
 
 def raid(info):
     id = info['gym_id']

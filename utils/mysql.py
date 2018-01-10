@@ -76,6 +76,7 @@ class monsters(BaseModel):
     pokemon_id = SmallIntegerField(index=True)
     distance = IntegerField(index=True)
     min_iv = SmallIntegerField(index=True)
+    special = Utf8mb4CharField(index=True, null=True, max_length=20)
 
     class Meta:
         order_by = ('id',)
@@ -150,7 +151,7 @@ def verify_database_schema():
     log.info('Connecting to MySQL database on {}:{}'.format(args.dbhost,
                                                             args.dbport))
     try:
-
+        migrator = MySQLMigrator(db)
         if not schema_version.table_exists():
             log.info('Creting database tables.')
             create_tables()
@@ -184,13 +185,32 @@ def verify_database_schema():
                     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'''
                 db.execute_sql(cmd_sql_table)
                 db.execute_sql('SET FOREIGN_KEY_CHECKS=1;')
-        elif int(get_database_version()) < 4:
+        if int(get_database_version()) < 4:
             log.info('Upgrading to Db schema 4.')
             schema_version.update(val=4).where(
                 schema_version.key == 'schema_version').execute()
             with db.execution_context():
                 db.execute_sql(
                     'ALTER TABLE geocoded MODIFY description LONGTEXT;')
+
+        if int(get_database_version()) < 5:
+            log.info('Upgrading to Db schema 5.')
+            schema_version.update(val=5).where(
+                schema_version.key == 'schema_version').execute()
+            columns = db.get_columns('monsters')
+            special_filters_migrated = False
+            for col in columns:
+                if 'special' in col:
+                    special_filters_migrated = True
+            if not special_filters_migrated:
+                special = Utf8mb4CharField(index=True,
+                                           null = True,
+                                           max_length=20)
+
+                with db.transaction():
+                    migrate(
+                        migrator.add_column('monsters', 'special', special)
+                            )
 
     except OperationalError as e:
         log.critical("MySQL unhappy [ERROR]:% d: % s\n" % (
@@ -314,14 +334,41 @@ def get_human_location(discordid):
 
 def check_if_tracked(discordid, monster):
     return monsters.select().where(
-        (monsters.human_id == discordid) & (
-            monsters.pokemon_id == monster)).exists()
+        (monsters.human_id == discordid) & (monsters.pokemon_id == monster)
+    ).exists()
+
+def check_if_special_tracked(discordid, specialty):
+    return monsters.select().where(
+        (monsters.human_id == discordid) & (monsters.special == specialty)
+    ).exists()
 
 
 def check_if_location_set(discordid):
     return humans.select().where((humans.id == discordid) &
                                  humans.latitude.is_null()).exists()
 
+def add_special(id, specialty, distance):
+    InsertQuery(monsters, {
+        monsters.human_id: id,
+        monsters.pokemon_id: 9000,
+        monsters.distance: distance,
+        monsters.min_iv: 100,
+        monsters.special: specialty
+        }).execute()
+    db.close()
+
+def update_special(id, specialty, distance):
+    monsters.update(
+        distance=distance).where(
+        (monsters.human_id == id) & (monsters.special == specialty)
+    ).execute()
+    db.close()
+
+def remove_special(id, specialty):
+    monsters.delete().where(
+        (monsters.human_id == id) & (monsters.special == specialty)
+    ).execute()
+    db.close()
 
 def add_tracking(id, monster, distance, iv):
     InsertQuery(monsters, {
@@ -452,18 +499,8 @@ def switch(id, col):
 def check_if_geocoded(id):
     return geocoded.select().where(geocoded.id == id).exists()
 
-def get_all_weather_paths():
-    paths = geocoded.select(geocoded.weather_path,
-                           geocoded.latitude,
-                           geocoded.longitude).where(geocoded.weather_path.is_null(False)).distinct(geocoded.weather_path)
-    return paths.dicts()
-
-def get_weather(area):
-    return weather.select().where(weather.area == area).dicts()[0]
-
 def get_geocoded(id):
     return geocoded.select().where(geocoded.id == id).dicts()[0]
-
 
 def save_geocoding(id, team, address, gym_name, description, url, lat, lon):
     InsertQuery(geocoded, {
