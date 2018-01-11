@@ -50,7 +50,7 @@ token:              # Your discord token. Required
 
 #registering: Hello {}, thank you for registering!
 #alreadyreg: Hello {}, you are already registered
-#onlyinchannel: Hello {}, !register is only available in #{}
+#onlyinchannel: Hello {}, !poracle is only available in #{}
 #notregistered: Hello {}, You are not currenlty registered!
 #channelnotfound: This channel isn\'t registered :eyes:
 #unregistered: Hello {}, You are no longer registered!

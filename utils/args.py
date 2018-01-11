@@ -144,7 +144,7 @@ def args():
         default='Hello {}, you are already registered')
     parser.add_argument(
         '--onlyinchannel',
-        default='Hello {}, !register is only available in #{}')
+        default='Hello {}, !poracle is only available in #{}')
     parser.add_argument(
         '--notregistered',
         default='Hello {}, You are not currenlty registered!')
