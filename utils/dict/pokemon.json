@@ -9329,17 +9329,6 @@
       }
     ],
     "spawn_rate": ""
-  },
 
-    "9000": {
-    "name": "Perfect IV",
-    "rarity": "",
-    "types": [
-      {
-        "type": "Fire",
-        "color": 15761456
-      }
-    ],
-    "spawn_rate": ""
   }
 }
