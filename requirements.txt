@@ -1,5 +1,5 @@
 requests == 2.13.0
-disco-py
+git+https://github.com/KartulUdus/disco.git
 Flask == 0.12.2
 geopy == 1.11.0
 peewee == 2.8.1
