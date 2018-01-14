@@ -290,12 +290,12 @@ def create_message(type, data, human):
             "%Mm %Ss", time.gmtime(seconds_until_despawn))
 
         if not args.imperial:
-            d['time'] = time.strftime("%H:%M:%S",
-                                  time.localtime(int(data['disappear_time'])))
+            d['time'] = str(time.strftime("%H:%M:%S",
+                                  time.localtime(int(data['disappear_time']))))
         else:
-            d['time'] = time.strftime("%I:%M:%S %p",
+            d['time'] = str(time.strftime("%I:%M:%S %p",
                                       time.localtime(
-                                          int(data['disappear_time'])))
+                                          int(data['disappear_time']))))
         d['thumb'] = args.imgurl + \
             '{}.png'.format(data['pokemon_id']).encode('utf-8')
         if data['individual_attack'] is not None:

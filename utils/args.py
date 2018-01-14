@@ -225,7 +225,7 @@ def args():
         default='I have added tracking for level {} raids within {}m ')
     parser.add_argument(
         '--eggupdated',
-        default='I have updated changed level{} raid tracking distance to {}m')
+        default='I have updated level{} raid tracking distance to {}m')
     parser.add_argument(
         '--eggnottracked',
         default='You are not currently tracking lvl{} raid eggs :eyes:')
