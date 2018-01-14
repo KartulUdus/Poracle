@@ -90,12 +90,16 @@ def pokemon(info):
         someone_is_close_enough = False
         for human in who_cares('monster', info, iv):
 
-            dis = distance([info['latitude'], info['longitude']], [
-                           human['latitude'], human['longitude']])
-            if dis <= human['distance']:
-                someone_is_close_enough = True
-                clear_cache()
-                continue
+            if human['latitude'] is None:
+                log.warn('{} cares for perfect {},'
+                        ' but did not set location'.format(human['name'],name))
+            else:
+                dis = distance([info['latitude'], info['longitude']], [
+                               human['latitude'], human['longitude']])
+                if dis <= human['distance']:
+                    someone_is_close_enough = True
+                    clear_cache()
+                    continue
 
         if someone_is_close_enough:
             info['googlemap'] = get_static_map_link([lat, lon])
