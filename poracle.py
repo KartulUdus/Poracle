@@ -4,7 +4,7 @@ import os, sys, logging, errno, subprocess, Queue, time
 from alarm import filter
 from utils.args import args as get_args
 from utils.mysql import verify_database_schema
-from gevent import wsgi, spawn
+from gevent import wsgi, spawn, pool
 from flask import Flask, request, abort
 import ujson as json
 from threading import Thread
@@ -72,8 +72,10 @@ def runserver():
 
     log.info("Poracle is running on: http://{}:{}".format(args.host,
                                                           args.port))
+    threads = pool.Pool(args.concurrency)
     server = wsgi.WSGIServer(
-        (args.host, args.port), app, log=logging.getLogger('Webserver'))
+        (args.host, args.port), app, log=logging.getLogger('Webserver'),
+        spawn = threads)
     server.serve_forever()
 
 

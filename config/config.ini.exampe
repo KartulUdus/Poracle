@@ -4,7 +4,7 @@
 
 #host: 0.0.0.0          # Uncomment and use if you need to receive webhooks outside localhost. default=localhost
 #port: 3030             # Default port
-
+#concurrency: 200            # maximum concurrent connections to webserver
 ##############################################################################
 ## Database (mandatory to fill out)
 ##############################################################################

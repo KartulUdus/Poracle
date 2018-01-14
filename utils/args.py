@@ -135,6 +135,10 @@ def args():
         type=str,
         help='static map style',
         default='roadmap')
+    parser.add_argument(
+        '-C', '--concurrency', type=int,
+        help = 'Maximum concurrent connections for the webserver',
+        default = 200)
 
     # DTS args
 
