@@ -71,7 +71,7 @@ class Alert(APIClient):
         description = re.sub('<CP>', str(d.get('cp', '')), description)
         description = re.sub('<MOVE1>', d.get('move1', ''), description)
         description = re.sub('<MOVE2>', d.get('move2', ''), description)
-        description = re.sub('<WEA>', d.get('description', ''), description)
+        description = re.sub('<WEA>', d.get('boost', ''), description)
         description = re.sub('<RM>', d.get('mapurl', ''), description)
 
         embed = MessageEmbed(color=d['color'], description=description)
