@@ -312,13 +312,13 @@ def create_message(type, data, human):
                       data['individual_defense'] +
                         data['individual_stamina']) *
                         100) / float(45)),  2)
-        if data['form'] is not None:
+        if data['form'] is not None and data['form'] != 0:
             d['form'] = get_monster_form(
                 int(data['pokemon_id']), data['form']).encode('utf-8')
         if args.mapurl:
             d['mapurl'] = args.mapurl + '?lat=' + \
                 str(data['latitude']) + '&lon=' + str(data['longitude'])
-        if args.forms and data['form'] is not None:
+        if args.forms and data['form'] is not None and data['form'] != 0:
             d['thumb'] = args.imgurl + \
                 '{}-{}.png'.format(int(data['pokemon_id']), d['form'])
         d['gmapurl'] = 'https://www.google.com/maps/search/?api=1&query=' + \

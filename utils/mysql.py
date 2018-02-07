@@ -153,7 +153,7 @@ def verify_database_schema():
     try:
         migrator = MySQLMigrator(db)
         if not schema_version.table_exists():
-            log.info('Creting database tables.')
+            log.info('Creating database tables.')
             create_tables()
             if humans.table_exists():
                 InsertQuery(schema_version, {
